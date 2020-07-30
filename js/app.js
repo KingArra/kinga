@@ -3922,7 +3922,7 @@ if (gs === 4) {
               null == t.textobj && (t.textobj = ke()),
                 null == t.len && (t.len = we(r, i - 4)),
                 (ae.globalAlpha = 0.5 * t.alpha);
-                if (r==="Thanks For Playing Maxtri!"){
+                if (r==="Welcome to KA2's Arras Server!"){
                         Se(n - t.len / 2, n + t.len / 2, l + i / 2, i, f(
             ["#ff1000", "#ff9000", "#ffd300", "#00e00b", "#226ef6", "#a913cf"][
               Math.floor((Date.now() / 200) % 6)
@@ -4893,7 +4893,7 @@ if (gs === 4) {
               "center"
             );
              e.message.draw(
-             "The Arena Has Closed. Please Wait Until The Server Restarts.",
+             "Arena closed. Please wait till the server has restarted.",
               r.screenWidth / 2,
               r.screenHeight / 2 + 30,
               15,
