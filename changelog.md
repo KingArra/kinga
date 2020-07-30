@@ -1,6 +1,13 @@
+# PATCH 07/30/2020
+
+- Fixed an Animation Error with the Options Menu.
+
+- Changed the Messgae on the Token Slot.
+
+
 # PATCH 07/29/2020
 
-- 4TDM is Currently Down, the Server is right now being fixed!
+- 4TDM is Currently Down, the Server is right now being fixed.
 
 
 # PATCH 07/25/2020
@@ -294,7 +301,7 @@
 
 - Reseted all Games and Closed FFA for fixes.
 
-# PATCH 06/11/2020 (1)
+# PATCH 06/11/2020 (2)
 
 - Changed the Main Menu Buttons and Colors to Blue, changed the background image, and uploaded a new Favicon + Front Icon.
 
