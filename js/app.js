@@ -1,5483 +1,3898 @@
- var particles=true;
-    function startgameee(){
-      particles=false;
-    }
-    if (particles===true){
-    (function() {
-  var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
-
-  NUM_CONFETTI = 400;
-
-  COLORS = [[148, 235, 255], [0, 207, 255], [0, 120, 148], [0, 4, 255], [189, 198, 255]];
-
-  PI_2 = 2 * Math.PI;
-
-  canvas = document.getElementById("gameCanvas");
-
-  context = canvas.getContext("2d");
-
-  window.w = 0;
-
-  window.h = 0;
-
-  resizeWindow = function() {
-    window.w = canvas.width = window.innerWidth;
-    return window.h = canvas.height = window.innerHeight;
-  };
-
-  window.addEventListener('resize', resizeWindow, false);
-
-  window.onload = function() {
-    return setTimeout(resizeWindow, 0);
-  };
-
-  range = function(a, b) {
-    return (b - a) * Math.random() + a;
-  };
-
-  drawCircle = function(x, y, r, style) {
-    context.beginPath();
-    context.arc(x, y, r, 0, PI_2, false);
-    if (particles===true){
-    context.shadowBlur = 10;
-context.shadowColor = style;
-    } else {
-       context.shadowBlur = 0;
-context.shadowColor = "";
-    }
-    context.fillStyle = style;
-    return context.fill();
-  };
-
-  xpos = 0.5;
-
-  document.onmousemove = function(e) {
-    return xpos = e.pageX / w;
-  };
-
-  window.requestAnimationFrame = (function() {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
-      return window.setTimeout(callback, 1000 / 60);
-    };
-  })();
-
-  Confetti = (function() {
-    function Confetti() {
-      this.style = COLORS[~~range(0, 5)];
-      this.rgb = "rgba(" + this.style[0] + "," + this.style[1] + "," + this.style[2];
-      this.r = ~~range(2, 6);
-      this.r2 = 2 * this.r;
-      this.replace();
-    }
-
-    Confetti.prototype.replace = function() {
-      this.opacity = 0;
-      this.dop = 0.03 * range(1, 4);
-      this.x = range(-this.r2, w - this.r2);
-      this.y = range(-20, h - this.r2);
-      this.xmax = w - this.r;
-      this.ymax = h - this.r;
-      this.vx = range(0, 2) + 8 * xpos - 5;
-      return this.vy = 0.7 * this.r + range(-1, 1);
-    };
-
-    Confetti.prototype.draw = function() {
-      var _ref;
-      this.x += this.vx;
-      this.y += this.vy;
-      this.opacity += this.dop;
-      if (this.opacity > 1) {
-        this.opacity = 1;
-        this.dop *= -1;
-      }
-      if (this.opacity < 0 || this.y > this.ymax) {
-        this.replace();
-      }
-      if (!((0 < (_ref = this.x) && _ref < this.xmax))) {
-        this.x = (this.x + this.xmax) % this.xmax;
-      }
-      return drawCircle(~~this.x, ~~this.y, this.r, this.rgb + "," + this.opacity + ")");
-    };
-
-    return Confetti;
-
-  })();
-
-  confetti = (function() {
-    var _i, _results;
-    _results = [];
-    for (i = _i = 1; 1 <= NUM_CONFETTI ? _i <= NUM_CONFETTI : _i >= NUM_CONFETTI; i = 1 <= NUM_CONFETTI ? ++_i : --_i) {
-      _results.push(new Confetti);
-    }
-    return _results;
-  })();
-
-  window.step = function() {
-    var c, _i, _len, _results;
-    requestAnimationFrame(step);
-    context.clearRect(0, 0, w, h);
-    _results = [];
-    for (_i = 0, _len = confetti.length; _i < _len; _i++) {
-      c = confetti[_i];
-      _results.push(c.draw());
-    }
-    return _results;
-  };
-
-  step();
-
-}).call(this);
-    }
-var arenacloser=false
-var u1 = "#fd2000";
-var u2 = "#fc4000";
-var u3 = "#fa6000";
-var u4 = "#f97f00";
-var u5 = "#f79f00";
-var u6 = "#f5bf00";
-var u7 = "#f4df00";
-var gs = Math.round(Math.random() * 4);
-if (gs === 1) {
-  u1 = "#0020e5";
-  u2 = "#0040cb";
-  u3 = "#0060b1";
-  u4 = "#007f97";
-  u5 = "#009f7d";
-  u6 = "#00bf63";
-  u7 = "#00df49";
-}
-if (gs === 2) {
-  u1 = "#df201a";
-  u2 = "#bf4033";
-  u3 = "#9f604d";
-  u4 = "#807f66";
-  u5 = "#609f80";
-  u6 = "#40bf99";
-  u7 = "#20dfb3";
-}
-
-if (gs === 3) {
-  u1 = "#d0ff1b";
-  u2 = "#b3ff35";
-  u3 = "#95ff50";
-  u4 = "#77ff6b";
-  u5 = "#59ff85";
-  u6 = "#3cffa0";
-  u7 = "#1effba";
-}
-//["#040ddf","#081bbf","#0b289f","#0f3580","#134260","#175040","#1a5d20"]
-if (gs === 4) {
-  u1 = "#525252";
-  u2 = "#626262";
-  u3 = "#727272";
-  u4 = "#999999";
-  u5 = "#b5b5b5";
-  u6 = "#d9d9d9";
-  u7 = "#ffffff";
-}
-!(function(e) {
-  var t = {};
-  function a(r) {
-    if (t[r]) return t[r].exports;
-    var i = (t[r] = { i: r, l: !1, exports: {} });
-    return e[r].call(i.exports, i, i.exports, a), (i.l = !0), i.exports;
+// My anti-hack system (like in arraz-io.glitch.me)
+  // No Hacks, lol
+  document.addEventListener('keydown', function() {
+  if (event.keyCode == 123) {
+window.location.replace("https://arras.io");
+// Simulate an HTTP redirect:
+window.location.replace("https://arras.io");
+    alert("This function has been disabled to prevent you from stealing my code!");
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+window.location.replace("https://arras.io");
+// Simulate an HTTP redirect:
+window.location.replace("https://arras.io");
+    alert("This function has been disabled to prevent you from stealing my code!");
+    return false;
+  } else if (event.ctrlKey && event.keyCode == 85) {
+window.location.replace("https://arras.io");
+// Simulate an HTTP redirect:
+window.location.replace("https://arras.io");
+    alert("This function has been disabled to prevent you from stealing my code!");
+    return false;
   }
-  (a.m = e),
-    (a.c = t),
-    (a.d = function(e, t, r) {
-      a.o(e, t) || Object.defineProperty(e, t, { enumerable: !0, get: r });
-    }),
-    (a.r = function(e) {
-      "undefined" != typeof Symbol &&
-        Symbol.toStringTag &&
-        Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-        Object.defineProperty(e, "__esModule", { value: !0 });
-    }),
-    (a.t = function(e, t) {
-      if ((1 & t && (e = a(e)), 8 & t)) return e;
-      if (4 & t && "object" == typeof e && e && e.__esModule) return e;
-      var r = Object.create(null);
-      if (
-        (a.r(r),
-        Object.defineProperty(r, "default", { enumerable: !0, value: e }),
-        2 & t && "string" != typeof e)
-      )
-        for (var i in e)
-          a.d(
-            r,
-            i,
-            function(t) {
-              return e[t];
-            }.bind(null, i)
-          );
-      return r;
-    }),
-    (a.n = function(e) {
-      var t =
-        e && e.__esModule
-          ? function() {
-              return e.default;
-            }
-          : function() {
-              return e;
-            };
-      return a.d(t, "a", t), t;
-    }),
-    (a.o = function(e, t) {
-      return Object.prototype.hasOwnProperty.call(e, t);
-    }),
-    (a.p = ""),
-    a((a.s = 2));
-})([
-  function(e, t, a) {
-    "use strict";
-    const r = e => `arras-n-${e}.glitch.me`,
-      i = (e, t = 5e3) => `${e}.d.nsrv.cloud:${t}`;
-    new Date().getDate();
-    const n = {
-      help: {
-        KEY_OVER_RIDE: "R",
-        KEY_LEVEL_UP: "N",
-        KEY_ABILITY: "F",
-        KEY_CHOOSE_1: "Y",
-        KEY_CHOOSE_2: "U",
-        KEY_CHOOSE_3: "I",
-        KEY_CHOOSE_4: "H",
-        KEY_CHOOSE_5: "J",
-        KEY_CHOOSE_6: "K",
-        KEY_FUCK_YOU: "`"
-      },
-      KEY_AUTO_FIRE: 69,
-      KEY_AUTO_SPIN: 67,
-      KEY_OVER_RIDE: 82,
-      KEY_RAINBOW: 88,
-      KEY_LEVEL_UP: 78,
-    //  KEY_ABILITY: 70,
-     // KEY_REVERSE_TANK: 86,
-    //  KEY_REVERSE_MOUSE: 66,
-      KEY_SCREENSHOT: 81,
-      KEY_UPGRADE_MAX: 77,
-      KEY_CLASS_TREE: 84,
-      KEY_RECORD: 90,
-      KEY_UP: 87,
-      KEY_PING: 76,
-      KEY_LEFT: 65,
-      KEY_DOWN: 83,
-      KEY_RIGHT: 68,
-  /*    KEY_CHOOSE_1: 89,
-      KEY_CHOOSE_2: 85,
-      KEY_CHOOSE_3: 73,
-      KEY_CHOOSE_4: 72,
-      KEY_CHOOSE_5: 74,
-      KEY_CHOOSE_6: 75,
-      KEY_CHOOSE_7: -1,
-      KEY_CHOOSE_8: -1,
-      KEY_CHOOSE_9: -1,*/
-      KEY_ENTER: 13,
-      KEY_SPAWN: 13,
-      KEY_LEFT_ARROW: 37,
-      KEY_UP_ARROW: 38,
-      KEY_RIGHT_ARROW: 39,
-      KEY_DOWN_ARROW: 40,
-      KEY_UPGRADE_ATK: 49,
-      KEY_UPGRADE_HTL: 50,
-      KEY_UPGRADE_SPD: 51,
-      KEY_UPGRADE_STR: 52,
-      KEY_UPGRADE_PEN: 53,
-      KEY_UPGRADE_DAM: 54,
-      KEY_UPGRADE_RLD: 55,
-      KEY_UPGRADE_MOB: 56,
-      KEY_UPGRADE_RGN: 57,
-      KEY_UPGRADE_SHI: 48,
-      KEY_MOUSE_0: 32,
-      KEY_MOUSE_1: 9,
-      KEY_MOUSE_2: 16,
-      KEY_FUCK_YOU: 192,
-      screenWidth: window.innerWidth,
-      screenHeight: window.innerHeight,
-      gameWidth: 0,
-      gameHeight: 0,
-      gameStart: !1,
-      disconnected: !1,
-      died: !1,
-      showDebug: !1,
-      showTree: !1,
-      server: null,
-      
-    // =======================
-    // Chat System.
-    // =======================
-    isChatMode: false,    
-    // =======================
-      codeTable: [
-        {
-          z: "Private",
-          local: "Local",
-          glitch: "Glitch",
-          vultr: "Vultr",
-          heroku: "Heroku",
-          buyvm: "BuyVM",
-          extravm: "ExtraVM",
-          ovh: "OVH",
-          place:"PlaceHolder",
-          lol:"Localhost"
-        },
-        {
-          unknown: ["Unknown", null],
-          local: ["Local", null],
-          oregon: ["US West", -7],
-          sv: ["US West", -7],
-          la: ["US West", -7],
-          dallas: ["US East", -5],
-          virginia: ["US East", -4],
-          montreal: ["US East", -4],
-          london: ["Europe", 1],
-          frankfurt: ["Europe", 2],
-          germany: ["Europe", 2],
-          singapore: ["Asia", 8]
-        },
-        [
-          [{ id: "p", to: "Private" }],
-          [{ id: "e", dynamic: "word" }],
-          [{ id: "w", dynamic: "words" }],
-          [{ id: "o", to: "Open" }],
-          [{ id: "m", to: "Maze", delay: !0, remove: "f" }],
-          [
-            { id: "f", to: "FFA" },
-            { id: "b", to: "Developer Server" },
-            { id: "2", to: "2 Team", end: "2TDM" },
-            { id: "3", to: "3 Team", end: "3TDM" },
-            { id: "4", to: "4 Team", end: "4TDM" }
-          ],
-          [
-            { id: "d", to: "Domination" },
-            { id: "m", to: "Mothership", remove: "2" },
-            { id: "a", to: "Assault", remove: "2" }
-          ]
-        ]
-      ],
-      timezone: new Date().getTimezoneOffset() / -60,
-      servers: [
-        {
-          id: "z",
-          type: "0unk",
-          code: "z-unknown-pe6server",
-          at: "private",
-          secure: 1,
-          untrusted: !0
-        },
-        {
-          visible: 0,
-          id: "a",
-          type: "0unk",
-          code: "glitch-dallas-f",
-          at: "maxtri.glitch.me",
-          secure: 1
-        },
-        {
-          visible: 0,
-          id: "dev",
-          type: "dev",
-          code: "glitch-dallas-b",
-          at: "maxtri-b.glitch.me",
-          secure: 1,
-          prefer: !0
-        },
-        {
-          visible: 2,
-          id: "lol",
-          type: "lol",
-          code: "lol-dallas-b",
-          at: "localhost:8080",
-          secure: !0,
-          prefer: !0
-        }
-        
-      ]
-        .map((e, t) => ({ data: e, i: t }))
-        .sort((e, t) =>
-          e.data.type < t.data.type
-            ? -1
-            : e.data.type > t.data.type
-            ? 1
-            : e.i - t.i
-        )
-        .map(({ data: e }) => e),
-      partyLink: 0,
-      report: null,
-      mobile:
-        "ontouchstart" in document.body &&
-        /android|mobi/i.test(navigator.userAgent),
-      showInvisible: !1
-    };
-    (window.Arras = e =>
-      -100496167 ^ e ^ 4194470368
-        ? Math.floor(4294967296 * Math.random())
-        : ((n.report = n.report || e),
-          setTimeout(
-            () => n.showInvisible && (n.report = "showInvisible"),
-            1e3
-          ),
-          n)),
-      (e.exports = n);
-  },
-  function(e, t) {
-    const a = class {
-      static now() {
-        return Math.min(Math.floor(Date.now() / 2e3) - 757382400, 268435455);
-      }
-      constructor() {
-        this.reset(),
-          setInterval(() => {
-            this.logOnLine(!!navigator.onLine);
-          }, 2e3);
-      }
-      reset() {
-        (this.startTime = a.now()),
-          (this.event = { die: 0, disconnect: 0 }),
-          (this.mouse = { status: !0, updates: [0, 0, 0, 0, 0, 0, 0] }),
-          (this.onLine = { status: !!navigator.onLine, updates: [0, 0, 0, 0] }),
-          (this.closeCall = !1),
-          (this.consoleOpened = !1);
-        let e = new Image();
-        Object.defineProperty(e, "id", {
-          get: () => ((this.consoleOpened = !0), "")
-        });
-        let t = function() {};
-        (t.toString = () => ((this.consoleOpened = !0), "color:rgba(0,0,0,0)")),
-          setTimeout(console.log.bind(null, "%c%s", t, e));
-      }
-      time() {
-        return Math.min(a.now() - this.startTime, 65535);
-      }
-      logEvent(e) {
-        this.event[e] = this.time();
-      }
-      logMouse(e) {
-        this.mouse.status !== e &&
-          ((this.mouse.status = e),
-          this.mouse.updates.shift(),
-          this.mouse.updates.push(this.time()));
-      }
-      logOnLine(e) {
-        this.onLine.status !== e &&
-          ((this.onLine.status = e),
-          this.onLine.updates.shift(),
-          this.onLine.updates.push(this.time()));
-      }
-      logCloseCall() {
-        this.closeCall = !0;
-      }
-      toBits() {
-        let e = [
-            this.mouse.status,
-            this.onLine.status,
-            this.closeCall,
-            this.consoleOpened
-          ],
-          t = this.startTime;
-        for (let a = 0; a < 28; a++) e.push(!!(1 & t)), (t >>= 1);
-        for (let t of [
-          this.event.die,
-          this.event.disconnect,
-          ...this.mouse.updates,
-          ...this.onLine.updates,
-          this.time()
-        ])
-          for (let a = 0; a < 16; a++) e.push(!!(1 & t)), (t >>= 1);
-        return e;
-      }
-      drawCanvas(e) {
-        let { width: t, height: a } = e.canvas,
-          r = e.getImageData(0, 0, t, a),
-          { data: i } = r,
-          n = this.toBits(),
-          l = [];
-        for (let e = 0; e < 16; e++) {
-          let t = !1;
-          for (let a = 0; a < 16; a++) n[e + 16 * a] && (t = !t);
-          l.push(t);
-        }
-        let o = [];
-        for (let e = 0; e < 16; e++) {
-          let t = !1;
-          for (let a = 0; a < 16; a++) n[a + 16 * e] && (t = !t);
-          o.push(t);
-        }
-        let s = !0;
-        for (let e = 0; e < 256; e++) n[e] && (s = !s);
-        let d = -Math.floor(2 * Math.random() * 4);
-        Math.floor(2 * Math.random() * 4);
-        for (let e = d; e < t; e += 4)
-          for (let a = d; a < t; a += 4) {
-            let r = Math.floor(e / 4) % 32,
-              d = Math.floor(a / 4) % 32;
-            r > 17 ||
-              d > 17 ||
-              (r + d === 33 ||
-              (16 !== r &&
-                16 !== d &&
-                !(17 === r
-                  ? 17 === d
-                    ? s
-                    : o[d]
-                  : 17 === d
-                  ? l[r]
-                  : n[r + 16 * d]))
-                ? ((i[((e + a * t) << 2) | 0] &= -2),
-                  (i[((e + a * t) << 2) | 1] &= -2),
-                  (i[((e + a * t) << 2) | 2] |= 1),
-                  (i[((e + 1 + a * t) << 2) | 0] &= -2),
-                  (i[((e + 1 + a * t) << 2) | 1] &= -2),
-                  (i[((e + 1 + a * t) << 2) | 2] |= 1),
-                  (i[((e + a * t + t) << 2) | 0] &= -2),
-                  (i[((e + a * t + t) << 2) | 1] &= -2),
-                  (i[((e + a * t + t) << 2) | 2] |= 1),
-                  (i[((e + 1 + a * t + t) << 2) | 0] &= -2),
-                  (i[((e + 1 + a * t + t) << 2) | 1] &= -2),
-                  (i[((e + 1 + a * t + t) << 2) | 2] |= 1))
-                : ((i[((e + a * t) << 2) | 0] |= 1),
-                  (i[((e + a * t) << 2) | 1] |= 1),
-                  (i[((e + a * t) << 2) | 2] &= -2),
-                  (i[((e + 1 + a * t) << 2) | 0] |= 1),
-                  (i[((e + 1 + a * t) << 2) | 1] |= 1),
-                  (i[((e + 1 + a * t) << 2) | 2] &= -2),
-                  (i[((e + a * t + t) << 2) | 0] |= 1),
-                  (i[((e + a * t + t) << 2) | 1] |= 1),
-                  (i[((e + a * t + t) << 2) | 2] &= -2),
-                  (i[((e + 1 + a * t + t) << 2) | 0] |= 1),
-                  (i[((e + 1 + a * t + t) << 2) | 1] |= 1),
-                  (i[((e + 1 + a * t + t) << 2) | 2] &= -2)));
-          }
-        e.putImageData(r, 0, 0);
-      }
-    };
-    let r = new a();
-    (r.Tracker = a), (e.exports = r);
-  },
-  function(e, t, a) {
-    "use strict";
-    Object.values ||
-      (Object.values = function(e) {
-        return Object.keys(e).map(t => e[t]);
-      }),
-      Object.entries ||
-        (Object.entries = function(e) {
-          return Object.keys(e).map(t => [t, e[t]]);
-        }),
-      (() => {
-        if (
-          (navigator.serviceWorker &&
-            navigator.serviceWorker.getRegistrations().then(e => {
-              for (let t of e) t.unregister();
-            }),
-          window !== window.top ||
-            "www.arras.io" === window.location.hostname ||
-            (".arras.io" !== window.location.hostname.slice(-9) &&
-              -1 ===
-                ["localhost", "arras.io", "arras.netlify.app"].indexOf(
-                  window.location.hostname
-                )))
-        );
-      
-           
-        else if ("http:" === location.protocol) {
-          let e = `https://${location.host}/${
-              "#" === location.hash ? "" : location.hash
-            }`,
-            t = !1,
-            a = setTimeout(() => {
-              location.href = e;
-            }, 3e3),
-            r = document.getElementById("menuTabs");
-          r.style.textAlign = "center";
-          let i = document.createElement("span");
-          i.classList.add("menuTab"),
-            i.classList.add("warning"),
-            i.appendChild(
-              document.createTextNode("You are being redirected to ")
-            );
-          let n = document.createElement("a");
-          (n.href = e),
-            n.appendChild(document.createTextNode(e)),
-            i.appendChild(n),
-            i.appendChild(document.createTextNode(".   "));
-          let l = document.createElement("a");
-          (l.style.textDecoration = "underline"),
-            (l.href = "javascript:;"),
-            l.appendChild(document.createTextNode("Cancel")),
-            l.addEventListener("click", () => {
-              i.remove(), (t = !0), clearTimeout(a);
-            }),
-            i.appendChild(l),
-            r.appendChild(i),
-            document
-              .getElementById("startButton")
-              .addEventListener("click", () => {
-                t ||
-                  (location.href = `https://${location.host}/${
-                    "#" === location.hash ? "" : location.hash
-                  }`);
-              });
-        }
-      })();
-    let r = a(0),
-      i = a(3),
-      { blockAdBlock: n } = a(4),
-      l = a(1);
-    function o() {
-      window.dataLayer.push(arguments);
-    }
-    (window.dataLayer = window.dataLayer || []),
-      o("js", new Date()),
-      o("config", "UA-120544149-1");
-    let s = e =>
-        fetch("https://analytics-server.arras.cx:2002/data", {
-          method: "POST",
-          mode: "cors",
-          cache: "no-cache",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(e)
-        }),
-      d = (window.adServiceMode =
-        (window.localStorage && window.localStorage.adForce) ||
-        ["adsense", "nitropay"][Math.floor(10 * Math.random())] ||
-        "adinplay");
-    switch (d) {
-      default:
-       
-    }
-    let c = [];
-    innerWidth >= 1440 && innerHeight >= 680 && c.push([970, 250]),
-      innerWidth >= 1440 && c.push([970, 90]),
-      innerHeight >= 700 && c.push([336, 280]),
-      innerHeight >= 680 && c.push([300, 250]),
-      c.push([728, 90]);
-    let h = Date.now(),
-      u = 0,
-      p = !1,
-      g = null;
-    n.onEither(e => {
-      if (e) {
-        (document.getElementById("referral-fallback").style.display = "block"),
-          (p = !0);
-      }
-      o("event", e ? "yes_adblock" : "no_adblock", {
-        event_category: "adblock_detection",
-        non_interaction: !0
-      }),
-        s({
-          type: "initial",
-          user: {
-            adServiceMode: d,
-            adblock: p,
-            mobile: r.mobile,
-            window: { innerWidth: innerWidth, innerHeight: innerHeight },
-            tracking: {
-      name: U.playerNameInput || "",
-        colors: U.optColors || "normal",
-        borders: U.optBorders || "normal"
-            }
-          }
-        });
-    });
-    var m = {
-      graphical: {
-        screenshotMode: !1,
-        borderChunk: 6,
-        barChunk: 5,
-        mininumBorderChunk: 3,
-        compensationScale: 1.114,
-        inversedRender: !0,
-        renderGrid: !0,
-        darkBorders: !1,
-        fancyAnimations: !0,
-        colors: "normal",
-        pointy: !0,
-        fontSizeBoost: 1,
-        shieldbars: !1,
-        neon: !1
-      },
-      gui: { expectedMaxSkillLevel: 9 },
-      lag: { memory: 60, newPrediction: !1 }
-    };
-    r.config = m;
-    let f = (e, t, a = 0.5) => {
-      if (0 === a) return e;
-      if (1 === a) return t;
-      let r = 1 - a,
-        i = parseInt(e.slice(1), 16),
-        n = parseInt(t.slice(1), 16);
-      return (
-        "#" +
-        (
-          (((16711680 & i) * r + (16711680 & n) * a) & 16711680) |
-          (((65280 & i) * r + (65280 & n) * a) & 65280) |
-          (((255 & i) * r + (255 & n) * a) & 255)
-        )
-          .toString(16)
-          .padStart(6, "0")
-      );
-    };
-    function y(e) {
-      switch (e) {
-        case 0:
-          return ge.teal;
-        case 1:
-          return ge.lgreen;
-        case 2:
-          return ge.orange;
-        case 3:
-          return ge.yellow;
-        case 4:
-          return ge.lavender;
-        case 5:
-          return ge.pink;
-        case 6:
-          return ge.vlgrey;
-        case 7:
-          return ge.lgrey;
-        case 8:
-          return ge.guiwhite;
-        case 9:
-          return ge.black;
-        case 10:
-          return ge.blue;
-        case 11:
-          return ge.green;
-        case 12:
-          return ge.red;
-        case 13:
-          return ge.gold;
-        case 14:
-          return ge.purple;
-        case 15:
-          return ge.magenta;
-        case 16:
-          return ge.grey;
-        case 17:
-          return ge.dgrey;
-        case 18:
-          return ge.white;
-        case 19:
-          return ge.guiblack;
-        case 20:
-          return Date.now() % 300 < 150 ? ge.blue : ge.red;
-        case 21:
-          return Date.now() % 300 < 150 ? ge.blue : ge.grey;
-        case 22:
-          return Date.now() % 300 < 150 ? ge.grey : ge.blue;
-        case 23:
-          return Date.now() % 300 < 150 ? ge.red : ge.grey;
-        case 24:
-          return Date.now() % 300 < 150 ? ge.grey : ge.red;
-        case 30:
-          return "#a913cf";
-        case 31:
-          return "#226ef6";
-        case 32:
-          return "#ff1000";
-        case 33:
-          return "#ff9000";
-        case 34:
-          return "#00e00b";
-        case 35:
-          return "#ffd300";
-        case 36:
-          return f(
-            ["#ff1000", "#ff9000", "#ffd300", "#00e00b", "#226ef6", "#a913cf"][
-              Math.floor((Date.now() / 200) % 6)
-            ],
-            ["#ff9000", "#ffd300", "#00e00b", "#226ef6", "#a913cf", "#ff1000"][
-              Math.floor((Date.now() / 200) % 6)
-            ],
-            (Date.now() / 200) % 1
-          );
-           case 37:
-            return u1;
-          case 38:
-            return u2;
-          case 39:
-            return u3;
-          case 40:
-            return u4;
-          case 41:
-            return u5;
-          case 42:
-            return u6;
-          case 43:
-            return u7;
-          case 44:
-            return u2;
-          case 45:
-            return u3;
-          case 46:
-            return u4;
-          case 47:
-            return u5;
+}, true);
 
-          case 48:
-            return u6;
-          case 49:
-            return u7;
-          case 50:
-            return u7;
-          case 51:
-            return u3;
-          case 52:
-            return u4;
-          case 53:
-            return u5;
-          case 54:
-            return u6;
-          case 55:
-            return u7;
-          case 56:
-            return u7;
-        case 57:
-          return u7;
-          case 58:
-          return u4;
-          case 59:
-          return u5;
-          case 60:
-          return u6;
-          case 61:
-          return u7;
-          case 62:
-          return u7;
-          case 63:
-          return u7;
-          case 64:
-          return u7;
-          
-        default:
-          return "#ff0000";
-      }
-    }
-    function b(e) {
-      let t = m.graphical.neon ? ge.white : ge.black;
-      return m.graphical.darkBorders ? t : f(e, t, ge.border);
-    }
-    function v(e) {
-      switch (e) {
-        case "bas1":
-        case "bap1":
-        case "dom1":
-        case "dbc1":
-        case "mbc1":
-        case "spw1":
-          return ge.blue;
-        case "bas2":
-        case "bap2":
-        case "dom2":
-        case "dbc2":
-        case "mbc2":
-        case "spw2":
-          return ge.green;
-        case "bas3":
-        case "bap3":
-        case "dom3":
-        case "dbc3":
-        case "mbc3":
-        case "spw3":
-          return ge.red;
-        case "bas4":
-        case "bap4":
-        case "dom4":
-        case "dbc4":
-        case "mbc4":
-        case "spw4":
-          return ge.pink;
-        case "domx":
-        case "dom0":
-        case "dbc0":
-        case "mbc0":
-        case "spw0":
-          return ge.yellow;
-        case "port":
-          return (ae.globalAlpha = 1), ge.black;
-        case "edge":
-          return f(ge.white, ge.guiblack, 1 / 3);
-        case "dor1":
-
-          return ge.vlgrey;
-        case "nest":
-          return ge.lavender;
-        default:
-          return ge.white;
-      }
-    }
-    function w(e, t) {
-      m.graphical.neon
-        ? ((e.fillStyle = b(t)), (e.strokeStyle = t))
-        : ((e.fillStyle = t), (e.strokeStyle = b(t)));
-    }
-    var k = [];
-    function E(e, t = k[e].color) {
-      let a = k[e];
-      return {
-        time: 0,
-        index: e,
-        x: a.x,
-        y: a.y,
-        vx: 0,
-        vy: 0,
-        size: a.size,
-        realSize: a.realSize,
-        color: t,
-        render: {
-          status: {
-            getFade: () => 1,
-            getColor: () => "#FFFFFF",
-            getBlend: () => 0,
-            health: { get: () => 1 },
-            shield: { get: () => 1 }
-          }
-        },
-        facing: a.facing,
-        shape: a.shape,
-        name: a.name,
-        score: 0,
-        tiggle: 0,
-        layer: a.layer,
-        guns: {
-          length: a.guns.length,
-          getPositions: () => Array(a.guns.length).fill(0),
-          update: () => {}
-        },
-        turrets: a.turrets.map(e => {
-          let t = E(e.index);
-          return (
-            (t.realSize = (t.realSize / t.size) * a.size * e.sizeFactor),
-            (t.size = a.size * e.sizeFactor),
-            (t.angle = e.angle),
-            (t.offset = e.offset),
-            (t.direction = e.direction),
-            (t.facing = e.direction + e.angle),
-            t
-          );
-        })
-      };
-    }
-    (r.clickables = (() => {
-      const e = class {
-          constructor() {
-            (this.x = 0),
-              (this.y = 0),
-              (this.w = 0),
-              (this.h = 0),
-              (this.active = !1);
-          }
-          set(e, t, a, r) {
-            (this.x = e),
-              (this.y = t),
-              (this.w = a),
-              (this.h = r),
-              (this.active = !0);
-          }
-          check(e) {
-            let t = Math.round(e.x - this.x),
-              a = Math.round(e.y - this.y);
-            return (
-              this.active && t >= 0 && a >= 0 && t <= this.w && a <= this.h
-            );
-          }
-          hide() {
-            this.active = !1;
-          }
-        },
-        t = class {
-          constructor(t) {
-            this.data = [];
-            for (let a = 0; a < t; a++) this.data.push(new e());
-          }
-          place(t, ...a) {
-            for (; t >= this.data.length; ) this.data.push(new e());
-            this.data[t].set(...a);
-          }
-          hide() {
-            for (let e of this.data) e.hide();
-          }
-          check(e) {
-            return this.data.findIndex(t => t.check(e));
-          }
-        };
-      return {
-        stat: new t(10),
-        upgrade: new t(9),
-        hover: new t(1),
-        skipUpgrades: new t(1)
-      };
-    })()),
-      (r.statHover = !1);
-    const x = class {
-        constructor(e) {
-          (this.dataLength = e), (this.elements = {});
-        }
-        update(e, t = 0) {
-          let a = e[t++];
-          for (let r = 0; r < a; r++) delete this.elements[e[t++]];
-          let r = e[t++];
-          for (let a = 0; a < r; a++) {
-            let a = e[t++],
-              r = e.slice(t, t + this.dataLength);
-            (t += this.dataLength), (this.elements[a] = r);
-          }
-          return t;
-        }
-        entries() {
-          return Object.entries(this.elements).map(([e, t]) => ({
-            id: +e,
-            data: t
-          }));
-        }
-      },
-      _ = class {
-        constructor(e) {
-          (this.score = ie(0, 10)), this.update(e);
-        }
-        update(e) {
-          (this.name = e.name),
-            (this.bar = e.bar),
-            (this.color = e.color),
-            (this.index = e.index),
-            this.score.set(e.score),
-            (this.old = !1);
-        }
-        publish() {
-          let e = k[this.index];
-          return {
-            image: E(this.index, this.color),
-            position: e.position,
-            barColor: y(this.bar),
-            label: this.name,
-            score: this.score.get()
-          };
-        }
-      };
-    var S = [],
-      F = new x(5),
-      C = new x(3),
-      M = new x(5),
-      A = new (class {
-        constructor(e = 250) {
-          (this.speed = e), (this.map = {}), (this.lastUpdate = Date.now());
-        }
-        update(e) {
-          this.lastUpdate = Date.now();
-          for (let [e, t] of Object.entries(this.map))
-            t.now ? ((t.old = t.now), (t.now = null)) : delete this.map[e];
-          for (let t of e)
-            this.map[t.id]
-              ? (this.map[t.id].now = t)
-              : (this.map[t.id] = { old: null, now: t });
-        }
-        get() {
-          let e = Math.min(1, (Date.now() - this.lastUpdate) / this.speed),
-            t = 1 - e;
-          return Object.values(this.map).map(({ old: a, now: r }) =>
-            r
-              ? a
-                ? {
-                    type: r.type,
-                    id: r.id,
-                    x: e * r.x + t * a.x,
-                    y: e * r.y + t * a.y,
-                    color: r.color,
-                    size: e * r.size + t * a.size,
-                    alpha: 1
-                  }
-                : {
-                    type: r.type,
-                    id: r.id,
-                    x: r.x,
-                    y: r.y,
-                    color: r.color,
-                    size: r.size,
-                    alpha: e
-                  }
-              : {
-                  type: a.type,
-                  id: a.id,
-                  x: a.x,
-                  y: a.y,
-                  color: a.color,
-                  size: a.size,
-                  alpha: t
-                }
-          );
-        }
-      })(200),
-      B = new (class {
-        constructor() {
-          this.entries = {};
-        }
-        get() {
-          let e = [],
-            t = 1;
-          for (let a of Object.values(this.entries)) {
-            let r = a.publish();
-            e.push(r), r.score > t && (t = r.score);
-          }
-          return e.sort((e, t) => t.score - e.score), { data: e, max: t };
-        }
-        update(e) {
-          e.sort((e, t) => t.score - e.score);
-          for (let e of Object.values(this.entries)) e.old = !0;
-          for (let t of e)
-            this.entries[t.id]
-              ? this.entries[t.id].update(t)
-              : (this.entries[t.id] = new _(t));
-          for (let [e, t] of Object.entries(this.entries))
-            t.old && delete this.entries[e];
-        }
-      })(),
-      D = 0,
-      T = (r.messages = []),
-      O = (r.metrics = {
-        latency: [],
-        lag: 0,
-        rendertime: 0,
-        updatetime: 0,
-        lastlag: 0,
-        rendergap: 0,
-        lastuplink: 0
-      }),
-      K = 0,
-      L = 0,
-      R = 0,
-      H = [["norm"]],
-      W = {
-        getStatNames: e => {
-          switch (e) {
-            case 1:
-              return [
-                "Body Damage",
-                "Max Health",
-                "Bullet Speed",
-                "Bullet Health",
-                "Bullet Penetration",
-                "Bullet Damage",
-                "Engine Acceleration",
-                "Movement Speed",
-                "Shield Regeneration",
-                "Shield Capacity"
-              ];
-            case 2:
-              return [
-                "Body Damage",
-                "Max Health",
-                "Drone Speed",
-                "Drone Health",
-                "Drone Penetration",
-                "Drone Damage",
-                "Respawn Rate",
-                "Movement Speed",
-                "Shield Regeneration",
-                "Shield Capacity"
-              ];
-            case 3:
-              return [
-                "Body Damage",
-                "Max Health",
-                "Drone Speed",
-                "Drone Health",
-                "Drone Penetration",
-                "Drone Damage",
-                "Max Drone Count",
-                "Movement Speed",
-                "Shield Regeneration",
-                "Shield Capacity"
-              ];
-            case 4:
-              return [
-                "Body Damage",
-                "Max Health",
-                "Swarm Speed",
-                "Swarm Health",
-                "Swarm Penetration",
-                "Swarm Damage",
-                "Reload",
-                "Movement Speed",
-                "Shield Regeneration",
-                "Shield Capacity"
-              ];
-            case 5:
-              return [
-                "Body Damage",
-                "Max Health",
-                "Placement Speed",
-                "Trap Health",
-                "Trap Penetration",
-                "Trap Damage",
-                "Reload",
-                "Movement Speed",
-                "Shield Regeneration",
-                "Shield Capacity"
-              ];
-            case 6:
-              return [
-                "Body Damage",
-                "Max Health",
-                "Weapon Speed",
-                "Weapon Health",
-                "Weapon Penetration",
-                "Weapon Damage",
-                "Reload",
-                "Movement Speed",
-                "Shield Regeneration",
-                "Shield Capacity"
-              ];
-            default:
-              return [
-                "Body Damage",
-                "Max Health",
-                "Bullet Speed",
-                "Bullet Health",
-                "Bullet Penetration",
-                "Bullet Damage",
-                "Reload",
-                "Movement Speed",
-                "Shield Regeneration",
-                "Shield Capacity"
-              ];
-          }
-        },
-        skills: [
-          { amount: 0, color: "red", cap: 1, softcap: 1 },
-          { amount: 0, color: "orange", cap: 1, softcap: 1 },
-          { amount: 0, color: "yellow", cap: 1, softcap: 1 },
-          { amount: 0, color: "lgreen", cap: 1, softcap: 1 },
-          { amount: 0, color: "green", cap: 1, softcap: 1 },
-          { amount: 0, color: "blue", cap: 1, softcap: 1 },
-          { amount: 0, color: "purple", cap: 1, softcap: 1 },
-          { amount: 0, color: "magenta", cap: 1, softcap: 1 },
-          { amount: 0, color: "pink", cap: 1, softcap: 1 },
-          { amount: 0, color: "red", cap: 1, softcap: 1 }
-        ],
-        points: 0,
-        upgrades: [],
-        playerid: -1,
-        __s: (() => {
-          let e = 0,
-            t = 0,
-            a = 0,
-            r = ie(0, 10),
-            i = e => Math.ceil(1.8 * Math.pow(e + 1, 1.8) - 2 * e + 1) || 0;
-          return {
-            setScore: i => {
-              i
-                ? (r.set(i), t > r.get() && ((a = 0), (t = 0)))
-                : ((e = 3), (a = 0), (t = 0), (r = ie(0, 10)));
-            },
-            update: () => {
-              (e = i(a)),
-                r.get() >= t + e
-                  ? ((t += e), a++)
-                  : r.get() < t && ((t -= i(a - 1)), a--);
-            },
-            getProgress: () =>
-              e ? Math.min(1, Math.max(0, (r.get() - t) / e)) : 0,
-            getScore: () => r.get(),
-            getLevel: () => a
-          };
-        })(),
-        type: 0,
-        fps: 0,
-        color: 0,
-        accel: 0,
-        party: 0
-      };
-    r.clearUpgrades = () => {
-      W.upgrades = [];
+if (document.addEventListener) {
+  document.addEventListener('contextmenu', function(e) {
+  
+    e.preventDefault();
+  }, false);
+} else {
+  document.attachEvent('oncontextmenu', function() {
+    window.location.href = "http://arras-7.glitch.me/";
+// Simulate an HTTP redirect:
+window.location.replace("https://arras-7.glitch.me/noHacks/noHacks.html");
+    alert("This function has been disabled to prevent you from stealing my code!");
+    window.event.returnValue = false;
+  });
+}
+~ function() {
+    'use strict';
+    var J = J || {};
+    J.scope = {};
+    J.checkStringArgs = function(p, m, x) {
+        if (null == p) throw new TypeError("The 'this' value for String.prototype." + x + " must not be null or undefined");
+        if (m instanceof RegExp) throw new TypeError("First argument to String.prototype." + x + " must not be a regular expression");
+        return p + ""
     };
-    var Y = () =>
-      Math.max(
-        r.screenWidth / he.renderv,
-        (r.screenHeight / he.renderv / 9) * 16
-      );
-    (r.canUpgrade = !1), (r.canSkill = !1), (r.message = ""), (r.time = 0);
-    var U = window.localStorage || {};
-    if (U.password) {
-      -1 === U.password.toString().indexOf("$") &&
-        ((U.password = ""), delete U.password);
-    }
-    let I = U.password || null,
-      P = null,
-      N = parseInt(U.privilege),
-      z = Number.isNaN(N) ? (I ? 1 : 0) : N;
-    r.server =
-      (e => {
-        e.startsWith("#") && (e = e.slice(1));
-        let [t, a, i] = e.match(/^([a-zA-Z]+)([0-9]*)$/) || [];
-        if (a) r.partyLink = +i || 0;
-        else {
-          let t = {};
-          for (let a of e.split("&")) {
-            let e = a.split("="),
-              r = e.shift(),
-              i = e.join("=") || !0;
-            t[r] = i;
-          }
-          if (t.private) {
-            let e = t.private;
-            if (e.includes(";")) {
-              let a = e.split(";");
-                 t.key = document.getElementById("playerKeyInput")
-              (e = a.shift()), (t.key = document.getElementById("playerKeyInput"));
+    J.ASSUME_ES5 = !1;
+    J.ASSUME_NO_NATIVE_MAP = !1;
+    J.ASSUME_NO_NATIVE_SET = !1;
+    J.SIMPLE_FROUND_POLYFILL = !1;
+    J.defineProperty = J.ASSUME_ES5 || "function" == typeof Object.defineProperties ? Object.defineProperty : function(p, m, x) {
+        p != Array.prototype && p != Object.prototype && (p[m] = x.value)
+    };
+    J.getGlobal = function(p) {
+        return "undefined" != typeof window && window === p ? p : "undefined" != typeof global && null != global ? global : p
+    };
+    J.global = J.getGlobal(this);
+    J.polyfill = function(p, m) {
+        if (m) {
+            var x = J.global;
+            p = p.split(".");
+            for (var a = 0; a < p.length - 1; a++) {
+                var e = p[a];
+                e in x || (x[e] = {});
+                x = x[e]
             }
-            t.host = e;
-          }
-          if (!t.host) return null;
-          {
-            let { region: e, mode: i, host: n, key: l } = t,
-              o = `z-${e || "unknown"}-${i || "p"}-${n
-                .toLowerCase()
-                .replace(/(\.[^\.]+)?\.[^\.]+$/, "")
-                .replace(/[^a-z0-9\-]/, "-")}`;
-            (r.servers[0].code = o),
-              (r.servers[0].at = n),
-              (a = "z"),
-              (P = l || null);
-          }
-        }
-        return r.servers.find(e => e.id === a) || null;
-      })(location.hash) ||
-      r.servers.find(e => e.id === U.gameMode) ||
-      (() => {
-        let e = r.servers.filter(
-            e => null != e.visible && e.visible <= z && e.prefer
-          ),
-          t = 1 / 0,
-          a = [];
-        for (let i of e) {
-          let [e, n] = i.code.split("-"),
-            l = r.codeTable[1][n][1],
-            o = Math.abs(((((l - r.timezone) % 24) + 36) % 24) - 12);
-          o < t ? ((a = [i]), (t = o)) : o === t && a.push(i);
-        }
-        return a[Math.floor(Math.random() * a.length)];
-      })();
-    let j,
-      G = e => {
-        let t = r.codeTable[2],
-          a = [],
-          i = [],
-          n = 0;
-        for (let r of t)
-          for (let t of r) {
-            if (t.id !== e.charAt(n)) continue;
-            n++;
-            let r = Object.assign({}, t);
-            if ("word" === t.dynamic) {
-              let t = +e.charAt(n++),
-                a = e.slice(n, n + t);
-              (r.to = a.charAt(0).toUpperCase() + a.slice(1)), (n += t);
-            } else if ("words" === t.dynamic) {
-              let t = +e.charAt(n++),
-                a = [];
-              for (let r = 0; r < t; r++) {
-                let t = e.charAt(n++);
-                if ("d" === t) a.push("-");
-                else if ("s" === t) a.push(" ");
-                else {
-                  let r = +t,
-                    i = e.slice(n, n + r);
-                  a.push(i.charAt(0).toUpperCase() + i.slice(1)), (n += r);
-                }
-              }
-              r.to = a.join("");
-            }
-            t.remove && i.push(t.remove), a.push(r);
-            break;
-          }
-        if (0 === a.length) return "Unknown";
-        let l = a[a.length - 1];
-        l.end && (l.to = l.end);
-        for (let e = 0; e + 1 < a.length; e++)
-          if (a[e].delay && !a[e + 1].delay) {
-            let t = a[e];
-            (a[e] = a[e + 1]), (a[e + 1] = t), e++;
-          }
-        return (
-          (a = a.filter(({ id: e }) => !i.includes(e))),
-          a.map(e => e.to).join(" ")
-        );
-      },
-      q = document.getElementById("serverSelector").parentNode.parentNode,
-      V = document.getElementById("serverSelector");
-    for (let e of r.servers) {
-      if ((null == e.visible || e.visible > z) && r.server !== e) continue;
-      let [t, a, i] = e.code.split("-"),
-        n = document.createElement("tr");
-      (n.appendChild(document.createElement("td")).textContent =
-   r.codeTable[0][t]       + " | " +  r.codeTable[1][a][0] + " | "+G(i)),
-   
-        e.featured && n.classList.add("featured"),
-        (n.onclick = () => {
-          j.classList.remove("selected"),
-            (j = n),
-            j.classList.add("selected"),
-            (r.server = e),
-            (r.partyLink = 0),
-            (U.gameMode = e.id),
-            (location.hash = "#" + e.id),
-            q.scrollTop < n.offsetTop - 50
-              ? (q.scrollTop = n.offsetTop - 50)
-              : q.scrollTop > n.offsetTop - 10 &&
-                (q.scrollTop = n.offsetTop - 10);
-        }),
-        V.appendChild(n),
-        r.server === e &&
-          ((j = n),
-          j.classList.add("selected"),
-          setTimeout(() => {
-            q.scrollTop = n.offsetTop - 30;
-          }));
-    }
-    let $ = (() => {
-      let e = !1,
-        t = document.getElementById("startMenuSlidingTrigger"),
-        a = document.getElementById("optionArrow"),
-        r = document.getElementById("viewOptionText"),
-        i = document.getElementsByClassName("sliderHolder")[0],
-        n = document.getElementsByClassName("slider"),
-        l = () => {
-          (a.style.transform = a.style.webkitTransform = e
-            ? "translate(2px, -2px) rotate(45deg)"
-            : "rotate(-45deg)"),
-            (r.innerText = e ? "close options" : "view options"),
-            e ? i.classList.add("slided") : i.classList.remove("slided"),
-            (n[0].style.opacity = e ? 0 : 1),
-            (n[2].style.opacity = e ? 1 : 0);
-        };
-      return (
-        (t.onclick = () => {
-          (e = !e), l();
-        }),
-        () => {
-          e || ((e = !0), l());
-        }
-      );
-    })();
-    let J = document.getElementById("patchNotes"),
-      X = (e, t) => {
-        let a = e.shift();
-        if (!a) return;
-        a = a.match(/^([A-Za-z ]+[A-Za-z])\s*\[([0-9\-]+)\]\s*(.+)?$/) || [
-          a,
-          a,
-          null
-        ];
-        let r = a[1]
-          ? {
-              Update: "update",
-              Announcement: "update",
-              Poll: "poll",
-              "Event Poll": "event-poll",
-              "Gamemode Poll": "event-poll",
-              Event: "event",
-              Gamemode: "event",
-              "Balance Update": "balance-update",
-              "Balance Update Details": "balance",
-              Balance: "balance",
-              Patch: "patch",
-              Hidden: "hidden"
-            }[a[1]]
-          : null;
-        if ("hidden" === r) return;
-        let i = document.createElement("div");
-        r && i.classList.add(r);
-        let n = document.createElement("b"),
-          l = [a[1]];
-        if (a[2]) {
-          let e = +new Date(a[2] + "T00:00:00Z") + 252e5;
-          if (e > Date.now() && !location.search.includes("changelog_debug=1"))
-            return;
-          l.push(
-            new Date(e).toLocaleDateString("default", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              timeZone: "UTC"
+            p = p[p.length - 1];
+            a = x[p];
+            m = m(a);
+            m != a && null != m && J.defineProperty(x, p, {
+                configurable: !0,
+                writable: !0,
+                value: m
             })
-          );
         }
-        if (
-          (a[3] && l.push(a[3]),
-          (n.innerHTML = l.join(" - ")),
-          i.appendChild(n),
-          "poll" === r || "event-poll" === r)
-        ) {
-          let [t, a, r] = e
-              .shift()
-              .split(",")
-              .map(e => e.trim()),
-            l = "table" === r,
-            o = "radio" === r,
-            s = Math.ceil((new Date(a.trim()) - Date.now()) / 36e5),
-            d = s <= 0;
-          n.appendChild(document.createElement("br"));
-          let c = document.createElement("small");
-          c.appendChild(
-            document.createTextNode(
-              d ? "closed" : "closing in " + s + " hour" + (1 === s ? "" : "s")
-            )
-          );
-          let h = document.createElement("a");
-          (h.href = "javascript:;"),
-            (h.innerText = "view all results"),
-            l && c.appendChild(h);
-          let u = document.createElement("a");
-          (u.href = "javascript:;"),
-            (u.innerText = "reset"),
-            (u.style.display = "none"),
-            o && !d && c.appendChild(u),
-            n.appendChild(c),
-            i.appendChild(document.createElement("br"));
-          let p = document.createElement("table");
-          p.className = l ? "poll-table" : "poll-list";
-          let g = document.createElement("tbody"),
-            m = (() => {
-              let e = [],
-                a = [],
-                r = new Promise(e => {
-                  let t = !1,
-                    a = () => {
-                      if (t) return;
-                      let a = J.getBoundingClientRect(),
-                        r = i.getBoundingClientRect();
-                      r.height <= 0 ||
-                        r.top > a.bottom + a.height ||
-                        r.bottom < a.top - a.height ||
-                        ((t = !0), e());
-                    };
-                  J.addEventListener("scroll", a), setTimeout(a, 50);
-                })
-                  .then(() =>
-                    fetch(
-                      "https://poll-server.arras.cx:2020/poll/" + t + "/status"
-                    )
-                  )
-                  .then(e => e.json())
-                  .then(e => {
-                    if (!e.ok) throw new Error("Poll does not exist!");
-                    a = e.options;
-                  });
-              (h.onclick = () => {
-                h.remove();
-                let t = e.map(e => parseInt(e.title, 10)).sort((e, t) => e - t),
-                  a = [
-                    "#2196f3",
-                    "#00adc3",
-                    "#009688",
-                    "#4caf50",
-                    "#e8ae00",
-                    "#ff8200",
-                    "#ff0000"
-                  ];
-                for (let r of e) {
-                  let e = parseInt(r.title, 10);
-                  (r.className = "count"),
-                    (r.innerHTML =
-                      e >= 1e3
-                        ? (e / 1e3).toFixed(1) + "<span>k</span>"
-                        : e >= 0
-                        ? e
-                        : "?");
-                  let i = Math.floor(
-                    ((t.indexOf(e) + 0.5) / t.length) * a.length
-                  );
-                  r.style.color = a[i];
-                }
-              }),
-                (u.onclick = () => {
-                  (n.checked = !1),
-                    n.onchange(),
-                    (n = null),
-                    (u.style.display = "none");
-                });
-              let n = null,
-                l = 0;
-              return i => {
-                let s = e =>
-                    (i ? i + " - " : "") + e + " vote" + (1 === e ? "" : "s"),
-                  c = l++,
-                  h = document.createElement("label");
-                h.className = "container";
-                let p,
-                  g = document.createElement("input");
-                (g.tabIndex = -1),
-                  (g.type = o ? "radio" : "checkbox"),
-                  (g.disabled = !0),
-                  o && (g.name = "radio-" + t),
-                  r.then(() => {
-                    let { voted: e, votes: r } = a[c] || {
-                      voted: !1,
-                      votes: 0
-                    };
-                    (g.checked = e),
-                      o && e && ((n = g), (u.style.display = "inline")),
-                      (g.disabled = d);
-                    let l = r - e;
-                    (g.onchange = () => {
-                      fetch(
-                        "https://poll-server.arras.cx:2020/poll/" +
-                          t +
-                          "/set/" +
-                          c +
-                          "/" +
-                          g.checked
-                      );
-                      let e = l + (g.checked ? 1 : 0);
-                      i ? (p.nodeValue = s(e)) : (h.title = s(e)),
-                        o &&
-                          n &&
-                          n !== g &&
-                          g.checked &&
-                          ((n.checked = !1), n.onchange()),
-                        (n = g),
-                        (u.style.display = "inline");
-                    }),
-                      i ? (p.nodeValue = s(r)) : (h.title = s(r));
-                  }),
-                  i && ((p = document.createTextNode(i)), h.appendChild(p)),
-                  h.appendChild(g);
-                let m = document.createElement("span");
-                return (
-                  (m.className = o ? "radio" : "checkmark"),
-                  h.appendChild(m),
-                  e.push(h),
-                  h
-                );
-              };
-            })();
-          for (let t of e) {
-            let e = document.createElement("tr");
-            if (l)
-              for (let a of t.split("|")) {
-                a = a.trim();
-                let t = document.createElement("td");
-                if ("X" === a) t.appendChild(m());
-                else {
-                  let e = a.match(/^:*/)[0].length;
-                  (t.colSpan = e + 1), (t.innerHTML = a.slice(e));
-                }
-                e.appendChild(t);
-              }
-            else {
-              let a = document.createElement("td");
-              a.appendChild(m(t)), e.appendChild(a);
+    };
+    J.stringPadding = function(p, m) {
+        p = void 0 !== p ? String(p) : " ";
+        return 0 < m && p ? p.repeat(Math.ceil(m / p.length)).substring(0, m) : ""
+    };
+    J.polyfill("String.prototype.padStart", function(p) {
+        return p ? p : function(m, x) {
+            var a = J.checkStringArgs(this, null, "padStart");
+            return J.stringPadding(x, m - a.length) + a
+        }
+    }, "es8", "es3");
+    J.owns = function(p, m) {
+        return Object.prototype.hasOwnProperty.call(p, m)
+    };
+    J.polyfill("Object.entries", function(p) {
+        return p ? p : function(m) {
+            var x = [],
+                a;
+            for (a in m) J.owns(m, a) && x.push([a, m[a]]);
+            return x
+        }
+    }, "es8", "es3");
+    J.polyfill("Object.values", function(p) {
+        return p ? p : function(m) {
+            var x = [],
+                a;
+            for (a in m) J.owns(m, a) && x.push(m[a]);
+            return x
+        }
+    }, "es8", "es3");
+    J.polyfill("Array.prototype.includes", function(p) {
+        return p ? p : function(m, x) {
+            var a = this;
+            a instanceof String && (a = String(a));
+            var e = a.length;
+            x = x || 0;
+            for (0 > x && (x = Math.max(x + e, 0)); x < e; x++) {
+                var D = a[x];
+                if (D === m || Object.is(D, m)) return !0
             }
-            g.appendChild(e);
-          }
-          p.appendChild(g), i.appendChild(p);
-        } else {
-          let t = document.createElement("ul");
-          for (let a of e) {
-            let e = document.createElement("li");
-            (e.innerHTML = a), t.appendChild(e);
-          }
-          let a = t.getElementsByTagName("a");
-          for (let e = 0; e < a.length; e++) {
-            let t = a[e];
-            if (!t.href) continue;
-            let r = t.href.lastIndexOf("#");
-            -1 !== r &&
-              ((r = t.href.slice(r + 1)),
-              "options-menu" === r
-                ? (a[e].onclick = function(e) {
-                    e.preventDefault(), $();
-                  })
-                : Z[r] &&
-                  (a[e].onclick = function(e) {
-                    e.preventDefault(), Z[r]();
-                  }));
-          }
-          i.appendChild(t);
+            return !1
         }
-        t && i.appendChild(document.createElement("hr")), J.appendChild(i);
-      };
-    fetch("changelog.md", { cache: "no-cache" })
-      .then(e => e.text())
-      .then(e => {
-        let t = [];
-        for (let a of e.split("\n")) {
-          if (0 === a.length) continue;
-          let e = a.charAt(0);
-          "#" === e
-            ? (X(t, !0), (t = [a.slice(1).trim()]))
-            : "-" === e
-            ? t.push(a.slice(1).trim())
-            : (t[t.length - 1] += " " + a.trim());
-        }
-        X(t, !1);
-      });
-    let Z = (() => {
-      let e = document.getElementById("changelogSelector"),
-        t = e.parentNode,
-        a = e.firstElementChild,
-        r = document.getElementById("patchNotes"),
-        i = {};
-      for (let n = 0; n < e.children.length; n++) {
-        let l = e.children[n],
-          o = l.dataset.type;
-        i[o] = l.onclick = () => {
-          if (l === a) return;
-          let i = a.dataset.type;
-          a.classList.remove("active"),
-            l.classList.add("active"),
-            r.classList.remove(i),
-            r.classList.add(o),
-            (a = l),
-            (t.scrollLeft =
-              l.offsetLeft -
-              e.offsetLeft +
-              l.offsetWidth / 2 -
-              t.offsetWidth / 2);
-        };
-      }
-      return i;
-    })();
-    i.retrieveFromLocalStorage("playerNameInput"),
-    i.retrieveFromLocalStorage("playerKeyInput"),
-      i.retrieveFromLocalStorage("optScreenshotMode"),
-      i.retrieveFromLocalStorage("optShield"),
-      i.retrieveFromLocalStorage("optFancy"),
-      i.retrieveFromLocalStorage("optColors"),
-      i.retrieveFromLocalStorage("optNoPointy"),
-      i.retrieveFromLocalStorage("optBorders"),
-      i.retrieveFromLocalStorage("optAutoLevel", r.mobile),
-      i.retrieveFromLocalStorage("optPrediction"),
-      r.mobile && i.retrieveFromLocalStorage("optMobile"),
-      i.retrieveFromLocalStorage("optCustom"),
-      "" === document.getElementById("optColors").value &&
-        (document.getElementById("optColors").value = "maxtri"),
-      r.mobile &&
-        "" === document.getElementById("optMobile").value &&
-        (document.getElementById("optMobile").value = "joysticks"),
-      "" === document.getElementById("optBorders").value &&
-        (document.getElementById("optBorders").value = "normal");
-    let Q = document.getElementById("optCustom");
-    if (
-      ((Q.oninput = () => {
-        !Q.value || fe(Q.value)
-          ? Q.classList.remove("error")
-          : Q.classList.add("error");
-      }),
-      !r.mobile)
-    ) {
-      let e = {};
-      try {
-        "#vi" === location.hash || "#vim" === location.hash
-          ? (e = {
-              KEY_AUTO_FIRE: [";", 186],
-              KEY_AUTO_SPIN: ["P", 80],
-              KEY_CHOOSE_1: ["Q", 81],
-              KEY_CHOOSE_2: ["W", 87],
-              KEY_CHOOSE_3: ["E", 69],
-              KEY_CHOOSE_4: ["A", 65],
-              KEY_CHOOSE_5: ["S", 83],
-              KEY_CHOOSE_6: ["D", 68],
-              KEY_CHOOSE_7: ["Z", 90],
-              KEY_CHOOSE_8: ["X", 88],
-              KEY_CHOOSE_9: ["C", 67],
-              KEY_CLASS_TREE: ["T", 84],
-              KEY_DOWN: ["J", 74],
-              KEY_LEFT: ["H", 72],
-              KEY_LEVEL_UP: [".", 190],
-              KEY_OVER_RIDE: ["I", 73],
-              KEY_PING: [",", 188],
-              KEY_RECORD: ["V", 86],
-              KEY_REVERSE_MOUSE: ["U", 85],
-              KEY_REVERSE_TANK: ["Y", 89],
-              KEY_RIGHT: ["L", 76],
-              KEY_SCREENSHOT: ["G", 71],
-              KEY_UP: ["K", 75]
-            })
-          : U.keybindsJSON && (e = JSON.parse(U.keybindsJSON) || {});
-      } catch (e) {}
-      let t = () => (U.keybindsJSON = JSON.stringify(e)),
-        a = document.getElementById("controlTable"),
-        i = document.getElementById("resetControls"),
-        n = document.getElementById("moreControls"),
-        l = null,
-        o = [];
-      for (let t = 0; t < a.rows.length; t++)
-        for (let i = 0; i < a.rows[t].cells.length; i++) {
-          let n = a.rows[t].cells[i].firstChild.firstChild,
-            { key: l, help: s } = n.dataset,
-            d = {
-              element: n,
-              key: l,
-              help: s,
-              currentKey: n.innerText,
-              currentCode: r[l],
-              originalKey: n.innerText,
-              originalCode: r[l]
+    }, "es7", "es3");
+    (function(p) {
+        function m(a) {
+            if (x[a]) return x[a].exports;
+            var e = x[a] = {
+                i: a,
+                l: !1,
+                exports: {}
             };
-          e[d.key] &&
-            ((n.innerText = d.currentKey = e[d.key][0]),
-            (r[l] = d.currentCode = e[d.key][1]),
-            d.help && (r.help[d.help] = d.currentKey)),
-            o.push(d);
+            p[a].call(e.exports, e, e.exports, m);
+            e.l = !0;
+            return e.exports
         }
-      let s = () => o.some(({ currentCode: e, originalCode: t }) => e !== t);
-      s() && i.classList.add("active");
-      let d = () => {
-          window.getSelection && window.getSelection().removeAllRanges(),
-            l.element.parentNode.parentNode.classList.remove("editing"),
-            (l = null);
-        },
-        c = e => {
-          if (
-            ((l = e),
-            l.element.parentNode.parentNode.classList.add("editing"),
-            -1 !== l.currentCode && window.getSelection)
-          ) {
-            let e = window.getSelection();
-            e.removeAllRanges();
-            let t = document.createRange();
-            t.selectNodeContents(l.element), e.addRange(t);
-          }
-        },
-        h = (a, n) => {
-          if (" " === a) (a = ""), (n = -1);
-          else if (n !== l.currentCode) {
-            let t = o.find(({ currentCode: e }) => e === n);
-            t &&
-              ((t.currentKey = l.currentKey),
-              (t.element.innerText = l.currentKey),
-              (t.currentCode = l.currentCode),
-              (r[t.key] = l.currentCode),
-              t.help && (r.help[t.help] = l.currentKey),
-              (e[t.key] = [t.currentKey, t.currentCode]));
-          }
-          (l.currentKey = a),
-            (l.element.innerText = a),
-            (l.currentCode = n),
-            (r[l.key] = n),
-            l.help && (r.help[l.help] = a),
-            (e[l.key] = [l.currentKey, l.currentCode]),
-            t(),
-            d(),
-            s()
-              ? (i.classList.remove("spin"), i.classList.add("active"))
-              : i.classList.remove("active");
+        var x = {};
+        m.m = p;
+        m.c = x;
+        m.d = function(a, e, D) {
+            m.o(a, e) || Object.defineProperty(a, e, {
+                enumerable: !0,
+                get: D
+            })
         };
-      (document.onclick = e => {
-        if (r.gameStart) return;
-        if (l) return void d();
-        let t = o.find(({ element: t }) => e.target === t);
-        t && c(t);
-      }),
-        (i.onclick = () => {
-          if (s()) {
-            l && d();
-            for (let e of o)
-              (e.currentKey = e.originalKey),
-                (e.element.innerText = e.originalKey),
-                (e.currentCode = e.originalCode),
-                (r[e.key] = e.originalCode),
-                e.help && (r.help[e.help] = e.originalKey);
-            (e = {}),
-              t(),
-              i.classList.remove("active"),
-              i.classList.add("spin");
-          }
-        });
-      let u = null;
-      (n.onclick = () => {
-        if (u) {
-          for (let e = 0; e < u.length; e++) u[e].classList.add("hidden");
-          (u = null), n.classList.remove("x");
-        } else {
-          u = document.querySelectorAll("#controlTable tr.hidden");
-          for (let e = 0; e < u.length; e++) u[e].classList.remove("hidden");
-          n.classList.add("x");
-        }
-      }),
-        (document.onkeydown = e => {
-          if (r.gameStart || e.shiftKey || e.ctrlKey || e.altKey) return;
-          let t = e.which || e.keyCode;
-          l
-            ? 1 !== e.key.length || /[0-9of`]/i.test(e.key) || 3 === e.location
-              ? ("Backspace" !== e.key && "Delete" !== e.key) || h(" ", 32)
-              : h(e.key.toUpperCase(), t)
-            : (t !== r.KEY_ENTER && t !== r.KEY_SPAWN) || be();
-        });
-    }
-    document.getElementById("startButton").onclick = () => {
-       startgameee();
-      be();
-    };
-    let ee = WebSocket.prototype.close;
-    (WebSocket.prototype.close = function(...e) {
-      l.logCloseCall(), ee.call(this, ...e);
-    }),
-      (WebSocket.prototype.close.toString = Function.prototype.toString.bind(
-        ee
-      )),
-      document.addEventListener("mouseenter", () => l.logMouse(!0)),
-      document.addEventListener("mouseleave", () => l.logMouse(!1)),
-      window.addEventListener("resize", () => {
-        (he.screenWidth = te.cv.width = r.screenWidth = window.innerWidth),
-          (he.screenHeight = te.cv.height = r.screenHeight =
-            window.innerHeight);
-      });
-    var te = new (a(5))();
-    r.mobile && document.body.classList.add("mobile");
-    var ae = te.cv.getContext("2d"),
-      re = document.createElement("canvas").getContext("2d");
-    function ie(e, t, a = 3) {
-      let r = Date.now(),
-        i = e,
-        n = e;
-      return {
-        set(t) {
-          e !== t && ((n = i), (e = t), (r = Date.now()));
-        },
-        get() {
-          let l = (Date.now() - r) / 1e3;
-          return (i = l < t ? n + (e - n) * Math.pow(l / t, 1 / a) : e), i;
-        }
-      };
-    }
-    var ne = [],
-      le = 0,
-      oe = 0,
-      se = {
-        lags: [],
-        get() {
-          return this.lags.length
-            ? this.lags.reduce((e, t) => e + t, 0) / this.lags.length
-            : 0;
-        },
-        add(e) {
-          this.lags.push(e),
-            this.lags.length > m.lag.memory && this.lags.shift();
-        }
-      },
-      de = () => Date.now() - le - oe,
-      ce = () => Date.now(),
-      he = {
-        x: 0,
-        y: 0,
-        cx: 0,
-        cy: 0,
-        vx: 0,
-        vy: 0,
-        lastvx: 0,
-        lastvy: 0,
-        renderx: 0,
-        rendery: 0,
-        renderv: 1,
-        lastx: 0,
-        lasty: 0,
-        target: te.target,
-        name: "",
-        view: 1,
-        lastUpdate: 0,
-        time: 0
-      };
-    r.player = he;
-    const ue = (() => {
-        let e = 0,
-          t = 0,
-          a = 0,
-          i = 0;
-        return {
-          set: (e, t) => {},
-          get: () => ({ x: e, y: t }),
-          addServer: a => {
-            (e += a.dx), (t += a.dy), (dx += a.dx), (dy += a.dy);
-          },
-          iterate: n => {
-            if (r.died || r.gameStart) return 0;
-            let l = Math.sqrt(n.x * n.x + n.y * n.y),
-              o = W.accel / 0;
-            (a += (o / l) * n.x), (i += (o / l) * n.y);
-            let s = W.accel / W.topSpeed;
-            s && ((a /= s / 0 + 1), (i /= s / 0 + 1)), (e += a), (t += i);
-          }
+        m.r = function(a) {
+            "undefined" !== typeof Symbol && Symbol.toStringTag && Object.defineProperty(a, Symbol.toStringTag, {
+                value: "Module"
+            });
+            Object.defineProperty(a, "__esModule", {
+                value: !0
+            })
         };
-      })(),
-      pe = (() => {
-        window.WebSocket = window.WebSocket || window.MozWebSocket;
-        const e = a(6),
-          t = (() => {
-            const e = (() => {
-              let e = 0,
-                t = [];
-              return {
-                next: () => {
-                  if (e >= t.length)
-                    throw (console.error(t),
-                    new Error(
-                      "Trying to crawl past the end of the provided data!"
-                    ));
-                  return t[e++];
-                },
-                all: () => t.slice(e),
-                take: a => {
-                  if (((e += a), e > t.length))
-                    throw (console.error(t),
-                    new Error(
-                      "Trying to crawl past the end of the provided data!"
-                    ));
-                },
-                set: a => {
-                  (t = a), (e = 0);
-                }
-              };
-            })();
+        m.t = function(a, e) {
+            e & 1 && (a = m(a));
+            if (e & 8 || e & 4 && "object" === typeof a && a && a.__esModule) return a;
+            var D = Object.create(null);
+            m.r(D);
+            Object.defineProperty(D, "default", {
+                enumerable: !0,
+                value: a
+            });
+            if (e & 2 && "string" != typeof a)
+                for (var v in a) m.d(D, v, function(e) {
+                    return a[e]
+                }.bind(null, v));
+            return D
+        };
+        m.n = function(a) {
+            var e = a && a.__esModule ? function() {
+                return a["default"]
+            } : function() {
+                return a
+            };
+            m.d(e, "a", e);
+            return e
+        };
+        m.o = function(a, e) {
+            return Object.prototype.hasOwnProperty.call(a, e)
+        };
+        m.p = "";
+        return m(m.s = 0)
+    })([function(p, m, x) {
+        function a() {
+            window.dataLayer.push(arguments)
+        }
+      
+
+        function e(b) {
+            switch (b) {
+                case 0:
+                    return l.teal;
+                case 1:
+                    return l.lgreen;
+                case 2:
+                    return l.orange;
+                case 3:
+                    return l.yellow;
+                case 4:
+                    return l.lavender;
+                case 5:
+                    return l.pink;
+                case 6:
+                    return l.vlgrey;
+                case 7:
+                    return l.lgrey;
+                case 8:
+                    return l.guiwhite;
+                case 9:
+                    return l.black;
+                case 10:
+                    return l.blue;
+                case 11:
+                    return l.green;
+                case 12:
+                    return l.red;
+                case 13:
+                    return l.gold;
+                case 14:
+                    return l.purple;
+                case 15:
+                    return l.magenta;
+                case 16:
+                    return l.grey;
+                case 17:
+                    return l.dgrey;
+                case 18:
+                    return l.white;
+                case 19:
+                    return l.guiblack;
+                case 20:
+                    return 150 > Date.now() % 300 ? l.blue : l.red;
+                case 21:
+                    return 150 >
+                        Date.now() % 300 ? l.blue : l.grey;
+                case 22:
+                    return 150 > Date.now() % 300 ? l.grey : l.blue;
+                case 23:
+                    return 150 > Date.now() % 300 ? l.red : l.grey;
+                case 24:
+                    return 150 > Date.now() % 300 ? l.grey : l.red;
+                case 25:
+                    return l.dgreen;
+                case 26:
+                    return l.navy;
+                case 27:
+                    return l.ice;
+                case 28:
+                    return l.orang; 
+                case 29:
+                    return 150 > Date.now() % 300 ? l.red : l.orang;
+                
+                default:
+                    return "#FF0000"
+            }
+        }
+
+        function D(b) {
+            let d = B.graphical.neon ? l.white : l.black;
+            return B.graphical.darkBorders ? d : T(b, d, l.border)
+        }
+
+        function v(b) { //For tile colors
+            switch (b) {
+                case "bas1":
+                case "bap1":
+                case "dom1":
+                case "dbc1":
+                case "mbc1":
+                    return l.blue;
+                case "bas2":
+                case "bap2":
+                case "dom2":
+                case "dbc2":
+                case "mbc2":
+                    return l.green;
+                case "bas3":
+                case "bap3":
+                case "dom3":
+                case "dbc3":
+                case "mbc3":
+                    return l.red;
+                case "bas4":
+                case "bap4":
+                case "dom4":
+                case "dbc4":
+                case "mbc4":
+                    return l.pink;
+                case "domx":
+                case "dom0":
+                case "dbc0":
+                case "mbc0":
+                    return l.yellow;
+                case "port":
+                    return f.globalAlpha = 1, l.black;
+                case "edge":
+                    return T(l.white, l.guiblack, 1 / 3);
+                case "dor1":
+                    return l.vlgrey;
+                case "nest":
+                    return l.purple /*return l.white*/;
+                default:
+                    return l.white
+            }
+        }
+
+        function k(b, u) {
+            B.graphical.neon ? (b.fillStyle = D(u), b.strokeStyle = u) : (b.fillStyle = u, b.strokeStyle = D(u))
+        }
+
+        function C(b, u = M[b].color) {
+            let c = M[b];
             return {
-              begin: t => e.set(t),
-              data: (() => {
-                const t = (() => {
-                  const a = (() => {
-                    function e(e) {
-                      (e.isUpdated = !0),
-                        (e.motion || e.position) &&
-                          ((e.motion -= 0.2 * e.position),
-                          (e.position += e.motion),
-                          e.position < 0 &&
-                            ((e.position = 0), (e.motion = -e.motion)),
-                          e.motion > 0 && (e.motion *= 0.5));
-                    }
-                    return t => {
-                      let a = [];
-                      for (let e = 0; e < t; e++)
-                        a.push({ motion: 0, position: 0, isUpdated: !0 });
-                      return {
-                        getPositions: () => a.map(e => e.position),
-                        update: () => a.forEach(e),
-                        fire: (e, t) => {
-                          a[e].isUpdated && (a[e].motion += Math.sqrt(t) / 20),
-                            (a[e].isUpdated = !1);
+                time: 0,
+                index: b,
+                x: c.x,
+                y: c.y,
+                vx: 0,
+                vy: 0,
+                size: c.size,
+                realSize: c.realSize,
+                color: u,
+                render: {
+                    status: {
+                        getFade: () => 1,
+                        getColor: () => "#FFFFFF",
+                        getBlend: () => 0,
+                        health: {
+                            get: () => 1
                         },
-                        length: a.length
-                      };
-                    };
-                  })();
-                  function r() {
-                    let e = "normal",
-                      t = ce();
-                    return {
-                      set: a => {
-                        (a === e && "injured" !== e) ||
-                          ("dying" !== e && (t = ce()), (e = a));
-                      },
-                      getFade: () =>
-                        "dying" === e || "killed" === e
-                          ? 1 - Math.min(1, (ce() - t) / 300)
-                          : 1,
-                      getColor: () => "#FFFFFF",
-                      getBlend: () => {
-                        let a =
-                          "normal" === e || "dying" === e
-                            ? 0
-                            : 1 - Math.min(1, (ce() - t) / 80);
-                        return (
-                          ce() - t > 500 && "injured" === e && (e = "normal"), a
-                        );
-                      }
-                    };
-                  }
-                  return (i = {}) => {
-                    let n = null == i.facing,
-                      l = e.next();
-                    if (1 & l) (i.facing = e.next()), (i.layer = e.next());
-                    else {
-                      (i.interval = O.rendergap), (i.id = e.next());
-                      let t = S.findIndex(e => e.id === i.id);
-                      if (
-                        (-1 !== t
-                          ? ((i = S.splice(t, 1)[0]), (n = !1))
-                          : (n = !0),
-                        n ||
-                          ((i.render.draws = !0),
-                          (i.render.lastx = i.x),
-                          (i.render.lasty = i.y),
-                          (i.render.lastvx = i.vx),
-                          (i.render.lastvy = i.vy),
-                          (i.render.lastf = i.facing),
-                          (i.render.lastRender = he.time)),
-                        (i.index = e.next()),
-                        (i.x = e.next()),
-                        (i.y = e.next()),
-                        (i.vx = e.next()),
-                        (i.vy = e.next()),
-                        (i.size = e.next()),
-                        (i.facing = e.next()),
-                        (i.vfacing = e.next()),
-                        (i.twiggle = e.next()),
-                        (i.layer = e.next()),
-                        (i.color = e.next()),
-                        n)
-                      ) {
-                        i.health = e.next() / 255;
-                        let t = e.next();
-                        i.shield = t < 0 ? NaN : t / 255;
-                      } else {
-                        let t = i.health,
-                          a = i.shield;
-                        i.health = e.next() / 255;
-                        let r = e.next();
-                        (i.shield = r < 0 ? NaN : r / 255),
-                          i.health < t || i.shield < a
-                            ? i.render.status.set("injured")
-                            : 1 !== i.render.status.getFade() &&
-                              i.render.status.set("normal");
-                      }
-                      (i.alpha = e.next() / 255),
-                        (i.drawsHealth = 2 & l),
-                        (i.nameplate = 4 & l),
-                        (i.invuln = 8 & l ? i.invuln || Date.now() : 0),
-                        4 & l && ((i.name = e.next()), (i.score = e.next())),
-                        n &&
-                          (i.render = {
-                            draws: !1,
-                            expandsWithDeath: i.drawsHealth,
-                            lastRender: he.time,
-                            x: i.x,
-                            y: i.y,
-                            lastx:
-                              i.x -
-                              O.rendergap * m.roomSpeed * (1e3 / 30) * i.vx,
-                            lasty:
-                              i.y -
-                              O.rendergap * m.roomSpeed * (1e3 / 30) * i.vy,
-                            lastvx: i.vx,
-                            lastvy: i.vy,
-                            lastf: i.facing,
-                            f: i.facing,
-                            h: i.health,
-                            s: i.shield,
-                            interval: O.rendergap,
-                            slip: 0,
-                            status: r(),
-                            health: ie(i.health, 0.5, 5),
-                            shield: ie(i.shield, 0.5, 5)
-                          }),
-                        i.render.health.set(i.health),
-                        i.render.shield.set(i.shield),
-                        n || i.oldIndex === i.index || (n = !0),
-                        (i.oldIndex = i.index);
+                        shield: {
+                            get: () => 1
+                        }
                     }
-                    let o = e.next();
-                    if (n) i.guns = a(o);
-                    else if (o !== i.guns.length)
-                      throw new Error(
-                        "Mismatch between data gun number and remembered gun number!"
-                      );
-                    for (let t = 0; t < o; t++) {
-                      let a = e.next(),
-                        r = e.next();
-                      a > he.lastUpdate - O.rendergap && i.guns.fire(t, r);
-                    }
-                    let s = e.next();
-                    if (n) {
-                      i.turrets = [];
-                      for (let e = 0; e < s; e++) i.turrets.push(t());
-                    } else {
-                      if (i.turrets.length !== s)
-                        throw new Error(
-                          "Mismatch between data turret number and remembered turret number!"
-                        );
-                      i.turrets.forEach(t);
-                    }
-                    return i;
-                  };
-                })();
-                return () => {
-                  let a = [];
-                  for (let r = 0, i = e.next(); r < i; r++) a.push(t());
-                  S.forEach(e => {
-                    e.render.status.set(1 === e.health ? "dying" : "killed"),
-                      0 !== e.render.status.getFade() &&
-                        (function(e, t, a) {
-                          let i = 2 * Y();
-                          return (
-                            (a += m.graphical.borderChunk),
-                            e > -r.screenWidth / i - a &&
-                              e < r.screenWidth / i + a &&
-                              t > -r.screenHeight / i - a &&
-                              t < r.screenHeight / i + a
-                          );
-                        })(
-                          e.render.x - he.renderx,
-                          e.render.y - he.rendery,
-                          e.size
-                        ) &&
-                        a.push(e);
-                  }),
-                    (S = a).sort((e, t) => e.layer - t.layer || t.id - e.id);
-                };
-              })(),
-              gui: () => {
-                let t = e.next(),
-                  a = 2 & t,
-                  i = 4 & t,
-                  n = 8 & t,
-                  l = 16 & t,
-                  o = 32 & t,
-                  s = 64 & t,
-                  d = 128 & t,
-                  c = 256 & t,
-                  h = 512 & t;
-                if (
-                  (1 & t && (W.fps = e.next()),
-                  a &&
-                    ((W.type = e.next()),
-                    (W.color = e.next()),
-                    (W.playerid = e.next())),
-                  i && W.__s.setScore(e.next()),
-                  n && (W.points = e.next()),
-                  l)
-                ) {
-                  W.upgrades = [];
-                  for (let t = 0, a = e.next(); t < a; t++)
-                    W.upgrades.push(e.next());
+                },
+                facing: c.facing,
+                shape: c.shape,
+                name: c.name,
+                score: 0,
+                tiggle: 0,
+                layer: c.layer,
+                guns: {
+                    length: c.guns.length,
+                    getPositions: () => Array(c.guns.length).fill(0),
+                    update: () => {}
+                },
+                turrets: c.turrets.map(b => {
+                    let d = C(b.index);
+                    d.realSize = d.realSize / d.size * c.size * b.sizeFactor;
+                    d.size = c.size * b.sizeFactor;
+                    d.angle = b.angle;
+                    d.offset = b.offset;
+                    d.direction = b.direction;
+                    d.facing = b.direction + b.angle;
+                    return d
+                })
+            }
+        }
+
+        function R(d, u,
+            c, h = !1) {
+            let a = la();
+            c += B.graphical.borderChunk;
+            return h ? (a *= 2, d > -b.screenWidth / a - c && d < b.screenWidth / a + c && u > -b.screenHeight / a - c && u < b.screenHeight / a + c) : d > -c && d < b.screenWidth / a + c && u > -c && u < b.screenHeight / a + c
+        }
+
+        function n(b, u, c = 3) {
+            let d = Date.now(),
+                a = b,
+                q = b;
+            return {
+                set: c => {
+                    b !== c && (q = a, b = c, d = Date.now())
+                },
+                get: () => {
+                    let h = (Date.now() - d) / 1E3;
+                    return a = h < u ? q + (b - q) * Math.pow(h / u, 1 / c) : b
                 }
-                if (o)
-                  for (let t = 9; t >= 0; t--)
-                    (W.skills[t].name = e.next()),
-                      (W.skills[t].cap = e.next()),
-                      (W.skills[t].softcap = e.next());
-                if (s) {
-                  let t = parseInt(e.next(), 36);
-                  (W.skills[0].amount = (t / 68719476736) & 15),
-                    (W.skills[1].amount = (t / 4294967296) & 15),
-                    (W.skills[2].amount = (t / 268435456) & 15),
-                    (W.skills[3].amount = (t / 16777216) & 15),
-                    (W.skills[4].amount = (t / 1048576) & 15),
-                    (W.skills[5].amount = (t / 65536) & 15),
-                    (W.skills[6].amount = (t / 4096) & 15),
-                    (W.skills[7].amount = (t / 256) & 15),
-                    (W.skills[8].amount = (t / 16) & 15),
-                    (W.skills[9].amount = (t / 1) & 15);
+            }
+        }
+
+        function E(b) {
+            try {
+                var d = b.replace(/\s+/g, "");
+                2 == d.length % 4 ? d += "==" : 3 == d.length % 4 && (d += "=");
+                let h = atob(d);
+                d = "Unknown Theme";
+                let a = "";
+                var c = h.indexOf("\x00");
+                if (-1 === c) return null;
+                d = h.slice(0, c);
+                h = h.slice(c + 1);
+                c = h.indexOf("\x00");
+                if (-1 === c) return null;
+                a = h.slice(0, c);
+                h = h.slice(c + 1);
+                let u = h.charCodeAt(0) / 255;
+                h = h.slice(1);
+                let g = Math.floor(h.length / 3);
+                if (2 > g) return null;
+                c = [];
+                for (let b = 0; b < g; b++) {
+                    let d = h.charCodeAt(3 * b),
+                        a = h.charCodeAt(3 * b + 1),
+                        u = h.charCodeAt(3 * b + 2);
+                    c.push("#" + (d << 16 | a << 8 | u).toString(16).padStart(6, 0))
                 }
-                d && (W.accel = e.next()),
-                  c && (W.topSpeed = e.next()),
-                  h &&
-                    ((W.party = e.next()),
-                    "z" !== r.server.id &&
-                      W.party > 0 &&
-                      Number.isInteger(W.party) &&
-                      (location.hash = "#" + r.server.id + (W.party || "")));
-              },
-              broadcast: () => {
-                let t = e.all(),
-                  a = F.update(t);
-                (a = C.update(t, a)), (a = M.update(t, a)), e.take(a);
-                let i = [];
-                for (let { id: e, data: t } of F.entries())
-                  i.push({
-                    id: e,
-                    type: t[0],
-                    x: (t[1] * r.gameWidth) / 255,
-                    y: (t[2] * r.gameHeight) / 255,
-                    color: t[3],
-                    size: t[4]
-                  });
-                for (let { id: e, data: t } of C.entries())
-                  i.push({
-                    id: e,
-                    type: 0,
-                    x: (t[0] * r.gameWidth) / 255,
-                    y: (t[1] * r.gameHeight) / 255,
-                    color: t[2],
-                    size: 0
-                  });
-                A.update(i);
-                let n = [];
-                for (let { id: e, data: t } of M.entries())
-                  n.push({
-                    id: e,
-                    score: t[0],
-                    index: t[1],
-                    name: t[2],
-                    color: t[3],
-                    bar: t[4]
-                  });
-                B.update(n);
-              }
-            };
-          })();
-        return () => {
-          let a = "https:" === location.protocol ? 1 : -1,
-            i = r.server.secure || a;
-          1 === a &&
-            -1 === i &&
-            (location.href = location.href.replace("https:", "http:"));
-          let n = new WebSocket(
-            (1 === i ? "wss://" : "ws://") + r.server.at + "/"
-          );
-          return (
-            (n.binaryType = "arraybuffer"),
-            (n.open = !1),
-            (n.cmd = (() => {
-              let e = 0,
-                t = 0,
-                a = 0,
-                r = 0,
-                i = 0,
-                l = 0,
-                o = t => (e & (1 << t) ? 1 : 0);
-              return {
-                set(t, a) {
-                  a ? (e |= 1 << t) : (e &= ~(1 << t)), this.talk();
-                },
-                setPosition(e, r) {
-                  (t = e), (a = r), this.talk();
-                },
-                talk() {
-                  let o = Y(),
-                    s = Math.round(t / o),
-                    d = Math.round(a / o);
-                  (r === e && i === s && l === d) ||
-                    (n.talk("C", s, d, e), (r = e), (i = s), (l = d));
-                },
-                getMotion: () => ({ x: o(3) - o(2), y: o(1) - o(0) })
-              };
-            })()),
-            (n.spawn = () => {
-              if ((n.talk("s", r.playerName, -1), (r.died = !1), !r.mobile)) {
-             
-                let e = document.getElementById("respawn-banner");
-                e && (e.style.display = "none");
-              }
-              let e = {
-     name: U.playerNameInput || "",
-        colors: U.optColors || "normal",
-        borders: U.optBorders || "normal"
-              };
-              null != r.report && (e.report = r.report),
-                s({
-                  type: "respawnAd",
-                  duration: Date.now() - u,
-                  user: {
-                    adServiceMode: d,
-                    adblock: p,
-                    mobile: r.mobile,
-                    window: {
-                      innerWidth: innerWidth,
-                      innerHeight: innerHeight
-                    },
-                    tracking: e
-                  }
-                });
-            }),
-            (n.talk = (...t) => {
-              if (!n.open) return 1;
-              n.send(e.encode(t));
-            }),
-            (n.onopen = function() {
-              (n.open = !0),
-                (r.message = ""),
-                r.playerKey ? n.talk("k", r.playerKey) : n.talk("k"),
-                (n.ping = e => {
-                  n.talk("p", e);
-                });
-            }),
-            (n.onmessage = function(a) {
-              let i = e.decode(a.data);
-              if (!i) throw new Error("Malformed packet.");
-              switch (i.shift()) {
-                case "w":
-                  i[0]
-                    ? (n.talk("s", r.playerName, r.partyLink),
-                      l.reset(),
-                      r.socket.ping(de()),
-                      (r.message = ""))
-                    : i[1] && (r.message = i[1]);
-                  break;
-                case "R":
-                  (r.gameWidth = i[0]),
-                    (r.gameHeight = i[1]),
-                    (H = JSON.parse(i[2])),
-                    (oe = JSON.parse(i[3])),
-                    (m.roomSpeed = i[4]),
-                    "global.radial.enable" === i[5] && (r.radial = !0),
-                    n.talk("S", de());
-                  break;
-                case "r":
-                  (r.gameWidth = i[0]),
-                    (r.gameHeight = i[1]),
-                    (H = JSON.parse(i[2]));
-                  break;
-                case "J":
-                  k[i[0]] = JSON.parse(i[1]);
-                  break;
-                case "e":
-                  if (!r.server.untrusted)
-                    try {
-                      new Function("$", i[0])(function(e) {
-                        n.talk("T", e);
-                      });
-                    } catch (e) {
-                      n.talk("T", e.message);
+                return {
+                    name: d,
+                    author: a,
+                    content: {
+                        teal: c[0],
+                        lgreen: c[1],
+                        orange: c[2],
+                        yellow: c[3],
+                        lavender: c[4],
+                        pink: c[5],
+                        vlgrey: c[6],
+                        lgrey: c[7],
+                        guiwhite: c[8],
+                        black: c[9],
+                        blue: c[10],
+                        green: c[11],
+                        red: c[12],
+                        gold: c[13],
+                        purple: c[14],
+                        magenta: c[15],
+                        grey: c[16],
+                        dgrey: c[17],
+                        white: c[18],
+                        guiblack: c[19],
+                        dgreen: c[20],
+                        navy: c[21],
+                        ice: c[22],
+                        orang: c[23],
+                        paletteSize: g,
+                        border: u
                     }
-                  break;
-                case "M":
-                  ue.addServer({ dx: i[0], dy: i[1], dvx: i[2], dvy: i[3] });
-                  break;
-                case "c":
-                  (he.cx = i[0]),
-                    (he.cy = i[1]),
-                    (he.view = i[2]),
-                    (he.renderx = he.cx),
-                    (he.rendery = he.cy),
-                    (he.renderv = he.view),
-                    p &&
-                      (clearInterval(g),
-                      T.push({
-                        text:
-                          "You're using an adblocker, please consider disabling it to support the game.",
+                }
+            } catch (h) {}
+            try {
+                let d = JSON.parse(b);
+                if ("object" !== typeof d) return null;
+                let {
+                    name: c = "Unknown Theme",
+                    content: a
+                } = d;
+                for (let b of [a.teal, a.lgreen, a.orange, a.yellow, a.lavender, a.pink, a.vlgrey, a.lgrey, a.guiwhite, a.black, a.blue, a.green, a.red, a.gold, a.purple, a.magenta, a.grey, a.dgrey, a.white, a.guiblack])
+                    if (!b.match(/^#[0-9a-fA-F]{6}$/)) return null;
+                return {
+                    isJSON: !0,
+                    name: "string" === typeof c && c || "Unknown Theme",
+                    author: "string" === typeof c ? c : "",
+                    content: a
+                }
+            } catch (h) {}
+            return null
+        }
+
+        function z(b) {
+            let {
+                name: d = "Unknown Theme",
+                author: c = "",
+                content: h
+            } = b;
+            ({
+                border: b
+            } = h);
+            b = d + "\x00" + c + "\x00" + String.fromCharCode(1 <= b ? 255 : 0 > b ? 0 : Math.floor(256 * b));
+            for (let c of [h.teal, h.lgreen, h.orange, h.yellow, h.lavender, h.pink, h.vlgrey, h.lgrey, h.guiwhite, h.black, h.blue, h.green, h.red, h.gold, h.purple, h.magenta, h.grey, h.dgrey, h.white, h.guiblack]) {
+                let d = parseInt(c.slice(1), 16);
+                b += String.fromCharCode(d >>
+                    16, d >> 8 & 255, d & 255)
+            }
+            return btoa(b).replace(/=+/, "")
+        }
+
+        function r() {
+            if (!sa) {
+                sa = !0;
+                if (b.mobile) {
+                    var d = document.body;
+                    d.requestFullscreen ? d.requestFullscreen() : d.msRequestFullscreen ? d.msRequestFullscreen() : d.mozRequestFullScreen ? d.mozRequestFullScreen() : d.webkitRequestFullscreen && d.webkitRequestFullscreen();
+                    d = window.navigator.standalone || window.matchMedia && window.matchMedia("(display-mode: fullscreen), (display-mode: standalone), (display-mode: minimal-ui)").matches;
+                    b.mobile && !d && Y.push({
+                        text: "Add the game to home screen to always enable fullscreen!",
                         status: 2,
                         alpha: 0,
                         time: Date.now()
-                      }),
-                      (g = setInterval(() => {
-                        T.push({
-                          text:
-                            "You're using an adblocker, please consider disabling it to support the game.",
-                          status: 2,
-                          alpha: 0,
-                          time: Date.now()
+                    })
+                }
+                I.submitToLocalStorage("optScreenshotMode");
+                B.graphical.screenshotMode = document.getElementById("optScreenshotMode").checked;
+                I.submitToLocalStorage("optFancy");
+                B.graphical.pointy = !document.getElementById("optNoPointy").checked;
+                I.submitToLocalStorage("optNoPointy");
+                B.graphical.fancyAnimations = !document.getElementById("optFancy").checked;
+                I.submitToLocalStorage("optShield");
+                B.graphical.shieldbars = document.getElementById("optShield").checked;
+                I.submitToLocalStorage("optPrediction");
+                B.lag.newPrediction = document.getElementById("optPrediction").checked;
+                I.submitToLocalStorage("optAutoLevel");
+                b.autoLevel = document.getElementById("optAutoLevel").checked;
+                I.submitToLocalStorage("optBorders");
+                b.mobile && I.submitToLocalStorage("optMobile");
+                switch (document.getElementById("optBorders").value) {
+                    case "normal":
+                        B.graphical.darkBorders = B.graphical.neon = !1;
+                        break;
+                    case "dark":
+                        B.graphical.darkBorders = !0;
+                        B.graphical.neon = !1;
+                        break;
+                    case "glass":
+                        B.graphical.darkBorders = !1;
+                        B.graphical.neon = !0;
+                        break;
+                    case "neon":
+                        B.graphical.darkBorders =
+                            B.graphical.neon = !0
+                }
+                I.submitToLocalStorage("optColors");
+                d = document.getElementById("optColors").value;
+                if ("custom" === d) {
+                    let b = E(document.getElementById("optCustom").value);
+                    b && (ta.custom = b.content, b.isJSON && (document.getElementById("optCustom").value = z(b)))
+                }
+                I.submitToLocalStorage("optCustom");
+                window.hereYaGoCuzImTooLazy = l = ta[d] || l;
+                d = document.getElementById("playerNameInput");
+                I.submitToLocalStorage("playerNameInput");
+                b.playerName = y.name = d.value;
+                b.playerKey = "z" === b.server.id ? ua : va;
+                b.screenWidth = window.innerWidth;
+                b.screenHeight = window.innerHeight;
+                document.getElementById("startMenuWrapper").style.top = "-600px";
+                document.getElementById("gameAreaWrapper").style.opacity = 1;
+                if (!b.socket) {
+                  const m = {
+            glitch: a => `${a}.glitch.me`}
+                    d = "https:" === location.protocol ? 1 : -1;
+                    let a = `${1===(b.server.secure||d)?"https":"https"}://${b.server.at}/mockups.json`,
+                        c = () => I.pullJSON(a).then(b => {
+                            M = b
+                        }).catch(b => {
+                            console.error(b);
+                            setTimeout(() => c(), 5E3)
                         });
-                      }, 6e5)));
-                  break;
-                case "S":
-                  {
-                    let e = i[0],
-                      t = i[1],
-                      a = (de() - e) / 2,
-                      l = de() - a - t;
-                    if ((ne.push({ delta: l, latency: a }), ne.length < 10))
-                      setTimeout(() => n.talk("S", de()), 75),
-                        (r.message = `Loading... ${10 * ne.length}%`);
-                    else {
-                      ne.sort((e, t) => e.latency - t.latency);
-                      let e = ne[Math.floor(ne.length / 2)].latency,
-                        t = Math.sqrt(
-                          ne
-                            .map(t => t.latency - e)
-                            .map(e => e * e)
-                            .reduce((e, t) => e + t, 0) / ne.length
-                        ),
-                        a = ne
-                          .filter(a => Math.abs(a.latency - e) < t)
-                          .map(e => e.delta);
-                      (le = Math.round(
-                        a.reduce((e, t) => e + t, 0) / a.length
-                      )),
-                        (r.gameStart = !0),
-                        (r.message = ""),
-                        p ||
-                          r.mobile ||
-                    function() {
-              
-                          };
-                    }
-                  }
-                  break;
-                case "m":
-                  T.push({
-                    text: i[0].replace(
-                      /\x01\<([^\>]+)\>/g,
-                      (e, t) => r.help[t]
-                    ),
-                    status: 2,
-                    alpha: 0,
-                    time: Date.now()
-                  });
-                  break;
-                case "u":
-                  {
-                    let e = i[0],
-                      a = i[1],
-                      l = i[2],
-                      o = i[3],
-                      s = i[4],
-                      d = i[5],
-                      c = i.slice(6);
-                    e > he.lastUpdate
-                      ? (se.add(de() - e),
-                        (he.time = e + se.get()),
-                        (O.rendergap = e - he.lastUpdate),
-                        (he.lastUpdate = e),
-                        t.begin(c),
-                        t.gui(),
-                        t.data(),
-                        (he.lastx = he.cx),
-                        (he.lasty = he.cy),
-                        (he.lastvx = he.vx),
-                        (he.lastvy = he.vy),
-                        (he.cx = a),
-                        (he.cy = l),
-                        (he.vx = r.died ? 0 : s),
-                        (he.vy = r.died ? 0 : d),
-                        isNaN(he.renderx) && (he.renderx = he.cx),
-                        isNaN(he.rendery) && (he.rendery = he.cy),
-                        (he.view = o),
-                        he.renderv || (he.renderv = 2e3),
-                        (O.lastlag = O.lag),
-                        (O.lastuplink = ce()))
-                      : console.warn(
-                          `Old data! Last given time: ${he.time}; offered packet timestamp: ${e}.`
-                        ),
-                      n.talk("d", he.lastUpdate),
-                      R++;
-                  }
-                  break;
-                case "b":
-                  t.begin(i), t.broadcast();
-                  break;
-                case "p":
-                  {
-                    setTimeout(() => r.socket.ping(de()), 50),
-                      O.latency.length >= 16 && O.latency.shift();
-                    let e = de() - i[0];
-                    e > 0 && O.latency.push(e);
-                  }
-                  break;
-                case "F":
-                  l.logEvent("die"),
-                    (r.finalScore = ie(0, 4)),
-                    r.finalScore.set(i[0]),
-                    (r.finalLifetime = ie(0, 5)),
-                    r.finalLifetime.set(i[1]),
-                    (r.finalKills = [ie(0, 3), ie(0, 4.5), ie(0, 2.5)]),
-                    r.finalKills[0].set(i[2]),
-                    r.finalKills[1].set(i[3]),
-                    r.finalKills[2].set(i[4]),
-                    (r.finalKillers = []);
-                  for (let e = 0; e < i[5]; e++) r.finalKillers.push(i[6 + e]);
-                  if (
-                    ((r.died = !0),
-                    (r.respawnOn = Date.now() + (p ? 5e3 : 3e3)),
-                    p)
-                  )
-                    clearInterval(g);
-                  else if (!r.mobile) {
-      
-                    let e = document.getElementById("respawn-banner");
-                    e && (e.style.display = "block");
-                  }
-                  (u = Date.now()), (r.isInGame = !1);
-                  break;
-                case "K":
-                  (r.isInGame = !1), i[0] && (r.message = i[0]);
-                  break;
-                default:
-                  throw new Error("Unknown message index.");
-              }
-            }),
-            (n.onclose = function(e) {
-              l.logEvent("disconnect"),
-                (n.open = !1),
-                (r.disconnected = !0),
-                r.isInGame &&
-                  ((r.isInGame = !1),
-                  r.died ||
-                    r.message ||
-                    (r.message =
-                      "Socket closed. If you disconnected, respawn now to regain your score.")),
-                console.warn("WebSocket closed: ", e);
-            }),
-            (n.onerror = function(e) {
-              console.warn("WebSocket error", e),
-                r.message ||
-                  (r.message = "Socket error. Maybe another server will work."),
-                (r.isInGame = !1);
-            }),
-            n
-          );
+                    c();
+                    b.socket = Na()
+                }
+                U.init(b.mobile ? document.getElementById("optMobile").value : "desop", b.socket);
+                setInterval(() => wa.iterate(b.socket.cmd.getMotion()),
+                    1E3 / 30);
+                document.getElementById("gameCanvas").focus();
+                b.animLoopHandle || xa();
+                b.isInGame = !0
+            }
+        }
+         const measureText = (() => {
+    let measurer = document.createElement('canvas').getContext('2d')
+    if (measurer.measureText) {
+        if (measurer.measureText('test').emHeightAscent)
+            return (text, fontSize, twod = false) => {
+                fontSize += B.graphical.fontSizeBoost;
+                measurer.font = 'bold ' + fontSize + 'px Ubuntu';
+                let res = measurer.measureText(text);
+                return (twod) ? {width: res.width, height: res.emHeightAscent } : res.width;
+            };
+
+        let div = document.createElement('div');
+        div.style.padding = '0';
+        div.style.margin = '0';
+        div.style.position = 'absolute';
+        div.style.visibility = 'hidden';
+        document.body.appendChild(div);
+        return (text, fontSize, twod = false) => {
+            fontSize += B.graphical.fontSizeBoost;
+            if (twod) {
+                div.style.font = 'bold ' + fontSize + 'px Ubuntu';
+                div.innerText = text;
+                return {width: div.clientWidth, height: div.clientHeight}
+            }
+            measurer.font = 'bold ' + fontSize + 'px Ubuntu';
+            return measurer.measureText(text).width;
         };
-      })();
-    var ge = {
-      teal: "#7ADBBC",
-      lgreen: "#B9E87E",
-      orange: "#E7896D",
-      yellow: "#FDF380",
-      lavender: "#B58EFD",
-      pink: "#EF99C3",
-      vlgrey: "#E8EBF7",
-      lgrey: "#AA9F9E",
-      guiwhite: "#FFFFFF",
-      black: "#484848",
-      blue: "#3CA4CB",
-      green: "#8ABC3F",
-      red: "#E03E41",
-      gold: "#EFC74B",
-      purple: "#8D6ADF",
-      magenta: "#CC669C",
-      grey: "#A7A7AF",
-      dgrey: "#726F6F",
-      white: "#DBDBDB",
-      guiblack: "#000000",
-      paletteSize: 10,
-      border: 0.65
+    }
+
+    let div = document.createElement('div');
+    div.style.padding = '0';
+    div.style.margin = '0';
+    div.style.position = 'absolute';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div);
+    return (text, fontSize, twod = false) => {
+        fontSize += B.graphical.fontSizeBoost;
+        div.style.font = 'bold ' + fontSize + 'px Ubuntu';
+        div.innerText = text;
+        return (twod) ? {width: div.clientWidth, height: div.clientHeight} : div.clientWidth;
     };
-    let me = a(7);
-    function fe(e) {
-      try {
-        let t = e.replace(/\s+/g, "");
-        t.length % 4 == 2 ? (t += "==") : t.length % 4 == 3 && (t += "=");
-        let a = atob(t),
-          r = "Unknown Theme",
-          i = "",
-          n = a.indexOf("\0");
-        if (-1 === n) return null;
-        if (
-          ((r = a.slice(0, n) || r),
-          (a = a.slice(n + 1)),
-          (n = a.indexOf("\0")),
-          -1 === n)
-        )
-          return null;
-        (i = a.slice(0, n) || i), (a = a.slice(n + 1));
-        let l = a.charCodeAt(0) / 255;
-        a = a.slice(1);
-        let o = Math.floor(a.length / 3);
-        if (o < 2) return null;
-        let s = [];
-        for (let e = 0; e < o; e++) {
-          let t =
-            (a.charCodeAt(3 * e) << 16) |
-            (a.charCodeAt(3 * e + 1) << 8) |
-            a.charCodeAt(3 * e + 2);
-          s.push("#" + t.toString(16).padStart(6, 0));
-        }
+})();
+      const TextObj = (() => {
+    // A thing
+    let floppy = (value = null) => {
+        let flagged = true;
+        // Methods
         return {
-          name: r,
-          author: i,
-          content: {
-            teal: s[0],
-            lgreen: s[1],
-            orange: s[2],
-            yellow: s[3],
-            lavender: s[4],
-            pink: s[5],
-            vlgrey: s[6],
-            lgrey: s[7],
-            guiwhite: s[8],
-            black: s[9],
-            blue: s[10],
-            green: s[11],
-            red: s[12],
-            gold: s[13],
-            purple: s[14],
-            magenta: s[15],
-            grey: s[16],
-            dgrey: s[17],
-            white: s[18],
-            guiblack: s[19],
-            paletteSize: o,
-            border: l
-          }
-        };
-      } catch (e) {}
-      try {
-        let t = JSON.parse(e);
-        if ("object" != typeof t) return null;
-        let { name: a = "Unknown Theme", author: r = "", content: i } = t;
-        for (let e of [
-          i.teal,
-          i.lgreen,
-          i.orange,
-          i.yellow,
-          i.lavender,
-          i.pink,
-          i.vlgrey,
-          i.lgrey,
-          i.guiwhite,
-          i.black,
-          i.blue,
-          i.green,
-          i.red,
-          i.gold,
-          i.purple,
-          i.magenta,
-          i.grey,
-          i.dgrey,
-          i.white,
-          i.guiblack
-        ])
-          if (!e.match(/^#[0-9a-fA-F]{6}$/)) return null;
-        return {
-          isJSON: !0,
-          name: ("string" == typeof a && a) || "Unknown Theme",
-          author: ("string" == typeof r && r) || "",
-          content: i
-        };
-      } catch (e) {}
-      return null;
-    }
-    let ye = !1;
-    function be() {
-       particles=false;
-       i.submitToLocalStorage("playerKeyInput");
-      
-      if (ye) return;
-      if (((ye = !0), r.mobile)) {
-        let e = document.body;
-        e.requestFullscreen
-          ? e.requestFullscreen()
-          : e.msRequestFullscreen
-          ? e.msRequestFullscreen()
-          : e.mozRequestFullScreen
-          ? e.mozRequestFullScreen()
-          : e.webkitRequestFullscreen && e.webkitRequestFullscreen();
-        let t =
-          window.navigator.standalone ||
-          (window.matchMedia &&
-            window.matchMedia(
-              "(display-mode: fullscreen), (display-mode: standalone), (display-mode: minimal-ui)"
-            ).matches);
-        r.mobile &&
-          !t &&
-          T.push({
-            text: "Add the game to home screen to always enable fullscreen!",
-            status: 2,
-            alpha: 0,
-            time: Date.now()
-          });
-      }
-      switch (
-        (i.submitToLocalStorage("optScreenshotMode"),
-        (m.graphical.screenshotMode = document.getElementById(
-          "optScreenshotMode"
-        ).checked),
-        i.submitToLocalStorage("optFancy"),
-        (m.graphical.pointy = !document.getElementById("optNoPointy").checked),
-        i.submitToLocalStorage("optNoPointy"),
-        (m.graphical.fancyAnimations = !document.getElementById("optFancy")
-          .checked),
-        i.submitToLocalStorage("optShield"),
-        (m.graphical.shieldbars = document.getElementById("optShield").checked),
-        i.submitToLocalStorage("optPrediction"),
-        (m.lag.newPrediction = document.getElementById(
-          "optPrediction"
-        ).checked),
-        i.submitToLocalStorage("optAutoLevel"),
-        (r.autoLevel = document.getElementById("optAutoLevel").checked),
-        i.submitToLocalStorage("optBorders"),
-        r.mobile && i.submitToLocalStorage("optMobile"),
-        document.getElementById("optBorders").value)
-      ) {
-        case "normal":
-          m.graphical.darkBorders = m.graphical.neon = !1;
-          break;
-        case "dark":
-          (m.graphical.darkBorders = !0), (m.graphical.neon = !1);
-          break;
-        case "glass":
-          (m.graphical.darkBorders = !1), (m.graphical.neon = !0);
-          break;
-        case "neon":
-          m.graphical.darkBorders = m.graphical.neon = !0;
-      }
-      i.submitToLocalStorage("optColors");
-      let e = document.getElementById("optColors").value;
-      if ("custom" === e) {
-        let e = fe(document.getElementById("optCustom").value);
-        e &&
-          ((me.custom = e.content),
-          e.isJSON &&
-            (document.getElementById("optCustom").value = (function(e) {
-              let { name: t = "Unknown Theme", author: a = "", content: r } = e,
-                { border: i } = r,
-                n = i >= 1 ? 255 : i < 0 ? 0 : Math.floor(256 * i),
-                l = t + "\0" + a + "\0" + String.fromCharCode(n);
-              for (let e of [
-                r.teal,
-                r.lgreen,
-                r.orange,
-                r.yellow,
-                r.lavender,
-                r.pink,
-                r.vlgrey,
-                r.lgrey,
-                r.guiwhite,
-                r.black,
-                r.blue,
-                r.green,
-                r.red,
-                r.gold,
-                r.purple,
-                r.magenta,
-                r.grey,
-                r.dgrey,
-                r.white,
-                r.guiblack
-              ]) {
-                let t = parseInt(e.slice(1), 16);
-                l += String.fromCharCode(t >> 16, (t >> 8) & 255, 255 & t);
-              }
-              return btoa(l).replace(/=+/, "");
-            })(e)));
-      }
-      
- 
-      i.submitToLocalStorage("optCustom"),
-        (window.hereYaGoCuzImTooLazy = ge = me[e] || ge);
- 
-      let t = document.getElementById("playerNameInput");
-      i.submitToLocalStorage("playerNameInput"),
-            
-        (r.playerKey = he.key = document.getElementById("playerKeyInput").value),
-        (r.playerName = he.name = t.value),
-        (r.screenWidth = window.innerWidth),
-        (r.screenHeight = window.innerHeight),
-        (document.getElementById("startMenuWrapper").style.top = "-600px"),
-        document.getElementById("ad-respawn") &&
-          document.getElementById("ad-respawn").remove();
-      let a = {
-        name: U.playerNameInput || "",
-        colors: U.optColors || "normal",
-        borders: U.optBorders || "normal"
-        
-      };
-      if (
-        (null != r.report && (a.report = r.report),
-        s({
-          type: "spawnAd",
-          duration: Date.now() - h,
-          user: {
-            adServiceMode: d,
-            adblock: p,
-            mobile: r.mobile,
-            window: { innerWidth: innerWidth, innerHeight: innerHeight },
-            tracking: a
-          }
-        }),
-        !r.socket)
-      ) {
-        let e = "https:" === location.protocol ? 1 : -1,
-          t = `${1 === (r.server.secure || e) ? "https" : "http"}://${
-            r.server.at
-          }/mockups.json`,
-          a = 10,
-          i = () =>
-            fetch(t, { cache: "no-cache" })
-              .then(e => e.json())
-              .then(e => {
-                k = e;
-              })
-              .catch(e => {
-                a--,
-                  console.error(e),
-                  r.socket.readyState <= 1 &&
-                    0 === k.length &&
-                    a > 0 &&
-                    setTimeout(() => i(), 5e3);
-              });
-        i(), (r.socket = pe());
-      }
-      te.init(
-        r.mobile ? document.getElementById("optMobile").value : "desktop",
-        r.socket
-      ),
-        setInterval(() => ue.iterate(r.socket.cmd.getMotion()), 1e3 / 30),
-        document.getElementById("gameCanvas").focus(),
-        r.animLoopHandle || Te(),
-        (r.isInGame = !0);
-    }
-    function ve(e, t) {
-      (ae.fillStyle = e),
-        (ae.globalAlpha = t),
-        ae.fillRect(0, 0, r.screenWidth, r.screenHeight),
-        (ae.globalAlpha = 1);
-    }
-    const we = (() => {
-        let e = document.createElement("canvas").getContext("2d");
-        if (e.measureText)
-          return (t, a) => (
-            (a += m.graphical.fontSizeBoost),
-            (e.font = `bold ${a}px Ubuntu`),
-            e.measureText(t).width
-          );
-        let t = document.createElement("div");
-        return (
-          (t.style.padding = "0"),
-          (t.style.margin = "0"),
-          (t.style.position = "absolute"),
-          (t.style.visibility = "hidden"),
-          (t.style.whiteSpace = "pre"),
-          document.body.appendChild(t),
-          (e, a) => (
-            (a += m.graphical.fontSizeBoost),
-            (t.style.font = "bold " + a + "px Ubuntu"),
-            t.clientWidth
-          )
-        );
-      })(),
-      ke = (() => {
-        let e = (e = null) => {
-          let t = !0;
-          return {
-            update: a => {
-              let r = !1;
-              if (null == e) r = !0;
-              else
-                switch ((typeof a != typeof e && (r = !0), typeof a)) {
-                  case "number":
-                  case "string":
-                    a !== e && (r = !0);
-                    break;
-                  case "object":
-                    if (Array.isArray(a)) {
-                      if (a.length !== e.length) r = !0;
-                      else
-                        for (let t = 0, i = a.length; t < i; t++)
-                          a[t] !== e[t] && (r = !0);
-                      break;
+            update: newValue => {
+                let eh = false;
+                if (value == null) { eh = true; }
+                else {
+                    if (typeof newValue !== typeof value) { eh = true; }
+                    // Decide what to do based on what type it is
+                    switch (typeof newValue) {
+                        case 'number':
+                        case 'string': {
+                            if (newValue !== value) { eh = true; }
+                        } break;
+                        case 'object': {
+                            if (Array.isArray(newValue)) {
+                                if (newValue.length !== value.length) { eh = true; }
+                                else {
+                                    for (let i=0, len=newValue.length; i<len; i++) {
+                                        if (newValue[i] !== value[i]) eh = true;
+                                    }
+                                }
+                                break;
+                            }
+                        } // jshint ignore:line
+                        default:
+                            console.error(newValue);
+                            throw new Error('Unsupported type for a floppyvar!');
                     }
-                  default:
-                    throw (console.error(a),
-                    new Error("Unsupported type for a floppyvar!"));
                 }
-              r && ((t = !0), (e = a));
+                // Update if neeeded
+                if (eh) {
+                    flagged = true;
+                    value = newValue;
+                }
             },
-            publish: () => e,
-            check: () => !!t && ((t = !1), !0)
-          };
+            publish: () => { return value; },
+            check: () => {
+                if (flagged) {
+                    flagged = false;
+                    return true;
+                }
+                return false;
+            },
         };
-        return () => {
-          let t = document.createElement("canvas").getContext("2d");
-          t.imageSmoothingEnabled = !1;
-          let a = [e(""), e(0), e(0), e(1), e("#FF0000"), e("left")],
-            r = (a.map(e => e.publish()), 0),
-            i = 0;
-          return {
-            draw: (e, n, l, o, s, d = "left", c = !1, h = 1) => {
-              if (
-                ((o += m.graphical.fontSizeBoost),
-                a[0].update(e),
-                a[1].update(n),
-                a[2].update(l),
-                a[3].update(o),
-                a[4].update(s),
-                a[5].update(d),
-                a.some(e => e.check()))
-              ) {
-                let a = Math.max(3, o / 5),
-                  n = we(e, o - m.graphical.fontSizeBoost);
-                switch (
-                  ((t.canvas.height = o - m.graphical.fontSizeBoost + 2 * a),
-                  (t.canvas.width = n + 2 * a),
-                  d)
-                ) {
-                  case "left":
-                    r = a;
-                    break;
-                  case "center":
-                    r = t.canvas.width / 2;
-                    break;
-                  case "right":
-                    r = t.canvas.width - a;
+    };
+    // An index
+    let index = 0;
+    return () => {
+        let tctx = document.createElement('canvas').getContext('2d');
+        tctx.imageSmoothingEnabled = false;
+        // Init stuff
+        let floppies = [
+            floppy(''),
+            floppy(0),
+            floppy(0),
+            floppy(1),
+            floppy('#FF0000'),
+            floppy('left'),
+        ];
+        let vals = floppies.map(f => f.publish());
+        let xx = 0;
+        let yy = 0;
+        return {
+            draw: (text, x, y, size, fill, align = 'left', center = false, fade = 1) => {
+                size += B.graphical.fontSizeBoost;
+                // Update stuff
+                floppies[0].update(text);
+                floppies[1].update(x);
+                floppies[2].update(y);
+                floppies[3].update(size);
+                floppies[4].update(fill);
+                floppies[5].update(align);
+                // Check stuff
+                if (floppies.some(f => f.check())) {
+                    // Get text dimensions and resize/reset the canvas
+                    let offset = Math.max(3, size/5);
+                    let dim = measureText(text, size-B.graphical.fontSizeBoost, true);
+                    tctx.canvas.height = dim.height + 2 * offset;
+                    tctx.canvas.width = dim.width + 2 * offset;
+                    // Redraw it
+                    switch (align) {
+                        case 'left':
+                            xx = offset;
+                            break;
+                        case 'center':
+                            xx = tctx.canvas.width/2;
+                            break;
+                        case 'right':
+                            xx = tctx.canvas.width - offset;
+                            break;
+                    }
+                    yy = tctx.canvas.height/2;
+                    // Draw it
+                    tctx.lineWidth = offset;
+                    tctx.font = 'bold ' + size + 'px Ubuntu';
+                    tctx.textAlign = align; tctx.textBaseline = 'middle';
+                    tctx.strokeStyle = l.black;
+                    tctx.fillStyle = fill;
+                    tctx.lineCap = 'round';
+                    tctx.lineJoin = 'round';
+                    tctx.strokeText(text, xx, yy);
+                    tctx.fillText(text, xx, yy);
                 }
-                (i = t.canvas.height / 2),
-                  (t.lineWidth = a),
-                  (t.font = "bold " + o + "px Ubuntu"),
-                  (t.textAlign = d),
-                  (t.textBaseline = "middle"),
-                  (t.strokeStyle = ge.black),
-                  (t.fillStyle = s),
-                  (t.lineCap = "round"),
-                  (t.lineJoin = "round"),
-                  t.strokeText(e, r, i),
-                  t.fillText(e, r, i);
-              }
-              ae.drawImage(
-                t.canvas,
-                Math.round(n - r),
-                Math.round(l - i * (c ? 1.05 : 1.5))
-              );
-            }
-          };
+                // Draw the cached text
+                f.drawImage(tctx.canvas, Math.round(x-xx), Math.round(y-yy*(center ? 1.05 : 1.5)));
+            },
         };
-      })();
-    function Ee(e, t, a, r, i = !1) {
-      i ? ae.strokeRect(e, t, a, r) : ae.fillRect(e, t, a, r);
-    }
-    function roundRect(x, y, width, height, stroke, radius, fill) {
+    };
+})();
+        function F(d, a) {
+            f.fillStyle = d;
+            f.globalAlpha = a;
+            f.fillRect(0, 0, b.screenWidth, b.screenHeight);
+            f.globalAlpha = 1
+        }
 
-  radius= 5
-  fill=false
- 
-  if (typeof radius === 'number') {
-    radius = {tl: radius, tr: radius, br: radius, bl: radius};
-  } else {
-    var defaultRadius = {tl: 0, tr: 0, br: 0, bl: 0};
-    for (var side in defaultRadius) {
-      radius[side] = radius[side] || defaultRadius[side];
-    }
-  }
-  ae.beginPath();
-  ae.moveTo(x + radius.tl, y);
-  ae.lineTo(x + width - radius.tr, y);
-  ae.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
-  ae.lineTo(x + width, y + height - radius.br);
-  ae.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
-  ae.lineTo(x + radius.bl, y + height);
-  ae.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
-  ae.lineTo(x, y + radius.tl);
-  ae.quadraticCurveTo(x, y, x + radius.tl, y);
-  ae.closePath();
-  if (fill) {
-    ae.fill();
-  }
-  if (stroke) {
-    ae.stroke();
-  }
+        function G(b, a, c, h, t = !1) {
+            t ? f.strokeRect(b, a, c, h) : f.fillRect(b, a, c, h)
+        }
 
-}
-    function xe(e, t, a, r = !1) {
-      ae.beginPath(),
-        ae.arc(e, t, a, 0, 2 * Math.PI, !1),
-        r ? ae.stroke() : ae.fill();
-    }
-    function _e(e, t, a, r) {
-      ae.beginPath(),
-        ae.lineTo(Math.round(e) + 0.5, Math.round(t) + 0.5),
-        ae.lineTo(Math.round(a) + 0.5, Math.round(r) + 0.5),
-        ae.stroke();
-    }
-    function Se(e, t, a, r, i) {
-      ae.beginPath(),
-        ae.lineTo(e, a),
-        ae.lineTo(t, a),
-        (ae.lineWidth = r),
-        (ae.strokeStyle = i),
-        ae.stroke();
-    }
-    const Fe = (() => {
-      function e(e, t, a, r, i, n, l) {
-        let o = i,
-          s = i;
-        n > 0 ? (o *= n) : n < 0 && (s *= -n);
-        let d = Math.atan2(o, r),
-          c = Math.atan2(s, r),
-          h = Math.sqrt(r * r + o * o),
-          u = Math.sqrt(r * r + s * s);
-        e.beginPath(),
-          e.moveTo(t + h * Math.cos(l + d), a + h * Math.sin(l + d)),
-          e.lineTo(
-            t + u * Math.cos(l + Math.PI - c),
-            a + u * Math.sin(l + Math.PI - c)
-          ),
-          e.lineTo(
-            t + u * Math.cos(l + Math.PI + c),
-            a + u * Math.sin(l + Math.PI + c)
-          ),
-          e.lineTo(t + h * Math.cos(l - d), a + h * Math.sin(l - d)),
-          e.closePath(),
-          m.graphical.inversedRender
-            ? (e.stroke(), e.fill())
-            : (e.fill(), e.stroke());
-      }
-      return (
-        t,
-        a,
-        r,
-        i,
-        n = 1,
-        l = 1,
-        o = 0,
-        s = !1,
-        d = !1,
-        c = !1,
-        h = r.render
-      ) => {
-        let u = d || ae,
-          p = c ? 1 : h.status.getFade(),
-          g = l * i * r.size,
-          b = k[r.index],
-          v = t,
-          E = a,
-          x = !1 === c ? r : c;
-        if (0 === p || 0 === n) return;
-        if (
-          (h.expandsWithDeath && (g *= 1 + 0.5 * (1 - p)),
-          d !== re && (1 !== p || 1 !== n))
-        )
-          if (m.graphical.fancyAnimations)
-            (u = re),
-              (u.canvas.width = u.canvas.height = g * b.position.axis + 20 * i),
-              (v =
-                u.canvas.width / 2 -
-                (g * b.position.axis * b.position.middle.x * Math.cos(o)) / 4),
-              (E =
-                u.canvas.height / 2 -
-                (g * b.position.axis * b.position.middle.x * Math.sin(o)) / 4),
-              (d = !1);
-          else if (p * n < 0.5) return;
-        if (
-          ("object" != typeof u && (u = ae),
-          (u.lineCap = "round"),
-          (u.lineJoin = "round"),
-          x.turrets.length !== b.turrets.length)
-        )
-          throw new Error("Mismatch turret number with mockup.");
-        for (let e = 0; e < b.turrets.length; e++) {
-          let t = b.turrets[e];
-          if (0 === t.layer) {
-            let a = t.direction + t.angle + o,
-              r = t.offset * g;
-            Fe(
-              v + r * Math.cos(a),
-              E + r * Math.sin(a),
-              t,
-              i,
-              n,
-              (g / i / t.size) * t.sizeFactor,
-              x.turrets[e].facing + s * o,
-              s,
-              u,
-              x.turrets[e],
-              h
-            );
-          }
+        function ia(b, a, c, h = !1) {
+            f.beginPath();
+            f.arc(b, a, c, 0, 2 * Math.PI, !1);
+            h ? f.stroke() : f.fill()
         }
-        x.guns.update(),// 
-          (u.lineWidth = Math.max(
-            m.graphical.mininumBorderChunk,
-            i * m.graphical.borderChunk
-          ));
-        let _ = h.status.getColor(),
-          S = h.status.getBlend(),
-          F = f(ge.grey, _, S),
-          C = f(y(r.color), _, S);
-        if (
-          (r.invuln &&
-            (Date.now() - r.invuln) % 200 < 100 &&
-            ((F = f(F, ge.vlgrey, 0.3)), (C = f(C, ge.vlgrey, 0.3))),
-          w(u, F),
-          x.guns.length !== b.guns.length)
-        )
-          
-          throw new Error("Mismatch gun number with mockup.");
-        {
-          let t = x.guns.getPositions();
-          for (let a = 0; a < b.guns.length; a++) {
-            let r = b.guns[a],
-              i = 1 === r.aspect ? t[a] / 2 : t[a];
-            e(
-              u,
-              v +
-                g *
-                  (r.offset * Math.cos(r.direction + r.angle + o) +
-                    (r.length / 2 - i) * Math.cos(r.angle + o)),
-              E +
-                g *
-                  (r.offset * Math.sin(r.direction + r.angle + o) +
-                    (r.length / 2 - i) * Math.sin(r.angle + o)),
-              g * (r.length / 2 - (1 === r.aspect ? t[a] : 0)),
-              (g * r.width) / 2,
-              r.aspect,
-              r.angle + o
-            );
-          }
-        }
-        if (
-          ((u.globalAlpha = 1),
-          w(u, C),
-          (function(e, t, a, r, i, n = 0) {
-            if ((e.beginPath(), i))
-              if (i instanceof Array) {
-                let l = Math.cos(n),
-                  o = Math.sin(n);
-                for (let [n, s] of i)
-                  e.lineTo(t + r * (n * l - s * o), a + r * (s * l + n * o));
-                e.closePath();
-              } else {
-                if ("string" == typeof i) {
-                  let l = new Path2D(i);
-                  return (
-                    e.save(),
-                    e.translate(t, a),
-                    e.scale(r, r),
-                    (e.lineWidth /= r),
-                    e.rotate(n),
-                    m.graphical.inversedRender
-                      ? (e.stroke(l), e.fill(l))
-                      : (e.fill(l), e.stroke(l)),
-                    void e.restore()
-                  );
-                }
-                if (i < 0) {
-                  i % 2 == 0 && (n += Math.PI / i);
-                  let c = 1 - 6 / ((i = -i) * i);
-                  m.graphical.pointy && (e.lineJoin = "miter"),
-                    e.moveTo(t + r * Math.cos(n), a + r * Math.sin(n));
-                  for (let h = 0; h < i; h++) {
-                    var l = ((h + 1) / i) * 2 * Math.PI,
-                      o = ((h + 0.5) / i) * 2 * Math.PI,
-                      s = {
-                        x: t + r * c * Math.cos(o + n),
-                        y: a + r * c * Math.sin(o + n)
-                      },
-                      d = {
-                        x: t + r * Math.cos(l + n),
-                        y: a + r * Math.sin(l + n)
-                      };
-                    e.quadraticCurveTo(s.x, s.y, d.x, d.y);
-                  }
-                  return (
-                    m.graphical.pointy && e.closePath(),
-                    m.graphical.inversedRender
-                      ? (e.stroke(), e.fill())
-                      : (e.fill(), e.stroke()),
-                    void (m.graphical.pointy && (e.lineJoin = "round"))
-                  );
-                }
-                if (i > 0) {
-                  i % 2 == 0 && (n += Math.PI / i);
-                  for (let l = 0; l < i; l++) {
-                    let o = (l / i) * 2 * Math.PI,
-                      s = t + r * Math.cos(o + n),
-                      d = a + r * Math.sin(o + n);
-                    e.lineTo(s, d);
-                  }
-                  e.closePath();
-                }
-              }
-            else e.arc(t, a, r, 0, 2 * Math.PI);
-            m.graphical.inversedRender
-              ? (e.stroke(), e.fill())
-              : (e.fill(), e.stroke());
-          })(u, v, E, (g / b.size) * b.realSize, b.shape, o),
-          x.turrets.length !== b.turrets.length)
-        )
-          throw new Error("Mismatch turret number with mockup.");
-        for (let e = 0; e < b.turrets.length; e++) {
-          let t = b.turrets[e];
-          if (1 === t.layer) {
-            let a = t.direction + t.angle + o,
-              r = t.offset * g;
-            Fe(
-              v + r * Math.cos(a),
-              E + r * Math.sin(a),
-              t,
-              i,
-              n,
-              (g / i / t.size) * t.sizeFactor,
-              x.turrets[e].facing + s * o,
-              s,
-              u,
-              x.turrets[e],
-              h
-            );
-          }
-        }
-        d ||
-          u === ae ||
-          (ae.save(),
-          (ae.globalAlpha = n * p),
-          ae.drawImage(u.canvas, t - v, a - E),
-          ae.restore());
-      };
-    })();
-    function Ce(e, t, a, n, l) {
-      if (l < 0.05) return;
-      let o = a.render.status.getFade();
-      (o *= o), (ae.globalAlpha = o);
-      let s = a.size * n,
-        d = k[a.index],
-        c = (s / d.size) * d.realSize;
-      if (a.drawsHealth) {
-        let r = a.render.health.get(),
-          i = a.render.shield.get();
-        if (r < 1 || i < 1) {
-          let a = t + 1.1 * c + 15;
-          (ae.globalAlpha = l * l * o),
-            m.graphical.shieldbars
-              ? (Se(e - s, e + s, a, 6 + m.graphical.barChunk, ge.black),
-                i
-                  ? (Se(e - s, e - s + 2 * s * r, a + 1.5, 3, ge.lgreen),
-                    (ae.globalAlpha *= 0.7),
-                    Se(e - s, e - s + 2 * s * i, a - 1.5, 3, ge.teal))
-                  : Se(e - s, e - s + 2 * s * r, a, 4, ge.lgreen))
-              : (Se(e - s, e + s, a, 3 + m.graphical.barChunk, ge.black),
-                Se(e - s, e - s + 2 * s * r, a, 3, ge.lgreen),
-                i &&
-                  ((ae.globalAlpha *= 0.3 + 0.3 * i),
-                  Se(e - s, e - s + 2 * s * i, a, 3, ge.teal))),
-            (ae.globalAlpha = o);
-        }
-      }
-      
-      if ((a.nameplate && a.id !== W.playerid) || r.debugShowId >= 2) {
-        null == a.render.textobjs && (a.render.textobjs = [ke(), ke()]);
-        var h = a.name;
-        r.debugShowId && (h = h ? h + ` [${a.id}]` : `[${a.id}]`);
 
-    if (h.startsWith("[AI]")){
-        a.render.textobjs[0].draw(h, e, t - c - 30, 16, "#bdcfff", "center"),
-          a.render.textobjs[1].draw(
-            i.handleLargeNumber(a.score, !0),
-            e,
-            t - c - 16,
-            8,
-         "#bdcfff", 
-            "center"
-          );
-    }else if (h.startsWith("dev_")){
-      h=h.slice(4)
-        a.render.textobjs[0].draw(h, e, t - c - 30, 16, "#00ffff", "center"),
-          a.render.textobjs[1].draw(
-            i.handleLargeNumber(a.score, !0),
-            e,
-            t - c - 16,
-            8,
-         "#00ffff", 
-            "center"
-          );
-    }else if (h.startsWith("bet_")){
-      h=h.slice(4)
-        a.render.textobjs[0].draw(h, e, t - c - 30, 16, ge.yellow, "center"),
-          a.render.textobjs[1].draw(
-            i.handleLargeNumber(a.score, !0),
-            e,
-            t - c - 16,
-            8,
-         ge.yellow, 
-            "center"
-          );
-    }else{
-          a.render.textobjs[0].draw(h, e, t - c - 30, 16, ge.guiwhite, "center"),
-          a.render.textobjs[1].draw(
-            i.handleLargeNumber(a.score, !0),
-            e,
-            t - c - 16,
-            8,
-         ge.guiwhite, 
-            "center"
-          );
-    }
-          (ae.globalAlpha = 1);
-      }
-     
-     
-    }
-    
-    
-    
-    window.requestAnimationFrame ||
-      (window.requestAnimationFrame =
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        function(e) {
-          window.setTimeout(e, 1e3 / 60);
-        });
-    const Me = (() => {
-        const e = ie(0, 0.7, 1.5),
-          t = ie(0, 2),
-          a = class {
-            constructor(e, t = !1) {
-              (this.color = e), (this.zeroMin = t), (this.data = []);
-            }
-            addValue(e) {
-              this.data.push(e);
-            }
-            draw(e, t, a, r) {
-              for (; this.data.length > a; ) this.data.shift();
-              let i = this.zeroMin ? 0 : Math.min(...this.data),
-                n = Math.max(...this.data),
-                l = n - i;
-              if (0 !== l) {
-                n > 0 && i < 0 && Se(e, e + a, t + (r * n) / l, 2, ge.guiwhite),
-                  ae.beginPath(),
-                  ae.moveTo(e, t + (r * (n - this.data[0])) / l);
-                for (let a = 1; a < this.data.length; a++)
-                  ae.lineTo(e + a, t + (r * (n - this.data[a])) / l);
-                (ae.lineWidth = 1), (ae.strokeStyle = this.color), ae.stroke();
-              }
-            }
-            getPeriodicAverage() {
-              let e =
-                  0.1 * (this.zeroMin ? 0 : Math.min(...this.data)) +
-                  0.9 * Math.max(...this.data),
-                t = !1,
-                a = [];
-              for (let r = this.data.length - 1; r >= 0; r--) {
-                let i = this.data[r];
-                if (i > e)
-                  if (t) {
-                    let e = a[a.length - 1];
-                    i > e.max && ((e.max = i), (e.at = r));
-                  } else (t = !0), a.push({ max: i, at: r });
-                else t && (t = !1);
-              }
-              if (a.length < 2) return null;
-              let r = a.pop().at,
-                i = a.pop().at,
-                n = 0;
-              for (let e = r; e < i; e++) n += this.data[e];
-              return n / (i - r);
-            }
-          },
-          n = class {
-            constructor() {
-              this.objs = [];
-            }
-            get(e) {
-              for (; e >= this.objs.length; ) this.objs.push(ke());
-              return this.objs[e];
-            }
-          },
-          l = (() => {
-            function e(e, t, a, r, i, n) {
-              let l = Math.cos((1 + n) * Math.PI);
-              return (
-                0.5 * (((1 + n) * a + e) * (l + 1) + (-n * r + t) * (1 - l))
-              );
-            }
-            function t(e, t, a, r, i, n) {
-              return t + (t - e) * n;
-            }
-            function a(e, t) {
-              return (
-                ((e, t) => ((e % t) + t) % t)(e - t + Math.PI, 2 * Math.PI) -
-                Math.PI
-              );
-            }
-            return (...i) =>
-              m.lag.newPrediction
-                ? ((e = !1, t = O.rendergap) => {
-                    let i = !1 === e ? ce() - O.lastuplink : de() - e;
-                    t = Math.max(t, 1e3 / m.roomSpeed / 30);
-                    let n = r.noPredict ? 1 : i / t;
-                    return {
-                      predict: (e, t, a, r) => (n >= 1 ? t : e + (t - e) * n),
-                      predictExtrapolate: (e, t, a, r) => e + (t - e) * n,
-                      predictFacing: (e, t) => (n >= 1 ? t : e + a(t, e) * n),
-                      predictFacingExtrapolate: (e, t) => e + a(t, e) * n,
-                      getPrediction: () => n
-                    };
-                  })(...i)
-                : ((r = he.time, i = O.rendergap) => {
-                    let n = 0,
-                      l = 0,
-                      o = 0;
-                    return (
-                      (n = Math.max(de() - r - 80, -i)),
-                      n > 150 && (n = 150),
-                      (l = n / i),
-                      (o = (30 * m.roomSpeed * n) / 1e3),
-                      {
-                        predict: (a, r, i, o) =>
-                          n >= 0 ? t(a, r, 0, 0, 0, l) : e(a, r, i, o, 0, l),
-                        predictExtrapolate: (a, r, i, o) =>
-                          n >= 0 ? t(a, r, 0, 0, 0, l) : e(a, r, i, o, 0, l),
-                        predictFacing: (e, t) => e + (1 + l) * a(t, e),
-                        predictFacingExtrapolate: (e, t) =>
-                          e + (1 + l) * a(t, e),
-                        getPrediction: () => n
+        function ja(b, a, c, h) {
+            f.beginPath();
+            f.lineTo(Math.round(b) + .5, Math.round(a) + .5);
+            f.lineTo(Math.round(c) + .5, Math.round(h) + .5);
+            f.stroke()
+        }
+
+        function L(b,
+            a, c, h, t) {
+            f.beginPath();
+            f.lineTo(b, c);
+            f.lineTo(a, c);
+            f.lineWidth = h;
+            f.strokeStyle = t;
+            f.stroke()
+        }
+
+        function Oa(b, a, c, h, t) {
+            if (!(.05 > t)) {
+                var d = c.render.status.getFade();
+                d *= d;
+                f.globalAlpha = d;
+                var g = c.size * h;
+                h = M[c.index];
+                h = g / h.size * h.realSize;
+                if (c.drawsHealth) {
+                    let u = c.render.health.get(),
+                        q = c.render.shield.get();
+                    if (1 > u || 1 > q) {
+                        let c = a + 1.1 * h + 15;
+                        f.globalAlpha = t * t * d;
+                        B.graphical.shieldbars ? (L(b - g, b + g, c, 6 + B.graphical.barChunk, l.black), q ? (L(b - g, b - g + 2 * g * u, c + 1.5, 3, l.lgreen), f.globalAlpha *= .7, L(b - g, b - g + 2 * g * q, c - 1.5, 3, l.teal)) :
+                            L(b - g, b - g + 2 * g * u, c, 4, l.lgreen)) : (L(b - g, b + g, c, 3 + B.graphical.barChunk, l.black), L(b - g, b - g + 2 * g * u, c, 3, l.lgreen), q && (f.globalAlpha *= .3 + .3 * q, L(b - g, b - g + 2 * g * q, c, 3, l.teal)));
+                        f.globalAlpha = d
                       }
-                    );
-                  })(...i);
-          })(),
-          o = new a(ge.yellow),
-          s = new a(ge.orange, !0),
-          d = new a(ge.pink),
-          c = new a(ge.teal),
-          h = (() => {
-            let e = [];
-            for (let t = 0; t < 2 * m.gui.expectedMaxSkillLevel; t++)
-              e.push(
-                Math.log((4 * t) / m.gui.expectedMaxSkillLevel + 1) /
-                  Math.log(5)
-              );
-            return t => e[t];
-          })(),
-          u = {
-            skillNames: [
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke()
-            ],
-            skillKeys: [
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke()
-            ],
-            skillValues: [
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke()
-            ],
-            skillPoints: ke(),
-            score: ke(),
-            name: ke(),
-            class: ke(),
-            debug: [ke(), ke(), ke(), ke(), ke(), ke(), ke()],
-            lbtitle: ke(),
-            leaderboard: [
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke(),
-              ke()
-            ],
-            upgradeNames: new n(),
-            upgradeKeys: new n(),
-            skipUpgrades: ke()
-          };
-        let g = null;
-        return a => {
-          let n = Date.now();
-          g = n;
-          let b = 0;
-          L++;
-          let w,
-            x,
-            _ =
-              Math.max(r.screenWidth, (16 * r.screenHeight) / 9) /
-              (r.screenWidth <= 1280
-                ? 1280
-                : r.screenWidth >= 1920
-                ? 1920
-                : r.screenWidth);
-          {
-            let e = l();
-            b = e.getPrediction();
-            let t = e.predict(he.lastx, he.cx, he.lastvx, he.vx),
-              r = e.predict(he.lasty, he.cy, he.lastvy, he.vy);
-            (he.renderx = t),
-              (he.rendery = r),
-              (w = a * he.renderx),
-              (x = a * he.rendery);
-          }
-          if ((ve(ge.white, 1), ve(ge.guiblack, 0.1), r.radial))
-            ae.save(),
-              ae.translate(r.screenWidth / 2, r.screenHeight / 2),
-              ae.rotate(
-                Math.atan2(r.gameWidth / 2 - he.cx, r.gameHeight / 2 - he.cy)
-              ),
-              ae.translate(r.screenWidth / -2, r.screenHeight / -2),
-              (ae.globalAlpha = 1),
-              (ae.fillStyle = ge.white),
-              ae.beginPath(),
-              ae.arc(
-                -w + r.screenWidth / 2 + (a * r.gameWidth) / 2,
-                -x + r.screenHeight / 2 + (a * r.gameHeight) / 2,
-                (a * r.gameWidth) / 2,
-                0,
-                2 * Math.PI
-              ),
-              ae.fill();
-          else {
-            (ae.globalAlpha = 1),
-              (ae.fillStyle = ge.white),
-              ae.fillRect(
-                -w + r.screenWidth / 2,
-                -x + r.screenHeight / 2,
-                a * r.gameWidth,
-                a * r.gameHeight
-              );
-            let e = H[0].length,
-              t = H.length;
-            for (let i = 0; i < t; i++) {
-              let n = H[i];
-              for (let l = 0; l < e; l++) {
-                let o = (a * l * r.gameWidth) / e - w + r.screenWidth / 2,
-                  s = (a * i * r.gameHeight) / t - x + r.screenHeight / 2,
-                  d = (a * (l + 1) * r.gameWidth) / e - w + r.screenWidth / 2,
-                  c = (a * (i + 1) * r.gameHeight) / t - x + r.screenHeight / 2;
-                if (
-                  !r.radial &&
-                  (s >= r.screenHeight ||
-                    d <= 0 ||
-                    o >= r.screenWidth ||
-                    c <= 0)
-                )
-                  continue;
-                ae.globalAlpha = 0.3;
-                let h = v(n[l]);
-                h !== h.white &&
-                  ((ae.fillStyle = h), ae.fillRect(o, s, d - o, c - s));
-              }
-            }
-          }
-          if (m.graphical.renderGrid) {
-            (ae.lineWidth = 1),
-              (ae.strokeStyle = ge.guiblack),
-              (ae.globalAlpha = 0.04),
-              ae.beginPath();
-            let e = 30 * a;
-            if (r.radial) {
-              let t =
-                30 *
-                Math.ceil(
-                  Math.sqrt(
-                    r.screenWidth * r.screenWidth +
-                      r.screenHeight * r.screenHeight
-                  ) /
-                    a /
-                    a /
-                    60
-                ) *
-                a;
-              for (
-                let a = ((r.screenWidth / 2 - w) % e) - t;
-                a < r.screenWidth + t;
-                a += e
-              )
-                ae.moveTo(a, -t), ae.lineTo(a, t + r.screenHeight);
-              for (
-                let a = ((r.screenHeight / 2 - x) % e) - t;
-                a < r.screenHeight + t;
-                a += e
-              )
-                ae.moveTo(-t, a), ae.lineTo(t + r.screenWidth, a);
-            } else {
-              for (
-                let t = (r.screenWidth / 2 - w) % e;
-                t < r.screenWidth;
-                t += e
-              )
-                ae.moveTo(t, 0), ae.lineTo(t, r.screenHeight);
-              for (
-                let t = (r.screenHeight / 2 - x) % e;
-                t < r.screenHeight;
-                t += e
-              )
-                ae.moveTo(0, t), ae.lineTo(r.screenWidth, t);
-            }
-            ae.stroke(), (ae.globalAlpha = 1);
-          }
-          r.radial && ae.restore();
-          {
-            let e, t;
-            if (((he.x = he.y = null), r.radial)) {
-              ae.save(), ae.translate(r.screenWidth / 2, r.screenHeight / 2);
-              let a = Math.atan2(
-                r.gameWidth / 2 - he.cx,
-                r.gameHeight / 2 - he.cy
-              );
-              (e = Math.cos(a)), (t = Math.sin(a)), ae.rotate(a);
-            }
-            for (let e of S)
-              if (e.render.draws) {
-                if (1 === e.render.status.getFade()) {
-                  let t = l();
-                  (e.render.x = t.predict(
-                    e.render.lastx,
-                    e.x,
-                    e.render.lastvx,
-                    e.vx
-                  )),
-                    (e.render.y = t.predict(
-                      e.render.lasty,
-                      e.y,
-                      e.render.lastvy,
-                      e.vy
-                    )),
-                    (e.render.f = t.predictFacing(e.render.lastf, e.facing));
-                } else {
-                  let t = l(e.render.lastRender, e.interval);
-                  (e.render.x = t.predictExtrapolate(
-                    e.render.lastx,
-                    e.x,
-                    e.render.lastvx,
-                    e.vx
-                  )),
-                    (e.render.y = t.predictExtrapolate(
-                      e.render.lasty,
-                      e.y,
-                      e.render.lastvy,
-                      e.vy
-                    )),
-                    (e.render.f = t.predictFacingExtrapolate(
-                      e.render.lastf,
-                      e.facing
-                    ));
                 }
-                if (e.id === W.playerid) {
-                  0 == (1 & e.twiggle) &&
-                    ((e.render.f = Math.atan2(te.target.y, te.target.x)),
-                    r.radial &&
-                      (e.render.f -= Math.atan2(
-                        r.gameWidth / 2 - he.cx,
-                        r.gameHeight / 2 - he.cy
-                      )),
-                    2 & e.twiggle && (e.render.f += Math.PI));
-                  let t = a * e.render.x - w,
-                    i = a * e.render.y - x;
-                  r.radial
-                    ? e.id === W.playerid &&
-                      ((he.x = t + r.screenWidth / 2),
-                      (he.y = i + r.screenHeight / 2))
-                    : ((t += r.screenWidth / 2),
-                      (i += r.screenHeight / 2),
-                      e.id === W.playerid && ((he.x = t), (he.y = i)));
-                }
-              }
-            for (let e of S) {
-              if (!e.render.draws) continue;
-              let t = a * e.render.x - w,
-                i = a * e.render.y - x;
-              r.radial || ((t += r.screenWidth / 2), (i += r.screenHeight / 2));
-              let n =
-                  e.id === W.playerid || r.showInvisible
-                    ? 1
-                    : Math.max(
-                        0,
-                        8e3 /
-                          ((he.x - t) * (he.x - t) +
-                            (he.y - i) * (he.y - i) +
-                            1e4) -
-                          0.1
-                      ),
-                l =
-                  0 === e.alpha ? 0.25 * n : e.alpha * (1 - 0.4 * n) + 0.4 * n;
-              Fe(
-                t,
-                i,
-                e,
-                a,
-                l,
-                0 === k[e.index].shape ? 1 : m.graphical.compensationScale,
-                e.render.f,
-                !1,
-                !0
-              );
-            }
-            if ((r.radial && ae.restore(), !m.graphical.screenshotMode))
-              for (let i of S) {
-                let n = a * i.render.x - w,
-                  l = a * i.render.y - x;
-                if (r.radial) {
-                  let a = e * l + t * n;
-                  (n = e * n - t * l + r.screenWidth / 2),
-                    (l = a + r.screenHeight / 2);
-                } else (n += r.screenWidth / 2), (l += r.screenHeight / 2);
-                Ce(n, l, i, a, i.id === W.playerid ? 1 : i.alpha);
-              }
-          }
-          if (r.hideGui) return;
-          let F = (e, t) => {
-            (r.screenWidth /= e),
-              (r.screenHeight /= e),
-              ae.scale(e, e),
-              t || (_ *= e);
-          };
-          F(_, !0);
-          W.__s.update();
-          let C = B.get(),
-            M = C.max;
-          do {
-            if (!r.showTree) break;
-            let e = k.find(e => "Basic" === e.name);
-            if (!e || !e.upgrades) break;
-            let t = [],
-              a = [],
-              i = (e, r, n, { index: l, tier: o = 0 }) => {
-                t.push({ x: e, y: r, colorIndex: n, index: l });
-                let { upgrades: s } = k[l];
-                switch (o) {
-                  case 3:
-                    return { width: 1, height: 1 };
-                  case 2:
-                    return (
-                      s.forEach((t, a) => i(e, r + 2 + a, a, t)),
-                      a.push([{ x: e, y: r }, { x: e, y: r + 1 + s.length }]),
-                      { width: 1, height: 2 + s.length }
-                    );
-                  case 1:
-                  case 0: {
-                    let t = e,
-                      n = s.map((n, l) => {
-                        let d = 2 * (n.tier - o),
-                          c = i(e, r + d, l, n);
-                        return (
-                          a.push([
-                            { x: e, y: r + (0 === l ? 0 : 1) },
-                            { x: e, y: r + d }
-                          ]),
-                          l + 1 === s.length &&
-                            a.push([{ x: t, y: r + 1 }, { x: e, y: r + 1 }]),
-                          (e += c.width),
-                          c
-                        );
-                      });
-                    return {
-                      width: n.map(e => e.width).reduce((e, t) => e + t, 0),
-                      height: 2 + Math.max(...n.map(e => e.height))
-                    };
-                  }
-                }
-              },
-              n = i(0, 0, 0, { index: e.index }),
-              l = Math.min(
-                (0.9 * r.screenWidth) / n.width,
-                (0.9 * r.screenHeight) / n.height
-              );
-            (ae.globalAlpha = 0.5),
-              (ae.fillStyle = ge.guiwhite),
-              Ee(0, 0, r.screenWidth, r.screenHeight);
-            let o = l - 4;
-            (ae.strokeStyle = ge.black), (ae.lineWidth = 2), ae.beginPath();
-            for (let [e, t] of a) {
-              let a = r.screenWidth / 2 + (e.x - n.width / 2) * l + 1 + 0.5 * o,
-                i = r.screenHeight / 2 + (e.y - n.height / 2) * l + 1 + 0.5 * o,
-                s = r.screenWidth / 2 + (t.x - n.width / 2) * l + 1 + 0.5 * o,
-                d = r.screenHeight / 2 + (t.y - n.height / 2) * l + 1 + 0.5 * o;
-              ae.moveTo(Math.round(a) + 0.5, Math.round(i) + 0.5),
-                ae.lineTo(Math.round(s) + 0.5, Math.round(d) + 0.5);
-            }
-            ae.stroke();
-            for (let { x: e, y: a, colorIndex: i, index: s } of t) {
-              let t = r.screenWidth / 2 + (e - n.width / 2) * l + 2,
-                d = r.screenHeight / 2 + (a - n.height / 2) * l + 2;
-              (ae.globalAlpha = 1),
-                (ae.fillStyle = y(i + 10)),
-                Ee(t, d, o, o),
-                (ae.globalAlpha = 0.2),
-                (ae.fillStyle = y(i)),
-                Ee(t, d, o, 0.6 * o),
-                (ae.fillStyle = ge.black),
-                Ee(t, d + 0.6 * o, o, 0.4 * o),
-                (ae.globalAlpha = 1);
-              let c = -Math.PI / 4,
-                h = E(s, W.color),
-                u = k[s].position,
-                p = (0.8 * o) / u.axis,
-                g = t + 0.5 * o - p * u.middle.x * Math.cos(c),
-                m = d + 0.5 * o - p * u.middle.x * Math.sin(c);
-              Fe(g, m, h, 0.5, 1, (p / h.size) * 2, c, !0),
-                (ae.strokeStyle = ge.black),
-                (ae.lineWidth = 2),
-                Ee(t, d, o, o, !0);
-            }
-          } while (0);
-          if (r.mobile && "joysticks" === te.control) {
-            let e = Math.min(0.6 * r.screenWidth, 0.12 * r.screenHeight);
-            (ae.globalAlpha = 0.3),
-              (ae.fillStyle = "#ffffff"),
-              ae.beginPath(),
-              ae.arc(
-                (1 * r.screenWidth) / 6,
-                (2 * r.screenHeight) / 3,
-                e,
-                0,
-                2 * Math.PI
-              ),
-              ae.arc(
-                (5 * r.screenWidth) / 6,
-                (2 * r.screenHeight) / 3,
-                e,
-                0,
-                2 * Math.PI
-              ),
-              ae.fill();
-          }
-          r.mobile && F(1.4);
-          {
-            let a = 4,
-              i = 18,
-              n = r.screenWidth / 2,
-              l = 20;
-            r.mobile &&
-              (l +=
-                (r.canSkill ? ((200 / 3 + 20) / 1.4) * e.get() : 0) +
-                (r.canUpgrade ? (120 / 1.4) * t.get() : 0));
-            for (let e = T.length - 1; e >= 0; e--) {
-              let t = T[e],
-                  
-                r = t.text;
-              null == t.textobj && (t.textobj = ke()),
-                null == t.len && (t.len = we(r, i - 4)),
-                (ae.globalAlpha = 0.5 * t.alpha);
-                if (r==="Thanks For Playing Maxtri!"){
-                        Se(n - t.len / 2, n + t.len / 2, l + i / 2, i, f(
-            ["#ff1000", "#ff9000", "#ffd300", "#00e00b", "#226ef6", "#a913cf"][
-              Math.floor((Date.now() / 200) % 6)
-            ],
-            ["#ff9000", "#ffd300", "#00e00b", "#226ef6", "#a913cf", "#ff1000"][
-              Math.floor((Date.now() / 200) % 6)
-            ],
-            (Date.now() / 200) % 1
-          ))
-                }else if (r==="WARNING: Arena Closed: Guard Arena Closers are Spawning"){
-                        Se(n - t.len / 2, n + t.len / 2, l + i / 2, i, ge.yellow)
-                  arenacloser=true
-                }else if (r==="The Server has Reset..."){
-                        Se(n - t.len / 2, n + t.len / 2, l + i / 2, i, ge.red)
-                  arenacloser=true
-                }else if (r==="Server overloaded! Restarting..."){
-                        Se(n - t.len / 2, n + t.len / 2, l + i / 2, i, ge.red)
-    
-                }else 
-                {
-                Se(n - t.len / 2, n + t.len / 2, l + i / 2, i, ge.black)
-                  
-                }
-                (ae.globalAlpha = Math.min(1, t.alpha)),
-                t.textobj.draw(
-                  r,
-                  n,
-                  l + i / 2,
-                  i - 4,
-                  ge.guiwhite,
-                  "center",
-                  !0
-                ),
-                (l += a + i),
-                t.status > 1 && (l -= (a + i) * (1 - Math.sqrt(t.alpha))),
-                t.status > 1
-                  ? ((t.status -= 0.05), (t.alpha += 0.05))
-                  : 0 === e &&
-                    (T.length > 5 || Date.now() - t.time > 1e4) &&
-                    ((t.status -= 0.05),
-                    (t.alpha -= 0.05),
-                    t.alpha <= 0 && T.shift());
-            }
-            ae.globalAlpha = 1;
-          }
-          if ((r.mobile && F(1 / 1.4), !r.mobile)) {
-            (r.canSkill = W.points > 0 && W.skills.some(e => e.amount < e.cap)),
-              e.set(0 + (r.canSkill || r.died || r.statHover)),
-              r.clickables.stat.hide();
-            let t = 4,
-              a = 15,
-              i = 35,
-              n = 200,
-              l = n,
-              o = -20 - 2 * n + e.get() * (40 + 2 * n),
-              s = r.screenHeight - 20 - a,
-              d = 11,
-              c = W.getStatNames(k[W.type].statnames || -1);
-            W.skills.forEach(function(e) {
-              d--;
-              let p = c[d - 1],
-                g = e.amount,
-                f = ge[e.color],
-                y = e.softcap,
-                b = e.cap;
-              if (y) {
-                n = l;
-                let e = m.gui.expectedMaxSkillLevel,
-                  c = y < b;
-                if (
-                  (y > e && (e = y),
-                  Se(
-                    o + a / 2,
-                    o - a / 2 + n * h(y),
-                    s + a / 2,
-                    a - 3 + m.graphical.barChunk,
-                    ge.black
-                  ),
-                  Se(
-                    o + a / 2,
-                    o + a / 2 + (n - i) * h(y),
-                    s + a / 2,
-                    a - 3,
-                    ge.grey
-                  ),
-                  Se(
-                    o + a / 2,
-                    o + a / 2 + (n - i) * h(g),
-                    s + a / 2,
-                    a - 3.5,
-                    f
-                  ),
-                  c)
-                ) {
-                  (ae.lineWidth = 1), (ae.strokeStyle = ge.grey);
-                  for (let t = y + 1; t < e; t++)
-                    _e(
-                      o + (n - i) * h(t),
-                      s + 1.5,
-                      o + (n - i) * h(t),
-                      s - 3 + a
-                    );
-                }
-                (ae.strokeStyle = ge.black), (ae.lineWidth = 1);
-                for (let e = 1; e < g + 1; e++)
-                  _e(
-                    o + (n - i) * h(e),
-                    s + 1.5,
-                    o + (n - i) * h(e),
-                    s - 3 + a
-                  );
-                n = l * h(e);
-                let v =
-                  g === b
-                    ? f
-                    : !W.points || (y !== b && g === y)
-                    ? ge.grey
-                    : ge.guiwhite;
-                u.skillNames[d - 1].draw(
-                  p,
-                  Math.round(o + n / 2) + 0.5,
-                  s + a / 2,
-                  a - 5,
-                  v,
-                  "center",
-                  !0
-                ),
-                  u.skillKeys[d - 1].draw(
-                    "[" + (d % 10) + "]",
-                    Math.round(o + n - 0.25 * a) - 1.5,
-                    s + a / 2,
-                    a - 5,
-                    v,
-                    "right",
-                    !0
-                  ),
-                  v === ge.guiwhite &&
-                    r.clickables.stat.place(d - 1, o * _, s * _, n * _, a * _),
-                  g &&
-                    u.skillValues[d - 1].draw(
-                      v === f ? "MAX" : "+" + g,
-                      Math.round(o + n + 4) + 0.5,
-                      s + a / 2,
-                      a - 5,
-                      f,
-                      "left",
-                      !0
-                    ),
-                  (s -= a + t);
-              }
-            }),
-              r.clickables.hover.place(
-                0,
-                0,
-                s * _,
-                0.8 * n * _,
-                0.8 * (r.screenHeight - s) * _
-              ),
-              W.points > 1 &&
-                u.skillPoints.draw(
-                  "x" + W.points,
-                  Math.round(o + n - 2) + 0.5,
-                  Math.round(s + a - 4) + 0.5,
-                  20,
-                  ge.guiwhite,
-                  "right"
-                );
-          }
-          {
-            let e = 4,
-              t = 400,
-              a = 20,
-              n = (r.screenWidth - t) / 2,
-              l = r.screenHeight - 22 - a;
-            if (!p && !r.mobile && r.died) {
-              let e = document.getElementById("respawn-banner");
-              e && e.clientHeight > 0 && (l -= (e.clientHeight + 16) / _ + 4);
-            }
-            (ae.lineWidth = 1),
-              Se(n, n + t, l + a / 2, a - 1 + m.graphical.barChunk, ge.black),
-              Se(n, n + t, l + a / 2, a - 4, ge.black),
-              Se(n, n + t * W.__s.getProgress(), l + a / 2, a - 2.5, ge.gold),
-              u.class.draw(
-                "Lvl " + W.__s.getLevel() + " " + k[W.type].name,
-                n + t / 2,
-                l + a / 2,
-                a - 4,
-                ge.guiwhite,
-                "center",
-                !0
-              ),
-              (a = 14),
-              (l -= a + e),
-              Se(
-                n + 0.1 * t,
-                n + 0.9 * t,
-                l + a / 2,
-                a - 3 + m.graphical.barChunk,
-                ge.black
-              ),
-              Se(n + 0.1 * t, n + 0.9 * t, l + a / 2, a - 3, ge.black),
-              Se(n + 0.1 * t,
-                n +
-                  t * (0.1 + 0.8 * (M ? Math.min(1, W.__s.getScore() / M) : 1)),
-                l + a / 2,
-                a - 3.5,
-                ge.green
-              ),
-              u.score.draw(
-                "Score: " + i.formatLargeNumber(W.__s.getScore()),
-                n + t / 2,
-                l + a / 2,
-                a,
-                ge.guiwhite,
-                "center",
-                !0
-              ),
-              (ae.lineWidth = 4),
-              u.name.draw(
-                he.name,
-                Math.round(n + t / 2) + 0.5,
-                Math.round(l - 10 - e) + 0.5,
-                40,
-                ge.guiwhite,
-                "center"
-              );
-          }
-          r.mobile && F(0.8);
-          {
-            let a = (200 * r.gameWidth * 2) / (r.gameWidth + r.gameHeight),
-              i = (200 * r.gameHeight * 2) / (r.gameWidth + r.gameHeight),
-              n = r.screenWidth - 20,
-              l = r.screenHeight - 20,
-              h = (e, t, a, i, n) => {
-                if (!r.radial) {
-                  let r = H[0].length,
-                    n = H.length,
-                    l = a / r,
-                    o = i / n;
-                  for (let a = 0; a < n; a++) {
-                    let i = H[a];
-                    for (let n = 0; n < r; n++)
-                      (ae.globalAlpha = 0.6),
-                        (ae.fillStyle = v(i[n])),
-                        Ee(e + n * l, t + a * o, l, o);
-                  }
-                }
-                (ae.globalAlpha = 0.3),
-                  (ae.fillStyle = f(ge.grey, ge.vlgrey)),
-                  r.radial ? Ee(e + a / 2, t + i / 2, a / 2) : Ee(e, t, a, i);
-                for (let i of A.get())
-                  (ae.fillStyle = f(y(i.color), ge.black, 0.3)),
-                    (ae.globalAlpha = i.alpha),
-                    2 === i.type
-                      ? Ee(
-                          e + ((i.x - i.size) / r.gameWidth) * a - 0.4,
-                          t + ((i.y - i.size) / r.gameWidth) * a - 1,
-                          ((2 * i.size) / r.gameWidth) * a + 0.2,
-                          ((2 * i.size) / r.gameWidth) * a + 0.2
-                        )
-                      : 1 === i.type
-                      ? xe(
-                          e + (i.x / r.gameWidth) * a,
-                          t + (i.y / r.gameWidth) * a,
-                          (i.size / r.gameWidth) * a + 0.2
-                        )
-                      : i.id !== W.playerid &&
-                        xe(
-                          e + (i.x / r.gameWidth) * a,
-                          t + (i.y / r.gameWidth) * a,
-                          n
-                        );
-                (ae.fillStyle = ge.black),
-                  (ae.globalAlpha = 1),
-                  xe(
-                    e + (he.cx / r.gameWidth) * a,
-                    t + (he.cy / r.gameWidth) * a,
-                    n
-                  ),
-                  (ae.strokeStyle = ge.black),
-                  (ae.lineWidth = 3),
-                  r.radial
-                    ? xe(e + a / 2, t + i / 2, a / 2, !0)
-                    : roundRect(e, t, a, i, !0);
-              };
-            if (r.mobile) {
-              (n -= a),
-                h(
-                  20,
-                  20 +
-                    ((r.canSkill ? (200 / 3 + 20 + 20) * e.get() : 0) +
-                      (r.canUpgrade ? 140 * t.get() : 0)),
-                  a,
-                  i,
-                  4
-                );
-            } else (n -= a), (l -= i), h(n, l, a, i, 2);
-            let p = l - 10,
-              g = O.latency.reduce((e, t) => e + t, 0) / O.latency.length,
-              w = Math.sqrt(he.vx * he.vx + he.vy * he.vy);
-            if (
-              (r.showDebug &&
-                (Ee(n, l - 40, a, 30),
-                o.addValue(b),
-                o.draw(n, l - 40, a, 30),
-                s.addValue(w),
-                s.draw(n, l - 40, a, 30),
-                c.addValue(O.rendergap),
-                c.draw(n, l - 40, a, 30),
-                d.addValue(g),
-                d.draw(n, l - 40, a, 30),
-                (p -= 40)),
-              m.graphical.screenshotMode)
-            )
-              u.debug[6].draw(
-                "Maxtri",
-                n + a,
-                p - 2,
-                15,
-                ge.lgreen,
-                "right"
-              );
-            else {
-              if (r.showDebug) {
-                u.debug[6].draw(
-                  "Maxtri",
-                  n + a,
-                  p - 84 - 2,
-                  15,
-                  ge.lgreen,
-                  "right"
-                );
-                let e = s.getPeriodicAverage();
-                u.debug[5].draw(
-                  "Tank Speed: " +
-                    w.toFixed(2) +
-                    " gu/s" +
-                    (e && e >= 0.005 ? ` (${e.toFixed(2)} gu/s)` : ""),
-                  n + a,
-                  p - 70,
-                  10,
-                  ge.guiwhite,
-                  "right"
-                ),
-                  u.debug[4].draw(
-                    "Prediction: " + b.toFixed(3),
-                    n + a,
-                    p - 56,
-                    10,
-                    ge.guiwhite,
-                    "right"
-                  ),
-                  u.debug[3].draw(
-                    "Update Rate: " + O.updatetime + "Hz",
-                    n + a,
-                    p - 42,
-                    10,
-                    ge.guiwhite,
-                    "right"
-                  );
-              } else
-                u.debug[6].draw(
-                  "Maxtri",
-                  n + a,
-                  p - 42 - 2,
-                  15,
-                  ge.lgreen,
-                  "right"
-                );
-              u.debug[2].draw(
-                "Client Speed: " + O.rendertime + " FPS",
-                n + a,
-                p - 28,
-                10,
-                O.rendertime > 10 ? ge.guiwhite : ge.orange,
-                "right"
-              ),
-                u.debug[1].draw(
-                  "Server Speed: " + (100 * W.fps).toFixed(2) + "%",
-                  n + a,
-                  p - 14,
-                  10,
-                  1 === W.fps ? ge.guiwhite : ge.orange,
-                  "right"
-                ),
-                u.debug[0].draw(
-                  g.toFixed(1) +
-                    " ms  " +
-                    r.server.code +
-                    " :" +
-                    r.server.type +
-                    ":",
-                  n + a,
-                  p,
-                  10,
-                  ge.guiwhite,
-                  "right"
-                );
-            }
-          }
-          if (
-            (r.mobile && F(1.25),
-            r.mobile && F(1.4),
-            !m.graphical.screenshotMode)
-          ) {
-            let a = 12,
-              n = 200,
-              l = 14,
-              o = r.screenWidth - n - 20,
-              s = 20 + l + 14;
-            r.mobile &&
-              (s +=
-                (r.canSkill ? (200 / 3 / 1.4) * e.get() : 0) +
-                (r.canUpgrade && 40 + 114 * W.upgrades.length > 1.4 * o
-                  ? (100 / 1.4) * t.get()
-                  : 0)),
-              C.data.length > 0 &&
-                u.lbtitle.draw(
-                  "Scoreboard",
-                  Math.round(o + n / 2) + 0.5,
-                  Math.round(s - 10) + 0.5,
-                  l + 9,
-                  ge.guiwhite,
-                  "center"
-                );
-          
-            for (let e = 0; e < C.data.length && (!r.mobile || e < 6); e++) {
+                                c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.guiwhite, d.startsWith("[AI]") && (d = d.slice(0), d.length && (g = T(l.lavender, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
+                    8, g, "center"), f.globalAlpha = 1) 
+                   if (c.name === 'Server Inspecter')                c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.red, d.startsWith("\u200b\u200b") && (d = d.slice(2), d.length && (g = T(l.yellow, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
+                    8, g, "center"), f.globalAlpha = 1)
               
-              let t = C.data[e];
-              Se(o, o + n, s + l / 2, l + 2 + m.graphical.barChunk, ge.black),
-                Se(o, o + n, s + l / 2, l + 2, ge.black),
-                Se(
-                  o,
-                  o + n * Math.min(1, t.score / M),
-                  s + l / 2,
-                  l - 0,
-                  t.barColor
-                );
-                if (t.label.startsWith("dev_")){
-                      var name=t.label.slice(4)
-                     u.leaderboard[e].draw(
-               
-                 name + " - " + i.handleLargeNumber(Math.round(t.score)),
-                  o + n / 2,
-                  s + l / 2,
-                  l -0,
-                 "#00ffff",
-                  "center",
-                  !0
-                );
-                }else if (t.label.startsWith("bet_")){
-                      var name=t.label.slice(4)
-                     u.leaderboard[e].draw(
-               
-                 name + " - " + i.handleLargeNumber(Math.round(t.score)),
-                  o + n / 2,
-                  s + l / 2,
-                  l -0,
-                  ge.yellow,
-                  "center",
-                  !0
-                );
-                }else if (t.label.startsWith("[AI]")){
-                      var name=t.label
-                     u.leaderboard[e].draw(
-               
-                 name + " - " + i.handleLargeNumber(Math.round(t.score)),
-                  o + n / 2,
-                  s + l / 2,
-                  l -0,
-                "#bdcfff",
-                  "center",
-                  !0
-                );
-                }else{
-                u.leaderboard[e].draw(
-               
-                  t.label + " - " + i.handleLargeNumber(Math.round(t.score)),
-                  o + n / 2,
-                  s + l / 2,
-                  l -0,
-                  ge.guiwhite,
-                  "center",
-                  !0
-                );
-                }
-              let r = l / t.position.axis,
-                d = o - 1.5 * l - r * t.position.middle.x * 0.707,
-                c = s + 0.5 * l + r * t.position.middle.x * 0.707;
-              Fe(
-                d,
-                c,
-                t.image,
-                1 / r,
-                1,
-                (r * r) / t.image.size,
-                -Math.PI / 4,
-                !0
-              ),
-                (s += a + l);
+                            if (c.name === '𝓟𝓻𝓸𝓽𝓮𝓬𝓽𝓸𝓻')                c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.lgreen, d.startsWith("\u200b\u200b") && (d = d.slice(2), d.length && (g = T(l.yellow, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
+                    8, g, "center"), f.globalAlpha = 1)
+                            if (c.name === 'Guest')                c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.grey, d.startsWith("\u200b\u200b") && (d = d.slice(2), d.length && (g = T(l.yellow, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
+                    8, g, "center"), f.globalAlpha = 1)
+                            if (c.name === 'ᴋᴀ2')                c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.blue, d.startsWith("\u200b\u200b") && (d = d.slice(2), d.length && (g = T(l.yellow, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
+                    8, g, "center"), f.globalAlpha = 1)
             }
-          }
-          r.mobile && F(1 / 1.4);
-          {
-            (r.canUpgrade = W.upgrades.length > 0 && !(r.mobile && r.died)),
-              t.set(+r.canUpgrade);
-            let e = t.get();
-            if ((r.clickables.upgrade.hide(), r.canUpgrade)) {
-              let t = 14,
-                a = 100,
-                i = 100,
-                n = 2 * e * 20 - 20,
-                l = 20,
-                o = n,
-                s = 0,
-                d = l;
-              D += 0.01;
-                    let select = 0;
-              let c = 0;
-              W.upgrades.forEach(h => {
-                l > d && (d = l),
-                  (s = n),
-                  r.clickables.upgrade.place(c, n * _, l * _, a * _, i * _);
-        
-          let p = y((c % 9) + 37),
-                  g = y(c % 9);
-                if (c >= 9) {
-                  let e = (c + Math.floor(c / 9)) % 9;
-                  (p = f(p, y(e + 10))), (g = f(g, y(e)));
-                }
-                (ae.globalAlpha = 0.5),
-                  (ae.fillStyle = y((c % 200) + 37)),
-                  Ee(n, l, a, i),
-                  (ae.globalAlpha = 0.1),
-                  (ae.fillStyle =y((c % 200) + 37)),
-                  Ee(n, l, a, 0.6 * i),
-                  (ae.fillStyle = ge.black),
-                  Ee(n, l + 0.6 * i, a, 0.4 * i),
-                  (ae.globalAlpha = 1);
-                let m = E(h, W.color),
-                  b = k[h].position,
-                  v = (0.6 * a) / b.axis,
-                  w = n + 0.5 * a - v * b.middle.x * Math.cos(D),
-                  x = l + 0.5 * i - v * b.middle.x * Math.sin(D);
-                Fe(w, x, m, 1, 1, v / m.size, D, !0);
-                let S = (r.help["KEY_CHOOSE_" + (c + 1)] || "")
-                  .toLowerCase()
-                  .trim();
-                !r.mobile && S
-                  ? (u.upgradeNames
-                      .get(c)
-                      .draw(
-                        m.name,
-                        n + (0.9 * a) / 2,
-                        l + i - 6,
-                        i / 8 - 3,
-                        ge.guiwhite,
-                        "center"
-                      ),
-                    u.upgradeKeys
-                      .get(c)
-                      .draw(
-                        "",
-                        n + a - 4,
-                        l + i - 6,
-                        i / 8 - 3,
-                        ge.guiwhite,
-                        "right"
-                      ))
-                  : u.upgradeNames
-                      .get(c)
-                      .draw(
-                        m.name,
-                        n + a / 2,
-                        l + i - 6,
-                        i / 8 - 3,
-                        ge.guiwhite,
-                        "center"
-                      ),
-                  (ae.strokeStyle = ge.black),
-                  (ae.globalAlpha = 1),
-                  (ae.lineWidth = 3),
-                  roundRect(n, l, a, i, !0),
-                  c++,
-                  c % 7 != 0 || r.mobile
-                    ? (n += e * (a + t))
-                    : ((n = o), (l += i + t));
-              });
-              let h = 14,
-                p = "Don't Upgrade",
-                g = we(p, h - 3) + 10,
-                b = (s + a + t + o - 15) / 2,
-                v = d + i + t;
-              Se(
-                b - g / 2,
-                b + g / 2,
-                v + h / 2,
-                h + m.graphical.barChunk,
-                ge.black
-              ),
-                Se(b - g / 2, b + g / 2, v + h / 2, h, ge.white),
-                u.skipUpgrades.draw(
-                  p,
-                  b,
-                  v + h / 2,
-                  h - 2,
-                  ge.guiwhite,
-                  "center",
-                  !0
-                ),
-                r.clickables.skipUpgrades.place(
-                  0,
-                  (b - g / 2) * _,
-                  v * _,
-                  g * _,
-                  h * _
-                );
-            } else
-              r.clickables.upgrade.hide(), r.clickables.skipUpgrades.hide();
-          }
-          if (r.mobile) {
-            (r.canSkill =
-              W.points > 0 &&
-              W.skills.some(e => e.amount < e.cap) &&
-              !r.canUpgrade),
-              e.set(0 + (r.canSkill || r.died));
-            let t = e.get();
-            r.clickables.stat.hide();
-            let a = 14,
-              i = 100,
-              n = 200 / 3,
-              l = 2 * t * 20 - 20,
-              o = 20,
-              s = 0,
-              d = W.getStatNames(k[W.type].statnames || -1);
-            r.canSkill &&
-              (W.skills.forEach((e, c) => {
-                let h = e.softcap;
-                if (h <= 0) return;
-                let p = e.amount,
-                  g = ge[e.color],
-                  m = e.cap,
-                  f = d[9 - c].split(/\s+/),
-                  y = Math.floor(f.length / 2),
-                  [b, v] =
-                    1 === f.length ? [f, null] : [f.slice(0, y), f.slice(y)];
-                (ae.globalAlpha = 0.5),
-                  (ae.fillStyle = g),
-                  Ee(l, o, i, (2 * n) / 3),
-                  (ae.globalAlpha = 0.1),
-                  (ae.fillStyle = ge.black),
-                  Ee(
-                    l,
-                    o + (((2 * n) / 3) * 2) / 3,
-                    i,
-                    (((2 * n) / 3) * 1) / 3
-                  ),
-                  (ae.globalAlpha = 1),
-                  (ae.fillStyle = ge.guiwhite),
-                  Ee(l, o + (2 * n) / 3, i, (1 * n) / 3),
-                  (ae.fillStyle = g),
-                  Ee(l, o + (2 * n) / 3, (i * p) / h, (1 * n) / 3),
-                  (ae.strokeStyle = ge.black),
-                  (ae.lineWidth = 1);
-                for (let e = 1; e < m; e++) {
-                  let t = l + i * (e / h);
-                  _e(t, o + (2 * n) / 3, t, o + n);
-                }
-                p === m ||
-                  !W.points ||
-                  (h !== m && p === h) ||
-                  r.clickables.stat.place(9 - c, l * _, o * _, i * _, n * _),
-                  v
-                    ? (u.skillNames[c].draw(
-                        v,
-                        l + i / 2,
-                        o + 0.55 * n,
-                        n / 6,
-                        ge.guiwhite,
-                        "center"
-                      ),
-                      u.skillNames[c].draw(
-                        b,
-                        l + i / 2,
-                        o + 0.3 * n,
-                        n / 6,
-                        ge.guiwhite,
-                        "center"
-                      ))
-                    : u.skillNames[c].draw(
-                        b,
-                        l + i / 2,
-                        o + 0.425 * n,
-                        n / 6,
-                        ge.guiwhite,
-                        "center"
-                      ),
-                  p > 0 &&
-                    u.skillValues[c].draw(
-                      p >= h ? "MAX" : "+" + p,
-                      Math.round(l + i / 2) + 0.5,
-                      o + 1.3 * n,
-                      n / 4,
-                      g,
-                      "center"
-                    ),
-                  (ae.strokeStyle = ge.black),
-                  (ae.globalAlpha = 1),
-                  (ae.lineWidth = 3),
-                  _e(l, o + (2 * n) / 3, l + i, o + (2 * n) / 3),
-                  Ee(l, o, i, n, !0),
-                  (l += t * (i + a)),
-                  s++;
-              }),
-              W.points > 1 &&
-                u.skillPoints.draw(
-                  "x" + W.points,
-                  Math.round(l) + 0.5,
-                  Math.round(o + 20) + 0.5,
-                  20,
-                  ge.guiwhite,
-                  "left"
-                ));
-          }
-          F(1 / _, !0);
-        };
-      })(),
-      Ae = (() => {
-        let e = {
-          taunt: ke(),
-          level: ke(),
-          score: ke(),
-          time: ke(),
-          kills: ke(),
-          death: ke(),
-          playagain: ke()
-        };
-        return () => {
-          ve(ge.black, 0.25);
-          let t = r.screenWidth / 2,
-            a = r.screenHeight / 2 - 50,
-            n = E(W.type, W.color),
-            l = k[W.type].position,
-            o = 140 / l.axis,
-            s = r.screenWidth / 2 - o * l.middle.x * 0.707,
-            d = r.screenHeight / 2 - 35 + o * l.middle.x * 0.707;
-          if (!p && !r.mobile) {
-            let e =
-                Math.max(r.screenWidth, (16 * r.screenHeight) / 9) /
-                (r.screenWidth <= 1280
-                  ? 1280
-                  : r.screenWidth >= 1920
-                  ? 1920
-                  : r.screenWidth),
-              t = r.screenHeight - 240 * e,
-              i = document.getElementById("respawn-banner");
-            i && i.clientHeight > 0 && (t -= i.clientHeight + 16 + 4 * e);
-            let n = 0;
-            t < a && (n = t - a), (a += n), (d += n);
-          }
-          Fe(
-            s - 190 - 70,
-            d - 10,
-            n,
-            1.5,
-            1,
-            (0.5 * o) / n.realSize,
-            -Math.PI / 4,
-            !0
-          ),
-            e.taunt.draw("lol you died", t, a - 80, 8, ge.guiwhite, "center"),
-            e.level.draw(
-              "Level " + W.__s.getLevel() + " " + k[W.type].name,
-              t - 170,
-              a - 30,
-              24,
-              ge.guiwhite
-            ),
-            e.score.draw(
-              "Final score: " +
-                i.formatLargeNumber(Math.round(r.finalScore.get())),
-              t - 170,
-              a + 25,
-              50,
-              ge.guiwhite
-            ),
-            e.time.draw(
-              "⌚ Survived for " +
-                i.timeForHumans(Math.round(r.finalLifetime.get())),
-              t - 170,
-              a + 55,
-              16,
-              ge.guiwhite
-            ),
-            e.kills.draw(
-              (() => {
-                let e = [
-                    Math.round(r.finalKills[0].get()),
-                    Math.round(r.finalKills[1].get()),
-                    Math.round(r.finalKills[2].get())
-                  ],
-                  t = e[0] + 0.5 * e[1] + 3 * e[2],
-                  a =
-                    (0 === t
-                      ? "🌼"
-                      : t < 4
-                      ? "🎯"
-                      : t < 8
-                      ? "💥"
-                      : t < 15
-                      ? "💢"
-                      : t < 25
-                      ? "🔥"
-                      : t < 50
-                      ? "💣"
-                      : t < 75
-                      ? "👺"
-                      : t < 100
-                      ? "🌶️"
-                      : "💯") + " ";
-                if (0 === t) return a + "A true pacifist";
-                let i = [];
-                return (
-                  e[0] && i.push(e[0] + " kills"),
-                  e[1] && i.push(e[1] + " assists"),
-                  e[2] && i.push(e[2] + " visitors defeated"),
-                  a + i.join(" and ")
-                );
-              })(),
-              t - 170,
-              a + 77,
-              16,
-              ge.guiwhite
-            ),
-            e.death.draw(
-              r.finalKillers.length
-                ? "🔪 Succumbed to " +
-                    r.finalKillers
-                      .map(e => i.addArticle(k[e].name))
-                      .join(" and ")
-                : "🤷 Well that was kinda dumb huh",
-              t - 170,
-              a + 99,
-              16,
-              ge.guiwhite
-            );
-          let c = Math.ceil((r.respawnOn - Date.now()) / 1e3);
-          e.playagain.draw(
-            c > 0
-              ? `You may respawn in ${c} second${1 === c ? "" : "s"}`
-              : "joysticks" === te.control
-              ? "Tap to respawn!"
-              : "Press enter to respawn!",
-            t,
-            a + 125,
-            16,
-            ge.guiwhite,
-            "center"
-          );
-        };
-      })();
-    (window.onbeforeunload = () => !(!r.isInGame || r.died) || null),
-      (window.$createProfile = (() => {
-        let e = { upgradeName: ke(), upgradeKey: ke() };
-        return (t, a = -1, r = 200, i = -Math.PI / 4) => {
-          let n = ae.canvas.width,
-            l = ae.canvas.height,
-            o = (ae.canvas.width = r),
-            s = (ae.canvas.height = r);
-          -1 === a
-            ? ae.clearRect(0, 0, o, s)
-            : ((ae.fillStyle = ge.white),
-              ae.fillRect(0, 0, o, s),
-              (ae.globalAlpha = 0.5),
-              (ae.fillStyle = y(a + 1)),
-              Ee(0, 0, o, s),
-              (ae.globalAlpha = 0.1),
-              (ae.fillStyle = y(a)),
-              Ee(0, 0, o, 0.6 * s),
-              (ae.fillStyle = ge.black),
-              Ee(0, 0.6 * s, o, 0.4 * s),
-              (ae.globalAlpha = 1));
-          let d = E(t, W.color),
-            c = k[t].position,
-            h = (0.6 * o) / c.axis,
-            u = 0.5 * o - h * c.middle.x * Math.cos(i),
-            p = 0.5 * s - h * c.middle.x * Math.sin(i);
-          Fe(u, p, d, 1, 1, h / d.size, i, !0),
-            -1 !== a &&
-              (e.upgradeName.draw(
-                d.name,
-                (0.9 * o) / 2,
-                s - 6,
-                s / 8 - 3,
-                ge.guiwhite,
-                "center"
-              ),
-              (ae.strokeStyle = ge.black),
-              (ae.globalAlpha = 1),
-              (ae.lineWidth = 3),
-              Ee(0, 0, o, s, !0));
-          let g = ae.canvas.toDataURL();
-          return (ae.canvas.width = n), (ae.canvas.height = l), g;
-        };
-      })());
-    const Be = (() => {
-        let e = { connecting: ke(), message: ke(), tip: ke() },
-          t = [
-            [
-              "Tip: You can view and edit your keybinds in the options menu.",
-              "Tip: You can play on mobile by just going to arras.io on your phone!"
-            ],
-            [
-              "Tip: You can have the shield and health bar be separated by going to the options menu.",
-              "Tip: If arras is having a low frame rate, you can try enabling low graphics in the options menu.",
-              "Tip: You can make traps rounded with the classic trap setting in the options menu.",
-              "Tip: You can create your own private server with the template in the link on the options menu.",
-              "Tip: You can create your own theme with the custom theme makerin the link on the options menu."
-            ],
-            [
-              "Teaming in FFA or FFA Maze is frowned upon, but when taken to the extremes, you can be punished.",
-              "Witch hunting is when you continuously target someone and follow them. This is frowned upon, but when taken to the extremes, you can be punished.",
-              "Multiboxing is when you use a script to control multiple tanks at the same time. This is considered CHEATING and will result in a ban."
-            ]
-          ],
-          a = t[Math.floor(Math.random() * t.length)],
-          i = a[Math.floor(Math.random() * a.length)];
-        return () => {
-          ve(ge.white, 1),
-            e.connecting.draw(
-              "Connecting...",
-              r.screenWidth / 2,
-              r.screenHeight / 2,
-              30,
-              ge.guiwhite,
-              "center"
-            ),
-            e.message.draw(
-              r.message,
-              r.screenWidth / 2,
-              r.screenHeight / 2 + 30,
-              15,
-              ge.lgreen,
-              "center"
-            ),
-            e.message.draw(
-              i,
-              r.screenWidth / 2,
-              r.screenHeight / 2 + 75,
-              15,
-              ge.guiwhite,
-              "center"
-            );
-        };
-      })(),
-      De = (() => {
-        let e = { disconnected: ke(), message: ke() };
-        return () => {
-          
-            if (arenacloser===true){
-              ve(f(ge.gold, ge.gold, 0.3), 0.25),
-            e.disconnected.draw(
-              "💀 Arena Closed 💀",
-              r.screenWidth / 2,
-              r.screenHeight / 2,
-              30,
-              ge.guiwhite,
-              "center"
-            );
-             e.message.draw(
-             "The Arena Has Closed. Please Wait Until The Server Restarts.",
-              r.screenWidth / 2,
-              r.screenHeight / 2 + 30,
-              15,
-              ge.orange,
-              "center"
-            );
-          }else{
-            ve(f(ge.red, ge.guiblack, 0.3), 0.25),
-            e.disconnected.draw(
-              "💀 Disconnected 💀",
-              r.screenWidth / 2,
-              r.screenHeight / 2,
-              30,
-              ge.guiwhite,
-              "center"
-            );
-            e.message.draw(
-             r.message,
-              r.screenWidth / 2,
-              r.screenHeight / 2 + 30,
-              15,
-              ge.orange,
-              "center"
-            );  
-          }
-           
-        };
-      })();
-    function Te() {
-      (r.animLoopHandle = requestAnimationFrame(Te)),
-        (he.renderv += (he.view - he.renderv) / 30),
-        (ae.lineCap = "round"),
-        (ae.lineJoin = "round"),
-        r.gameStart &&
-          !r.disconnected &&
-          ((r.time = de()),
-          r.time - K > 1e3 &&
-            ((K = r.time),
-            (O.rendertime = L),
-            (L = 0),
-            (O.updatetime = R),
-            (R = 0)),
-          (O.lag = r.time - he.time)),
-        r.gameStart && k.length > 0 ? Me(Y()) : r.disconnected || Be(),
-        r.died && Ae(),
-        r.disconnected && De(),
-        (r.died || r.disconnected) && l.drawCanvas(ae);
-    }
-    let Oe = r.mobile
-      ? 0
-      : Math.max(
-          0,
-          1 - Math.abs(Date.now() - new Date(2019, 11, 25)) / 20736e5
-        );
-    if (Oe) {
-      let e = document.createElement("canvas");
-      (e.style.position = "absolute"),
-        (e.style.top = "0"),
-        document.body.insertBefore(e, document.body.firstChild);
-      let t = e.getContext("2d"),
-        a = [],
-        i = () => {
-          e.width !== window.innerWidth && (e.width = window.innerWidth),
-            e.height !== window.innerHeight && (e.height = window.innerHeight),
-            t.clearRect(0, 0, e.width, e.height),
-            (t.fillStyle = "#ffffff");
-          for (let r of a) {
-            (r.x += 5 / r.r + Math.random()),
-              (r.y += 12.5 / r.r + Math.random());
-            let a = 2 * Math.min(0.4, 0.9 - r.y / e.height);
-            a > 0
-              ? ((t.globalAlpha = a),
-                t.beginPath(),
-                t.arc(r.x, r.y, r.r, 0, 2 * Math.PI),
-                t.fill())
-              : (r.gone = !0);
-          }
-          if (0.001 * e.width * Oe > Math.random()) {
-            let t = e.width * (1.5 * Math.random() - 0.5),
-              r = 2 + Math.random() * Math.random() * 4;
-            a.push({ x: t, y: -50 - 100 * Math.random(), r: r });
-          }
-          r.gameStart ? e.remove() : requestAnimationFrame(i);
-        };
-      setInterval(() => {
-        a = a.filter(e => !e.gone);
-      }, 2e3),
-        i();
-    }
-    let Ke = new Date(),
-      Le =
-        "en-US" === navigator.language && r.timezone >= -7 && r.timezone <= -4,
-      Re = 6 === Ke.getMonth() && 4 === Ke.getDate(),
-      He =
-        (11 === Ke.getMonth() && 31 === Ke.getDate()) ||
-        (0 === Ke.getMonth() && Ke.getDate() <= 3);
-    if (!r.mobile && ((Re && Le) || He)) {
-      let e = document.createElement("canvas");
-      (e.style.position = "absolute"),
-        (e.style.top = "0"),
-        document.body.insertBefore(e, document.body.firstChild);
-      let t = e.getContext("2d"),
-        a = [
-          [164, 14, 14],
-          [230, 80, 0],
-          [230, 119, 0],
-          [47, 127, 51],
-          [23, 78, 166],
-          [123, 31, 163]
-        ],
-        i = () => a[Math.floor(Math.random() * a.length)],
-        n = [],
-        l = () => {
-          (e.width === window.innerWidth && e.height === window.innerHeight) ||
-            ((e.width = window.innerWidth),
-            (e.height = window.innerHeight),
-            (n.length = 0),
-            t.clearRect(0, 0, e.width, e.height),
-            (t.fillStyle = "rgba(255, 255, 255, 0.01)"),
-            t.fillRect(0, 0, e.width, e.height),
-            (t.lineWidth = 2.5),
-            (t.lineCap = "round")),
-            (t.globalCompositeOperation = "destination-out"),
-            (t.fillStyle = "rgba(0, 0, 0, 0.15)"),
-            t.fillRect(0, 0, e.width, e.height),
-            (t.globalCompositeOperation = "lighter");
-          for (let e of n) {
-            let a = e.x,
-              r = e.y;
-            (e.vy += 0.2),
-              (e.x += e.vx),
-              (e.y += e.vy),
-              (e.vy *= 0.99),
-              (e.vx *= 0.99),
-              e.time--;
-            let l =
-              e.time > 0 ? (e.primary || e.time >= 10 ? 1 : e.time / 10) : 0;
-            if (l > 0)
-              (t.strokeStyle = `rgba(${e.color[0]}, ${e.color[1]}, ${
-                e.color[2]
-              }, ${l})`),
-                t.beginPath(),
-                t.moveTo(a, r),
-                t.lineTo(e.x, e.y),
-                t.stroke();
-            else {
-              if (e.primary && !e.gone) {
-                let t = Math.floor(5 * Math.random()) + 30,
-                  a = 0.5 * Math.random() + 3,
-                  r = 25 + 5 * Math.random();
-                for (let l of [i(), i()])
-                  for (let i = 0; i < t; i++) {
-                    let o = ((i + Math.random()) / t) * Math.PI * 2,
-                      s = a + 0.5 * Math.random(),
-                      d = Math.cos(o) * s,
-                      c = Math.sin(o) * s - 0.8,
-                      h = r + 2 * Math.random();
-                    n.push({ color: l, x: e.x, y: e.y, vx: d, vy: c, time: h });
-                  }
-              }
-              e.gone = !0;
-            }
-          }
-          if (3e-5 * e.width > Math.random()) {
-            let t = e.width * Math.random(),
-              a = e.height - 10,
-              r = 4 * Math.random() - 2,
-              l = 5 * Math.random() - 15,
-              o = 30 + 10 * Math.random();
-            n.push({
-              color: i(),
-              x: t,
-              y: a,
-              vx: r,
-              vy: l,
-              time: o,
-              primary: !0
-            });
-          }
-          r.gameStart ? e.remove() : requestAnimationFrame(l);
-        };
-      setInterval(() => {
-        n = n.filter(e => !e.gone);
-      }, 2e3),
-        l();
-    }
-  },
-  function(e, t) {
-    let a = window.localStorage || {};
-    (t.submitToLocalStorage = e => {
-      let t = document.getElementById(e);
-      return (
-        "text" === t.type || "select-one" === t.type
-          ? (a[e] = t.value || "")
-          : ("checkbox" !== t.type && "radio" !== t.type) ||
-            (a[e] = t.checked || "false"),
-        delete a[e + "Value"],
-        delete a[e + "Checked"],
-        !1
-      );
-    }),
-      (t.retrieveFromLocalStorage = (e, t = !1) => {
-        let r = document.getElementById(e);
-        return (
-          "text" === r.type || "select-one" === r.type
-            ? (r.value = a[e] || a[e + "Value"] || "")
-            : ("checkbox" !== r.type && "radio" !== r.type) ||
-              (r.checked =
-                "true" === (a[e] || a[e + "Checked"] || t.toString())),
-          !1
-        );
-      }),
-      (t.handleLargeNumber = (e, t = !1) =>
-        t && e <= 0
-          ? ""
-          : e < 1e3
-          ? e.toFixed(0) + ""
-          : e < 1e6
-          ? (e / 1e3).toFixed(2) + "k"
-          : e < 1e9
-          ? (e / 1e6).toFixed(2) + "m"
-          : e < 1e12
-          ? (e / 1e9).toFixed(2) + "b"
-          : e < 1e15
-          ? (e / 1e12).toFixed(2) + "t"
-          : e < 1e18
-          ? (e / 1e15).toFixed(2) + "q"
-          : "∞"),
-      (t.timeForHumans = e => {
-        let t = e % 60;
-        e /= 60;
-        let a = (e = Math.floor(e)) % 60;
-        e /= 60;
-        let r = (e = Math.floor(e)) % 24;
-        e /= 24;
-        e = Math.floor(e);
-        let i = "";
-        function n(e, t) {
-          e &&
-            (i = i + ("" === i ? "" : ", ") + e + " " + t + (e > 1 ? "s" : ""));
         }
-        return e > 300
-          ? "FOREVER"
-          : (n(e, "day"),
-            n(r, "hour"),
-            n(a, "minute"),
-            n(t, "second"),
-            "" === i && (i = "less than a second"),
-            i);
-      }),
-      (t.addArticle = e => (/^\s*[aeiouAEIOU]/.test(e) ? "an " + e : "a " + e)),
-      (t.formatLargeNumber = e =>
-        e < 1e18 ? e.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "∞");
-  },
-  function(e, t) {
-    !(function(e) {
-      var a = function(t) {
-        (this._options = {
-          checkOnLoad: !1,
-          resetOnEnd: !1,
-          loopCheckTime: 50,
-          loopMaxNumber: 5,
-          baitClass:
-            "pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links",
-          baitStyle:
-            "width: 1px !important; height: 1px !important; position: absolute !important; left: -10000px !important; top: -1000px !important;",
-          debug: !1
-        }),
-          (this._var = {
-            version: "3.2.1",
-            bait: null,
-            checking: !1,
-            loop: null,
-            loopNumber: 0,
-            event: { detected: [], notDetected: [] }
-          }),
-          void 0 !== t && this.setOption(t);
-        var a = this,
-          r = function() {
-            setTimeout(function() {
-              !0 === a._options.checkOnLoad &&
-                (!0 === a._options.debug &&
-                  a._log(
-                    "onload->eventCallback",
-                    "A check loading is launched"
-                  ),
-                null === a._var.bait && a._creatBait(),
-                setTimeout(function() {
-                  a.check();
-                }, 1));
-            }, 1);
-          };
-        void 0 !== e.addEventListener
-          ? e.addEventListener("load", r, !1)
-          : e.attachEvent("onload", r);
-      };
-      (a.prototype._options = null),
-        (a.prototype._var = null),
-        (a.prototype._bait = null),
-        (a.prototype._log = function(e, t) {
-          console.log("[BlockAdBlock][" + e + "] " + t);
-        }),
-        (a.prototype.setOption = function(e, t) {
-          if (void 0 !== t) {
-            var a = e;
-            (e = {})[a] = t;
-          }
-          for (var r in e)
-            (this._options[r] = e[r]),
-              !0 === this._options.debug &&
-                this._log(
-                  "setOption",
-                  'The option "' + r + '" he was assigned to "' + e[r] + '"'
-                );
-          return this;
-        }),
-        (a.prototype._creatBait = function() {
-          var t = document.createElement("div");
-          t.setAttribute("class", this._options.baitClass),
-            t.setAttribute("style", this._options.baitStyle),
-            (this._var.bait = e.document.body.appendChild(t)),
-            this._var.bait.offsetParent,
-            this._var.bait.offsetHeight,
-            this._var.bait.offsetLeft,
-            this._var.bait.offsetTop,
-            this._var.bait.offsetWidth,
-            this._var.bait.clientHeight,
-            this._var.bait.clientWidth,
-            !0 === this._options.debug &&
-              this._log("_creatBait", "Bait has been created");
-        }),
-        (a.prototype._destroyBait = function() {
-          e.document.body.removeChild(this._var.bait),
-            (this._var.bait = null),
-            !0 === this._options.debug &&
-              this._log("_destroyBait", "Bait has been removed");
-        }),
-        (a.prototype.check = function(e) {
-          if (
-            (void 0 === e && (e = !0),
-            !0 === this._options.debug &&
-              this._log(
-                "check",
-                "An audit was requested " +
-                  (!0 === e ? "with a" : "without") +
-                  " loop"
-              ),
-            !0 === this._var.checking)
-          )
-            return (
-              !0 === this._options.debug &&
-                this._log(
-                  "check",
-                  "A check was canceled because there is already an ongoing"
-                ),
-              !1
-            );
-          (this._var.checking = !0),
-            null === this._var.bait && this._creatBait();
-          var t = this;
-          return (
-            (this._var.loopNumber = 0),
-            !0 === e &&
-              (this._var.loop = setInterval(function() {
-                t._checkBait(e);
-              }, this._options.loopCheckTime)),
-            setTimeout(function() {
-              t._checkBait(e);
-            }, 1),
-            !0 === this._options.debug &&
-              this._log("check", "A check is in progress ..."),
-            !0
-          );
-        }),
-        (a.prototype._checkBait = function(t) {
-          var a = !1;
-          if (
-            (null === this._var.bait && this._creatBait(),
-            (null === e.document.body.getAttribute("abp") &&
-              null !== this._var.bait.offsetParent &&
-              0 != this._var.bait.offsetHeight &&
-              0 != this._var.bait.offsetLeft &&
-              0 != this._var.bait.offsetTop &&
-              0 != this._var.bait.offsetWidth &&
-              0 != this._var.bait.clientHeight &&
-              0 != this._var.bait.clientWidth) ||
-              (a = !0),
-            void 0 !== e.getComputedStyle)
-          ) {
-            var r = e.getComputedStyle(this._var.bait, null);
-            !r ||
-              ("none" != r.getPropertyValue("display") &&
-                "hidden" != r.getPropertyValue("visibility")) ||
-              (a = !0);
-          }
-          !0 === this._options.debug &&
-            this._log(
-              "_checkBait",
-              "A check (" +
-                (this._var.loopNumber + 1) +
-                "/" +
-                this._options.loopMaxNumber +
-                " ~" +
-                (1 + this._var.loopNumber * this._options.loopCheckTime) +
-                "ms) was conducted and detection is " +
-                (!0 === a ? "positive" : "negative")
-            ),
-            !0 === t &&
-              (this._var.loopNumber++,
-              this._var.loopNumber >= this._options.loopMaxNumber &&
-                this._stopLoop()),
-            !0 === a
-              ? (this._stopLoop(),
-                this._destroyBait(),
-                this.emitEvent(!0),
-                !0 === t && (this._var.checking = !1))
-              : (null !== this._var.loop && !1 !== t) ||
-                (this._destroyBait(),
-                this.emitEvent(!1),
-                !0 === t && (this._var.checking = !1));
-        }),
-        (a.prototype._stopLoop = function(e) {
-          clearInterval(this._var.loop),
-            (this._var.loop = null),
-            (this._var.loopNumber = 0),
-            !0 === this._options.debug &&
-              this._log("_stopLoop", "A loop has been stopped");
-        }),
-        (a.prototype.emitEvent = function(e) {
-          !0 === this._options.debug &&
-            this._log(
-              "emitEvent",
-              "An event with a " +
-                (!0 === e ? "positive" : "negative") +
-                " detection was called"
-            );
-          var t = this._var.event[!0 === e ? "detected" : "notDetected"];
-          for (var a in t)
-            !0 === this._options.debug &&
-              this._log(
-                "emitEvent",
-                "Call function " + (parseInt(a) + 1) + "/" + t.length
-              ),
-              t.hasOwnProperty(a) && t[a]();
-          return !0 === this._options.resetOnEnd && this.clearEvent(), this;
-        }),
-        (a.prototype.clearEvent = function() {
-          (this._var.event.detected = []),
-            (this._var.event.notDetected = []),
-            !0 === this._options.debug &&
-              this._log("clearEvent", "The event list has been cleared");
-        }),
-        (a.prototype.on = function(e, t) {
-          return (
-            this._var.event[!0 === e ? "detected" : "notDetected"].push(t),
-            !0 === this._options.debug &&
-              this._log(
-                "on",
-                'A type of event "' +
-                  (!0 === e ? "detected" : "notDetected") +
-                  '" was added'
-              ),
-            this
-          );
-        }),
-        (a.prototype.onDetected = function(e) {
-          return this.on(!0, e);
-        }),
-        (a.prototype.onNotDetected = function(e) {
-          return this.on(!1, e);
-        }),
-        (a.prototype.onEither = function(e) {
-          return (
-            this.on(!0, function() {
-              e(!0);
-            }),
-            this.on(!1, function() {
-              e(!1);
-            }),
-            this
-          );
-        }),
-        (t.BlockAdBlock = a),
-        (t.blockAdBlock = new a({ checkOnLoad: !0, resetOnEnd: !0 }));
-    })(window);
-  },
-  function(e, t, a) {
-    let r = a(0),
-      i = a(1);
-    e.exports = class {
-      constructor() {
-        (this.target = { x: 0, y: 0 }),
-          (this.socket = null),
-          (this.statMaxing = !1),
-          (this.cheating = !1);
-        let e = document.getElementById("gameCanvas");
-        (e.width = r.screenWidth), (e.height = r.screenHeight), (this.cv = e);
-      }
-      init(e, t) {
-        (this.control = e), (this.socket = t);
-        let a = this.cv;
-        "joysticks" === e
-          ? ((this.controlTouch = null),
-            (this.movementTouch = null),
-            (this.movementTop = !1),
-            (this.movementBottom = !1),
-            (this.movementLeft = !1),
-            (this.movementRight = !1),
-            a.addEventListener("touchstart", e => this.touchStart(e), !1),
-            a.addEventListener("touchmove", e => this.touchMove(e), !1),
-            a.addEventListener("touchend", e => this.touchEnd(e), !1),
-            a.addEventListener("touchcancel", e => this.touchEnd(e), !1))
-          : (a.addEventListener("mousedown", e => this.mouseDown(e), !1),
-            a.addEventListener("mousemove", e => this.mouseMove(e), !1),
-            a.addEventListener("mouseup", e => this.mouseUp(e), !1)),
-          a.addEventListener("keydown", e => this.keyboardDown(e), !1),
-          a.addEventListener("keyup", e => this.keyboardUp(e), !1),
-          this.autoUpgrade();
-      }
-      autoUpgrade() {
-        if (!r.autoLevel) return;
-        let e = 60,
-          t = setInterval(() => {
-            this.socket.talk("L"), --e <= 0 && clearInterval(t);
-          }, 100);
-      }
-      emit(e) {
-        this.socket.talk(e);
-      }
-      talk(e, t) {
-        this.socket.talk(e, t);
-      }
-      spawn() {
-        this.socket.spawn(), i.reset(), this.autoUpgrade();
-      }
-      set(e, t) {
-        this.socket.cmd.set(e, t);
-      }
-      setPosition(e, t) {
-        (this.target.x = e),
-          (this.target.y = t),
-          this.socket.cmd.setPosition(e, t);
-      }
-      keyboardDown(e) {
-        if (this.cheating) this.talk("0", e.keyCode);
-        else {
-          switch (e.keyCode) {
-            case r.KEY_SPAWN:
-              r.died &&
-                (r.respawnOn <= Date.now() || e.shiftKey) &&
-                this.spawn();
-              break;
-                   // ========================================================================
-        // Chat System
-        // ========================================================================
-        // Key "I". Web browser prompt. Freezes the game.
-        case 73:
-            if (!r.died && !r.isChatMode)
+
+        function xa() {
+            b.animLoopHandle = requestAnimationFrame(xa);
+            y.renderv += (y.view - y.renderv) / 30;
+            f.lineCap = "round";
+            f.lineJoin = "round";
+            b.gameStart && !b.disconnected && (b.time = Date.now() - P - Q, 1E3 < b.time - ya && (ya = b.time, K.rendertime = na, na = 0, K.updatetime = oa, oa = 0), K.lag = b.time - y.time);
+            b.gameStart && 0 < M.length ? Pa(la()) : b.disconnected || Qa();
+            b.died && Ra();
+            b.disconnected && Sa();
+            (b.died || b.disconnected) && V.drawCanvas(f)
+        }
+        Object.values || (Object.values = function(b) {
+            return Object.keys(b).map(d =>
+                b[d])
+        });
+        Object.entries || (Object.entries = function(b) {
+            return Object.keys(b).map(d => [d, b[d]])
+        });
+        let b = x(1),
+            I = x(2),
             {
-                let chatMessage = prompt("Chat message:");
-
-                if (chatMessage)
-                {
-                    let maxLen = 100; 
-                    let trimmedMessage = chatMessage.length > maxLen ? chatMessage.substring(0, maxLen - 3) + "..." : chatMessage.substring(0, maxLen); 
-
-                    this.socket.talk('h', chatMessage, 1);
-                }    
+                blockAdBlock: Ta
+            } = x(3),
+            V = x(4);
+        window.dataLayer = window.dataLayer || [];
+        a("js", new Date);
+        a("config", "UA-120544149-1");
+        let ha = !1,
+            pa = null;
+        Ta.on(!0, () => {
+            ha = !0;
+            a("event", "yes_adblock", {
+                event_category: "adblock_detection",
+                non_interaction: !0
+            })
+        }).on(!1, () => {
+            a("event", "no_adblock", {
+                event_category: "adblock_detection",
+                non_interaction: !0
+            })
+        });
+        /*(window.localStorage && window.localStorage.adForce ? "aip" === window.localStorage.adForce : .1 <= Math.random()) ? (aiptag.cmd.display.push(function() {
+            aipDisplayTag.display("arras-io_336x280")
+        }), window.adServiceMode = "aip") : ((adsbygoogle = window.adsbygoogle || []).push({}), window.adServiceMode = "google");*/
+        var B = {
+     graphical: {
+                    screenshotMode: !1,
+                    borderChunk: 6,
+                    barChunk: 5,
+                    mininumBorderChunk: 3,
+                    compensationScale: 1.114,
+                    inversedRender: !0,
+                    darkBorders: !1,
+                    fancyAnimations: !0,
+                    colors: "normal",
+                    pointy: !0,
+                    sharp: !1,
+                    fontSizeBoost: 1,
+                    shieldbars: !1,
+                    neon: !1
+            },
+            gui: {
+                expectedMaxSkillLevel: 9
+            },
+            lag: {
+                memory: 60,
+                newPrediction: !1
             }
-            
-            break;
-                     // Key "H". Text input for in-game chat. Does not freeze the game.
-        case 72:
-            if (!r.died)
+        };
+        b.config = B;
+        let T = (b, a, c = .5) => {
+            if (0 === c) return b;
+            if (1 === c) return a;
+            let d = 1 - c;
+            b = parseInt(b.slice(1), 16);
+            a = parseInt(a.slice(1), 16);
+            return "#" + ((b & 16711680) * d + (a & 16711680) * c & 16711680 | (b & 65280) * d + (a & 65280) * c & 65280 | (b & 255) * d + (a & 255) * c & 255).toString(16).padStart(6, "0")
+        };
+        var M = [];
+        b.clickables = (() => {
+            let b = (() => {
+                function b() {
+                    var b = 0,
+                        a = 0,
+                        d = 0,
+                        u = 0;
+                    let g = !1;
+                    return {
+                        set: (c, h, t, q) => {
+                            b = c;
+                            a = h;
+                            d = t;
+                            u = q;
+                            g = !0
+                        },
+                        check: c => {
+                            let h = Math.round(c.x - b);
+                            c = Math.round(c.y -
+                                a);
+                            return g && 0 <= h && 0 <= c && h <= d && c <= u
+                        },
+                        hide: () => {
+                            g = !1
+                        }
+                    }
+                }
+                return c => {
+                    let a = [];
+                    for (let d = 0; d < c; d++) a.push(b());
+                    return {
+                        place: (b, ...c) => {
+                            if (b >= a.length) throw console.error(b, a), Error("Trying to reference a clickable outside a region!");
+                            a[b].set(...c)
+                        },
+                        hide: () => {
+                            for (let b of a) b.hide()
+                        },
+                        check: b => a.findIndex(c => c.check(b))
+                    }
+                }
+            })();
+            return {
+                stat: b(10),
+                upgrade: b(15),
+                hover: b(1),
+                skipUpgrades: b(1)
+            }
+        })();
+        b.statHover = !1;
+        const qa = class {
+                constructor(b) {
+                    this.dataLength = b;
+                    this.elements = {}
+                }
+                update(b, a = 0) {
+                    var c = b[a++];
+                    for (var d =
+                            0; d < c; d++) delete this.elements[b[a++]];
+                    c = b[a++];
+                    for (d = 0; d < c; d++) {
+                        let c = b[a++],
+                            d = b.slice(a, a + this.dataLength);
+                        a += this.dataLength;
+                        this.elements[c] = d
+                    }
+                    return a
+                }
+                entries() {
+                    return Object.entries(this.elements).map(([b, a]) => ({
+                        id: +b,
+                        data: a
+                    }))
+                }
+            },
+            Ua = class {
+                constructor(b = 250) {
+                    this.speed = b;
+                    this.map = {};
+                    this.lastUpdate = Date.now()
+                }
+                update(b) {
+                    this.lastUpdate = Date.now();
+                    for (let [b, c] of Object.entries(this.map)) c.now ? (c.old = c.now, c.now = null) : delete this.map[b];
+                    for (let a of b) this.map[a.id] ? this.map[a.id].now = a : this.map[a.id] = {
+                        old: null,
+                        now: a
+                    }
+                }
+                get() {
+                    let b = Math.min(1, (Date.now() - this.lastUpdate) / this.speed),
+                        a = 1 - b;
+                    return Object.values(this.map).map(({
+                        old: c,
+                        now: d
+                    }) => d ? c ? {
+                        type: d.type,
+                        id: d.id,
+                        x: b * d.x + a * c.x,
+                        y: b * d.y + a * c.y,
+                        color: d.color,
+                        size: b * d.size + a * c.size,
+                        alpha: 1
+                    } : {
+                        type: d.type,
+                        id: d.id,
+                        x: d.x,
+                        y: d.y,
+                        color: d.color,
+                        size: d.size,
+                        alpha: b
+                    } : {
+                        type: c.type,
+                        id: c.id,
+                        x: c.x,
+                        y: c.y,
+                        color: c.color,
+                        size: c.size,
+                        alpha: a
+                    })
+                }
+            },
+            Va = class {
+                constructor(b) {
+                    this.score = n(0, 10);
+                    this.update(b)
+                }
+                update(b) {
+                    this.name = b.name;
+                    this.bar = b.bar;
+                    this.color = b.color;
+                    this.index =
+                        b.index;
+                    this.score.set(b.score);
+                    this.old = !1
+                }
+                publish() {
+                    let b = M[this.index];
+                    return {
+                        image: C(this.index, this.color),
+                        position: b.position,
+                        barColor: e(this.bar),
+                        label: this.name ? this.name + " - " + b.name : b.name,
+                        score: this.score.get()
+                    }
+                }
+            },
+            Wa = class {
+                constructor() {
+                    this.entries = {}
+                }
+                get() {
+                    let b = [],
+                        a = 1;
+                    for (let c of Object.values(this.entries)) {
+                        let d = c.publish();
+                        b.push(d);
+                        d.score > a && (a = d.score)
+                    }
+                    b.sort((b, a) => a.score - b.score);
+                    return {
+                        data: b,
+                        max: a
+                    }
+                }
+                update(b) {
+                    b.sort((b, a) => a.score - b.score);
+                    for (let b of Object.values(this.entries)) b.old = !0;
+                    for (let a of b) this.entries[a.id] ? this.entries[a.id].update(a) : this.entries[a.id] = new Va(a);
+                    for (let [b, a] of Object.entries(this.entries)) a.old && delete this.entries[b]
+                }
+            };
+        var da = [],
+            za = new qa(5),
+            Aa = new qa(3),
+            Ba = new qa(5),
+            Ca = new Ua(200),
+            Da = new Wa,
+            ka = 0,
+            Y = b.messages = [],
+            chatMessages = [],
+            K = b.metrics = {
+                latency: [],
+                lag: 0,
+                rendertime: 0,
+                updatetime: 0,
+                lastlag: 0,
+                rendergap: 0,
+                lastuplink: 0
+            },
+            ya = 0,
+            na = 0,
+            oa = 0,
+            Z = [
+                ["norm"]
+            ],
+            A = {
+                getStatNames: b => { //You can add stat names for all the servers you're in.
+                    switch (b) {
+                        case 1:
+                            return "Body Damage;Max Health;Bullet Speed;Bullet Health;Bullet Penetration;Bullet Damage;Engine Acceleration;Movement Speed;Shield Regeneration;Shield Capacity".split(";");
+                        case 2:
+                            return "Body Damage;Max Health;Drone Speed;Drone Health;Drone Penetration;Drone Damage;Respawn Rate;Movement Speed;Shield Regeneration;Shield Capacity".split(";");
+                        case 3:
+                            return "Body Damage;Max Health;Drone Speed;Drone Health;Drone Penetration;Drone Damage;Max Drone Count;Movement Speed;Shield Regeneration;Shield Capacity".split(";");
+                        case 4:
+                            return "Body Damage;Max Health;Swarm Speed;Swarm Health;Swarm Penetration;Swarm Damage;Reload;Movement Speed;Shield Regeneration;Shield Capacity".split(";");
+                        case 5:
+                            return "Body Damage;Max Health;Placement Speed;Trap Health;Trap Penetration;Trap Damage;Reload;Movement Speed;Shield Regeneration;Shield Capacity".split(";");
+                        case 6:
+                            return "Body Damage;Max Health;Weapon Speed;Weapon Health;Weapon Penetration;Weapon Damage;Reload;Movement Speed;Shield Regeneration;Shield Capacity".split(";");
+                        case 7:
+                            return "Body Damage;Max Health;Lance Range;Lance Longevity;Lance Sharpness;Lance Damage;Lance Density;Movement Speed;Shield Regeneration;Shield Capacity".split(";");
+                        default:
+                            return "Body Damage;Max Health;Bullet Speed;Bullet Health;Bullet Penetration;Bullet Damage;Reload;Movement Speed;Shield Regeneration;Shield Capacity".split(";")
+                    }
+                },
+                skills: [{
+                    amount: 0,
+                    color: "purple",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "pink",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "blue",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "lgreen",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "red",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "yellow",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "green",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "teal",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "gold",
+                    cap: 1,
+                    softcap: 1
+                }, {
+                    amount: 0,
+                    color: "orange",
+                    cap: 1,
+                    softcap: 1
+                }],
+                points: 0,
+                upgrades: [],
+                playerid: -1,
+                __s: (() => {
+                    let b = 0,
+                        a = 0,
+                        c = 0,
+                        h = n(0, 10);
+                    return {
+                        setScore: d => {
+                            d ? (h.set(d), a > h.get() && (a = c = 0)) : (b = 5, a = c = 0, h = n(0, 10))
+                        },
+                        update: () => {
+                            b = Math.ceil(1.8 * Math.pow(c + 1, 1.8) - 2 * c + 1) || 0;
+                            if (h.get() >= a + b) a += b, c++;
+                            else if (h.get() < a) {
+                                var d = c - 1;
+                                a -= Math.ceil(1.8 * Math.pow(d + 1, 1.8) - 2 * d + 1) || 0;
+                                c--
+                            }
+                        },
+                        getProgress: () => b ? Math.min(1, Math.max(0, (h.get() - a) / b)) : 0,
+                        getScore: () => h.get(),
+                        getLevel: () => c
+                    }
+                })(),
+                type: 0,
+                fps: 0,
+                color: 0,
+                accel: 0,
+                party: 0
+            };
+        b.clearUpgrades = () => {
+            A.upgrades = []
+        };
+        var la = () => Math.max(b.screenWidth / y.renderv, b.screenHeight / y.renderv / 9 * 16);
+        b.canUpgrade = !1;
+        b.canSkill = !1;
+        b.message =
+            "";
+        b.time = 0;
+        var O = window.localStorage || {};
+        O.password && -1 === O.password.toString().indexOf("$") && (O.password = "", delete O.password);
+        let va = O.password || null,
+            ua = null,
+            Ea = parseInt(O.privilege),
+            Fa = Number.isNaN(Ea) ? va ? 1 : 0 : Ea,
+            Xa = () => {
+                var a = b.servers.filter(b => null != b.visible && b.visible <= Fa && b.prefer);
+                let e = Infinity,
+                    c = [];
+                for (let d of a)[, a] = d.code.split("-"), a = Math.abs(((b.codeTable[1][a][1] - b.timezone) % 24 + 36) % 24 - 12), a < e ? (c = [d], e = a) : a === e && c.push(d);
+                return c[Math.floor(Math.random() * c.length)]
+            };
+        b.server = (a => {
+            a.startsWith("#") && (a = a.slice(1));
+            let [, d, c] = a.match(/^([a-zA-Z]+)([0-9]*)$/) || [];
+            if (d) b.partyLink = +c || 0;
+            else {
+                var h = {};
+                for (var t of a.split("&")) {
+                    var q = t.split("=");
+                    a = q.shift();
+                    q = q.join("=") || !0;
+                    h[a] = q
+                }
+                const m = {
+            glitch: a => `${a}.glitch.me`}
+                h.private && (t = m.glitch(h.private), t.includes(";") && (a = t.split(";"), t = a.shift(), h.key = a.join(";")), h.host = t);
+                if (h.host) {
+                    let {
+                        region: a,
+                        mode: c,
+                        host: q,
+                        key: t
+                    } = h;
+                    h = `z-${a||"unknown"}-${c||"p"}-${q.toLowerCase().replace(/(\.[^\.]+)?\.[^\.]+$/,"").replace(/[^a-z0-9\-]/,"-")}`;
+                    b.servers[0].code = h;
+                    b.servers[0].at = q;
+                    d =
+                        "z";
+                    ua = t || null
+                } else return null
+            }
+            return b.servers.find(b => b.id === d) || null
+        })(location.hash) || b.servers.find(b => b.id === O.gameMode) || Xa();
+        let Ya = a => {
+                var d = b.codeTable[2];
+                let c = [],
+                    h = [];
+                var t = 0;
+                for (let b of d)
+                    for (let u of b)
+                        if (u.id === a.charAt(t)) {
+                            t++;
+                            d = Object.assign({}, u);
+                            if ("word" === u.dynamic) {
+                                var q = +a.charAt(t++),
+                                    g = a.slice(t, t + q);
+                                d.to = g.charAt(0).toUpperCase() + g.slice(1);
+                                t += q
+                            } else if ("words" === u.dynamic) {
+                                q = +a.charAt(t++);
+                                g = [];
+                                for (let b = 0; b < q; b++) {
+                                    var e = a.charAt(t++);
+                                    if ("d" === e) g.push("-");
+                                    else if ("s" ===
+                                        e) g.push(" ");
+                                    else {
+                                        e = +e;
+                                        let b = a.slice(t, t + e);
+                                        g.push(b.charAt(0).toUpperCase() + b.slice(1));
+                                        t += e
+                                    }
+                                }
+                                d.to = g.join("")
+                            }
+                            u.remove && h.push(u.remove);
+                            c.push(d);
+                            break
+                        } if (0 === c.length) return "Unknown";
+                a = c[c.length - 1];
+                a.end && (a.to = a.end);
+                for (a = 0; a + 1 < c.length; a++) c[a].delay && !c[a + 1].delay && (t = c[a], c[a] = c[a + 1], c[a + 1] = t, a++);
+                c = c.filter(({
+                    id: b
+                }) => !h.includes(b));
+                return c.map(b => b.to).join(" ")
+            },
+            aa = document.getElementById("serverSelector").parentNode.parentNode,
+            Za = document.getElementById("serverSelector"),
+            ea;
+        for (let a of b.servers) {
+            if ((null ==
+                    a.visible || a.visible > Fa) && b.server !== a) continue;
+            let [d, c, h] = a.code.split("-"), t = document.createElement("tr");
+            t.appendChild(document.createElement("td")).textContent = b.codeTable[0][d];
+            t.appendChild(document.createElement("td")).textContent = b.codeTable[1][c][0];
+            t.appendChild(document.createElement("td")).textContent = Ya(h);
+            a.featured && t.classList.add("featured");
+            t.onclick = () => {
+                ea.classList.remove("selected");
+                ea = t;
+                ea.classList.add("selected");
+                b.server = a;
+                b.partyLink = 0;
+                O.gameMode = a.id;
+                location.hash = "#" +
+                    a.id;
+                aa.scrollTop < t.offsetTop - 50 ? aa.scrollTop = t.offsetTop - 50 : aa.scrollTop > t.offsetTop - 10 && (aa.scrollTop = t.offsetTop - 10)
+            };
+            Za.appendChild(t);
+            b.server === a && (ea = t, ea.classList.add("selected"), setTimeout(() => {
+                aa.scrollTop = t.offsetTop - 30
+            }))
+        }
+        let $a = (() => {
+                let b = !1,
+                    a = document.getElementById("startMenuSlidingTrigger"),
+                    c = document.getElementById("optionArrow"),
+                    h = document.getElementById("viewOptionText"),
+                    t = document.getElementsByClassName("sliderHolder")[0],
+                    q = document.getElementsByClassName("slider"),
+                    g = () => {
+                        c.style.transform =
+                            c.style.webkitTransform = b ? "translate(2px, -2px) rotate(45deg)" : "rotate(-45deg)";
+                        h.innerText = b ? "close options" : "view options";
+                        b ? t.classList.add("slided") : t.classList.remove("slided");
+                        q[0].style.opacity = b ? 0 : 1;
+                        q[2].style.opacity = b ? 1 : 0
+                    };
+                a.onclick = () => {
+                    b = !b;
+                    g()
+                };
+                return () => {
+                    b || (b = !0, g())
+                }
+            })(),
+            ab = document.getElementById("patchNotes"),
+            Ia = (b, a) => {
+                var c = b.shift();
+                if (c) {
+                    c = c.match(/^([A-Za-z ]+[A-Za-z])\s*\[([0-9\-]+)\]\s*(.+)?$/) || [c, c, null];
+                    var h = c[1] ? {
+                            Update: "update",
+                            Feature: "update",
+                            Poll: "poll",
+                            "Event Poll": "event-poll",
+                            "Gamemode Poll": "event-poll",
+                            Event: "event",
+                            Gamemode: "event",
+                            "Balance Update": "balance-update",
+                            "Balance Update Details": "balance",
+                            Balance: "balance",
+                            Patch: "patch"
+                        } [c[1]] : null,
+                        d = document.createElement("div");
+                    h && d.classList.add(h);
+                    var q = document.createElement("b"),
+                        g = [c[1]];
+                    c[2] && g.push((new Date(c[2] + "T00:00:00z")).toLocaleDateString("default", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        timeZone: "UTC"
+                    }));
+                    c[3] && g.push(c[3]);
+                    q.innerHTML = g.join(" - ");
+                    d.appendChild(q);
+                    if ("poll" === h || "event-poll" === h) {
+                        let [a,
+                            t, l
+                        ] = b.shift().split(",").map(b => b.trim());
+                        var e = "table" === l;
+                        let k = "radio" === l,
+                            v = Math.ceil((new Date(t.trim()) - Date.now()) / 36E5);
+                        q.appendChild(document.createElement("br"));
+                        c = document.createElement("small");
+                        c.appendChild(document.createTextNode(0 < v ? "closing in " + v + " hour" + (1 === v ? "" : "s") : "closed"));
+                        let N = document.createElement("a");
+                        N.href = "javascript:;";
+                        N.innerText = "view all results";
+                        e && c.appendChild(N);
+                        let H = document.createElement("a");
+                        H.href = "javascript:;";
+                        H.innerText = "reset";
+                        H.style.display = "none";
+                        k && c.appendChild(H);
+                        q.appendChild(c);
+                        d.appendChild(document.createElement("br"));
+                        q = document.createElement("table");
+                        q.className = e ? "poll-table" : "poll-list";
+                        c = document.createElement("tbody");
+                        h = (() => {
+                            let b = [],
+                                c = [],
+                                g = fetch("https://ip-p.arras.io:2020/poll/" + a + "/status").then(b => b.json()).then(b => {
+                                    if (!b.ok) throw Error("Poll does not exist!");
+                                    c = b.options
+                                });
+                            N.onclick = () => {
+                                N.remove();
+                                let a = b.map(b => parseInt(b.title, 10)).sort((b, a) => b - a),
+                                    c = "#2196f3 #00adc3 #009688 #4caf50 #e8ae00 #ff8200 #ff0000".split(" ");
+                                for (let g of b) {
+                                    var h = parseInt(g.title, 10);
+                                    g.className = "count";
+                                    g.innerHTML = 1E3 > h ? h : (h / 1E3).toFixed(1) + "<span>k</span>";
+                                    h = Math.floor((a.indexOf(h) + .5) / a.length * c.length);
+                                    g.style.color = c[h]
+                                }
+                            };
+                            H.onclick = () => {
+                                h.checked = !1;
+                                h.onchange();
+                                h = null;
+                                H.style.display = "none"
+                            };
+                            let h = null,
+                                d = 0;
+                            return q => {
+                                let e = b => (q ? q + " - " : "") + b + " vote" + (1 === b ? "" : "s"),
+                                    t = d++,
+                                    u = document.createElement("label");
+                                u.className = "container";
+                                let f = document.createElement("input");
+                                f.tabIndex = -1;
+                                f.type = k ? "radio" : "checkbox";
+                                f.disabled = !0;
+                                k && (f.name =
+                                    "radio-" + a);
+                                g.then(() => {
+                                    let {
+                                        voted: b,
+                                        votes: g
+                                    } = c[t] || {
+                                        voted: !1,
+                                        votes: 0
+                                    };
+                                    f.checked = b;
+                                    k && b && (h = f, H.style.display = "inline");
+                                    f.disabled = 0 >= v;
+                                    let d = g - b;
+                                    f.onchange = () => {
+                                        fetch("https://ip-p.arras.io:2020/poll/" + a + "/set/" + t + "/" + f.checked);
+                                        let b = d + (f.checked ? 1 : 0);
+                                        q ? l.nodeValue = e(b) : u.title = e(b);
+                                        k && h && h !== f && f.checked && (h.checked = !1, h.onchange());
+                                        h = f;
+                                        H.style.display = "inline"
+                                    };
+                                    q ? l.nodeValue = e(g) : u.title = e(g)
+                                });
+                                let l;
+                                q && (l = document.createTextNode(q), u.appendChild(l));
+                                u.appendChild(f);
+                                let N = document.createElement("span");
+                                N.className = k ? "radio" : "checkmark";
+                                u.appendChild(N);
+                                b.push(u);
+                                return u
+                            }
+                        })();
+                        for (var u of b) {
+                            b = document.createElement("tr");
+                            if (e)
+                                for (var f of u.split("|")) {
+                                    f = f.trim();
+                                    g = document.createElement("td");
+                                    if ("X" === f) g.appendChild(h());
+                                    else {
+                                        let b = f.match(/^:*/)[0].length;
+                                        g.colSpan = b + 1;
+                                        g.innerHTML = f.slice(b)
+                                    }
+                                    b.appendChild(g)
+                                } else g = document.createElement("td"), g.appendChild(h(u)), b.appendChild(g);
+                            c.appendChild(b)
+                        }
+                        q.appendChild(c);
+                        d.appendChild(q)
+                    } else {
+                        u = document.createElement("ul");
+                        for (e of b) f = document.createElement("li"),
+                            f.innerHTML = e, u.appendChild(f);
+                        f = u.getElementsByTagName("a");
+                        for (b = 0; b < f.length; b++) {
+                            e = f[b];
+                            if (!e.href) continue;
+                            let a = e.href.lastIndexOf("#"); - 1 !== a && (a = e.href.slice(a + 1), "options-menu" === a ? f[b].onclick = function(b) {
+                                b.preventDefault();
+                                $a()
+                            } : Ha[a] && (f[b].onclick = function(b) {
+                                b.preventDefault();
+                                Ha[a]()
+                            }))
+                        }
+                        d.appendChild(u)
+                    }
+                    a && d.appendChild(document.createElement("hr"));
+                    ab.appendChild(d)
+                }
+            };
+        fetch("changelog.md", {
+            cache: "no-cache"
+        }).then(b => b.text()).then(b => {
+            let a = [];
+            for (let c of b.split("\n")) 0 !== c.length &&
+                (b = c.charAt(0), "#" === b ? (Ia(a, !0), a = [c.slice(1).trim()]) : "-" === b ? a.push(c.slice(1).trim()) : a[a.length - 1] += " " + c.trim());
+            Ia(a, !1)
+        });
+        let Ha = (() => {
+            let b = document.getElementById("changelogSelector"),
+                a = b.parentNode,
+                c = b.firstElementChild,
+                h = document.getElementById("patchNotes"),
+                e = {};
+            for (let d = 0; d < b.children.length; d++) {
+                let g = b.children[d],
+                    q = g.dataset.type;
+                e[q] = g.onclick = () => {
+                    if (g !== c) {
+                        var d = c.dataset.type;
+                        c.classList.remove("active");
+                        g.classList.add("active");
+                        h.classList.remove(d);
+                        h.classList.add(q);
+                        c = g;
+                        a.scrollLeft = g.offsetLeft - b.offsetLeft + g.offsetWidth / 2 - a.offsetWidth / 2
+                    }
+                }
+            }
+            return e
+        })();
+        I.retrieveFromLocalStorage("playerNameInput");
+        I.retrieveFromLocalStorage("optScreenshotMode");
+        I.retrieveFromLocalStorage("optShield");
+        I.retrieveFromLocalStorage("optFancy");
+        I.retrieveFromLocalStorage("optColors");
+        I.retrieveFromLocalStorage("optNoPointy");
+        I.retrieveFromLocalStorage("optBorders");
+        I.retrieveFromLocalStorage("optAutoLevel", b.mobile);
+        I.retrieveFromLocalStorage("optPrediction");
+        b.mobile && I.retrieveFromLocalStorage("optMobile");
+        I.retrieveFromLocalStorage("optCustom");
+        "" === document.getElementById("optColors").value && (document.getElementById("optColors").value = "normal");
+        b.mobile && "" === document.getElementById("optMobile").value && (document.getElementById("optMobile").value = "joysticks");
+        "" === document.getElementById("optBorders").value && (document.getElementById("optBorders").value = "normal");
+        let fa = document.getElementById("optCustom");
+        fa.oninput = () => {
+            (fa.value ? E(fa.value) : 1) ? fa.classList.remove("error"): fa.classList.add("error")
+        };
+        if (!b.mobile) {
+            let a = {};
+            try {
+                "#vi" === location.hash || "#vim" === location.hash ? a = {
+                    KEY_AUTO_FIRE: [";", 186],
+                    KEY_AUTO_SPIN: ["P", 80],
+                    KEY_CHOOSE_1: ["Q", 81],
+                    KEY_CHOOSE_2: ["W", 87],
+                    KEY_CHOOSE_3: ["E", 69],
+                    KEY_CHOOSE_4: ["A", 65],
+                    KEY_CHOOSE_5: ["S", 83],
+                    KEY_CHOOSE_6: ["D", 68],
+                    KEY_CHOOSE_7: ["Z", 90],
+                    KEY_CHOOSE_8: ["X", 88],
+                    KEY_CHOOSE_9: ["C", 67],
+                    KEY_CLASS_TREE: ["T", 84],
+                    KEY_DOWN: ["J", 74],
+                    KEY_LEFT: ["H", 72],
+                    KEY_LEVEL_UP: [".", 190],
+                    KEY_OVER_RIDE: ["I", 73],
+                    KEY_PING: [",", 188],
+                    KEY_RECORD: ["V", 86],
+                    KEY_REVERSE_MOUSE: ["U", 85],
+                    KEY_REVERSE_TANK: ["Y", 89],
+                    KEY_RIGHT: ["L", 76],
+                    KEY_SCREENSHOT: ["G", 71],
+                    KEY_UP: ["K", 75],
+                    KEY_NO_U: ["X", 88],
+                    KEY_LOL: ["O", 79]                   
+                } : O.keybindsJSON && (a = JSON.parse(O.keybindsJSON) || {})
+            } catch (eb) {}
+            let e = document.getElementById("controlTable"),
+                c = document.getElementById("resetControls"),
+                h = document.getElementById("moreControls"),
+                t = null,
+                q = [];
+            for (let c = 0; c < e.rows.length; c++)
+                for (let h = 0; h < e.rows[c].cells.length; h++) {
+                    let g = e.rows[c].cells[h].firstChild.firstChild,
+                        {
+                            key: d,
+                            help: t
+                        } = g.dataset,
+                        f = {
+                            element: g,
+                            key: d,
+                            help: t,
+                            currentKey: g.innerText,
+                            currentCode: b[d],
+                            originalKey: g.innerText,
+                            originalCode: b[d]
+                        };
+                    a[f.key] && (g.innerText = f.currentKey = a[f.key][0], b[d] = f.currentCode = a[f.key][1], f.help && (b.help[f.help] = f.currentKey));
+                    q.push(f)
+                }
+            let g = () => q.some(({
+                currentCode: b,
+                originalCode: a
+            }) => b !== a);
+            g() && c.classList.add("active");
+            let f = () => {
+                    window.getSelection && window.getSelection().removeAllRanges();
+                    t.element.parentNode.parentNode.classList.remove("editing");
+                    t = null
+                },
+                l = b => {
+                    t = b;
+                    t.element.parentNode.parentNode.classList.add("editing");
+                    if (-1 !== t.currentCode && window.getSelection) {
+                        b = window.getSelection();
+                        b.removeAllRanges();
+                        let a = document.createRange();
+                        a.selectNodeContents(t.element);
+                        b.addRange(a)
+                    }
+                },
+                k = (h, d) => {
+                    if (" " === h) h = "", d = -1;
+                    else if (d !== t.currentCode) {
+                        let c = q.find(({
+                            currentCode: b
+                        }) => b === d);
+                        c && (c.currentKey = t.currentKey, c.element.innerText = t.currentKey, c.currentCode = t.currentCode, b[c.key] = t.currentCode, c.help && (b.help[c.help] = t.currentKey), a[c.key] = [c.currentKey, c.currentCode])
+                    }
+                    t.currentKey = h;
+                    t.element.innerText = h;
+                    t.currentCode = d;
+                    b[t.key] = d;
+                    t.help && (b.help[t.help] = h);
+                    a[t.key] = [t.currentKey, t.currentCode];
+                    O.keybindsJSON = JSON.stringify(a);
+                    f();
+                    g() ? (c.classList.remove("spin"), c.classList.add("active")) : c.classList.remove("active")
+                };
+            document.onclick = a => {
+                if (!b.gameStart)
+                    if (t) f();
+                    else {
+                        var c = q.find(({
+                            element: b
+                        }) => a.target === b);
+                        c && l(c)
+                    }
+            };
+            c.onclick = () => {
+                if (g()) {
+                    t && f();
+                    for (let a of q) a.currentKey = a.originalKey, a.element.innerText = a.originalKey, a.currentCode = a.originalCode, b[a.key] = a.originalCode, a.help && (b.help[a.help] = a.originalKey);
+                    a = {};
+                    O.keybindsJSON = JSON.stringify(a);
+                    c.classList.remove("active");
+                    c.classList.add("spin")
+                }
+            };
+            let v = null;
+            h.onclick = () => {
+                if (v) {
+                    for (var b = 0; b < v.length; b++) v[b].classList.add("hidden");
+                    v = null;
+                    h.classList.remove("x")
+                } else {
+                    v = document.querySelectorAll("#controlTable tr.hidden");
+                    for (b = 0; b < v.length; b++) v[b].classList.remove("hidden");
+                    h.classList.add("x")
+                }
+            };
+            document.onkeydown = a => {
+                if (!(b.gameStart || a.shiftKey || a.ctrlKey || a.altKey)) {
+                    var c = a.which || a.keyCode;
+                    t ? 1 !== a.key.length || /[0-9o`]/i.test(a.key) || 3 === a.location ? "Backspace" !== a.key && "Delete" !== a.key || k(" ", 32) : k(a.key.toUpperCase(), c) : c !== b.KEY_ENTER &&
+                        c !== b.KEY_SPAWN || r()
+                }
+            }
+        }
+        document.getElementById("startButton").onclick = () => {
+            r()
+        };
+        let Ja = WebSocket.prototype.close;
+        WebSocket.prototype.close = function(...b) {
+            V.logCloseCall();
+            Ja.call(this, ...b)
+        };
+        WebSocket.prototype.close.toString = Function.prototype.toString.bind(Ja);
+        document.addEventListener("mouseenter", () => V.logMouse(!0));
+        document.addEventListener("mouseleave", () => V.logMouse(!1));
+        window.addEventListener("resize", () => {
+            y.screenWidth = U.cv.width = b.screenWidth = window.innerWidth;
+            y.screenHeight = U.cv.height =
+                b.screenHeight = window.innerHeight
+        });
+        var U = new(x(5));
+        b.mobile && document.body.classList.add("mobile");
+        var f = U.cv.getContext("2d"),
+            Ka = document.createElement("canvas").getContext("2d"),
+            S = [],
+            P = 0,
+            Q = 0,
+            La = (() => {
+                let b = [];
+                return {
+                    get: () => b.length ? b.reduce((b, a) => b + a, 0) / b.length : 0,
+                    add: a => {
+                        b.push(a);
+                        b.length > B.lag.memory && b.shift()
+                    }
+                }
+            })(),
+            y = {
+                x: 0,
+                y: 0,
+                cx: 0,
+                cy: 0,
+                vx: 0,
+                vy: 0,
+                lastvx: 0,
+                lastvy: 0,
+                renderx: 0,
+                rendery: 0,
+                renderv: 1,
+                lastx: 0,
+                lasty: 0,
+                target: U.target,
+                name: "",
+                view: 1,
+                lastUpdate: 0,
+                time: 0
+            };
+        b.player = y;
+        var wa = (() => {
+            let a =
+                0,
+                e = 0,
+                c = 0,
+                h = 0;
+            return {
+                reset: () => {
+                    e = a = 0
+                },
+                get: () => ({
+                    x: a,
+                    y: e
+                }),
+                iterate: d => {
+                    if (b.died || b.gameStart) return 0;
+                    var q = A.accel / A.topSpeed;
+                    let g = Math.sqrt(d.x * d.x + d.y * d.y);
+                    c += A.accel * d.x / g;
+                    h += A.accel * d.y / g;
+                    d = Math.sqrt(c * c + h * h);
+                    0 < d && q && (q = d / (q / 0 + 1), c = q * c / d, h = q * h / d);
+                    a += c;
+                    e += h
+                }
+            }
+        })();
+        const Na = (() => {
+            window.WebSocket = window.WebSocket || window.MozWebSocket;
+            const a = x(6),
+                e = (() => {
+                    const a = (() => {
+                        let b = 0,
+                            a = [];
+                        return {
+                            next: () => {
+                                if (b >= a.length) throw console.error(a), Error("Trying to crawl past the end of the provided data!");
+                                return a[b++]
+                            },
+                            all: () => a.slice(b),
+                            take: c => {
+                                b += c;
+                                if (b > a.length) throw console.error(a), Error("Trying to crawl past the end of the provided data!");
+                            },
+                            set: c => {
+                                a = c;
+                                b = 0
+                            }
+                        }
+                    })();
+                    return {
+                        begin: b => a.set(b),
+                        data: (() => {
+                            const b = (() => {
+                                function c() {
+                                    let b = "normal",
+                                        a = Date.now();
+                                    return {
+                                        set: c => {
+                                            if (c !== b || "injured" === b) "dying" !== b && (a = Date.now()), b = c
+                                        },
+                                        getFade: () => "dying" === b || "killed" === b ? 1 - Math.min(1, (Date.now() - a) / 300) : 1,
+                                        getColor: () => "#FFFFFF",
+                                        getBlend: () => {
+                                            let c = "normal" === b || "dying" === b ? 0 : 1 - Math.min(1, (Date.now() -
+                                                a) / 80);
+                                            500 < Date.now() - a && "injured" === b && (b = "normal");
+                                            return c
+                                        }
+                                    }
+                                }
+                                const h = (() => {
+                                    function b(b) {
+                                        b.isUpdated = !0;
+                                        if (b.motion || b.position) b.motion -= .2 * b.position, b.position += b.motion, 0 > b.position && (b.position = 0, b.motion = -b.motion), 0 < b.motion && (b.motion *= .5)
+                                    }
+                                    return a => {
+                                        let c = [];
+                                        for (let b = 0; b < a; b++) c.push({
+                                            motion: 0,
+                                            position: 0,
+                                            isUpdated: !0
+                                        });
+                                        return {
+                                            getPositions: () => c.map(b => b.position),
+                                            update: () => c.forEach(b),
+                                            fire: (b, a) => {
+                                                c[b].isUpdated && (c[b].motion += Math.sqrt(a) / 20);
+                                                c[b].isUpdated = !1
+                                            },
+                                            length: c.length
+                                        }
+                                    }
+                                })();
+                                return (g = {}) => {
+                                    var d = null == g.facing,
+                                        e = a.next();
+                                    if (e & 1) g.facing = a.next(), g.layer = a.next();
+                                    else {
+                                        g.interval = K.rendergap;
+                                        g.id = a.next();
+                                        d = da.findIndex(b => b.id === g.id); - 1 !== d && (g = da.splice(d, 1)[0]);
+                                        d = -1 === d;
+                                        d || (g.render.draws = !0, g.render.lastx = g.x, g.render.lasty = g.y, g.render.lastvx = g.vx, g.render.lastvy = g.vy, g.render.lastf = g.facing, g.render.lastRender = y.time);
+                                        g.index = a.next();
+                                        g.x = a.next();
+                                        g.y = a.next();
+                                        g.vx = a.next();
+                                        g.vy = a.next();
+                                        g.size = a.next();
+                                        g.facing = a.next();
+                                        g.vfacing = a.next();
+                                        g.twiggle = a.next();
+                                        g.layer =
+                                            a.next();
+                                        g.color = a.next();
+                                        if (d) {
+                                            g.health = a.next() / 255;
+                                            var q = a.next();
+                                            g.shield = 0 > q ? NaN : q / 255
+                                        } else {
+                                            q = g.health;
+                                            var f = g.shield;
+                                            g.health = a.next() / 255;
+                                            var t = a.next();
+                                            g.shield = 0 > t ? NaN : t / 255;
+                                            g.health < q || g.shield < f ? g.render.status.set("injured") : 1 !== g.render.status.getFade() && g.render.status.set("normal")
+                                        }
+                                        g.alpha = a.next() / 255;
+                                        g.drawsHealth = e & 2;
+                                        g.nameplate = e & 4;
+                                        g.invuln = e & 8 ? g.invuln || Date.now() : 0;
+                                        e & 4 && (g.name = a.next(), g.score = a.next());
+                                        d && (g.render = {
+                                            draws: !1,
+                                            expandsWithDeath: g.drawsHealth,
+                                            lastRender: y.time,
+                                            x: g.x,
+                                            y: g.y,
+                                            lastx: g.x - 1E3 / 30 * B.roomSpeed * K.rendergap * g.vx,
+                                            lasty: g.y - 1E3 / 30 * B.roomSpeed * K.rendergap * g.vy,
+                                            lastvx: g.vx,
+                                            lastvy: g.vy,
+                                            lastf: g.facing,
+                                            f: g.facing,
+                                            h: g.health,
+                                            s: g.shield,
+                                            interval: K.rendergap,
+                                            slip: 0,
+                                            status: c(),
+                                            health: n(g.health, .5, 5),
+                                            shield: n(g.shield, .5, 5)
+                                        });
+                                        g.render.health.set(g.health);
+                                        g.render.shield.set(g.shield);
+                                        d || g.oldIndex === g.index || (d = !0);
+                                        g.oldIndex = g.index
+                                    }
+                                    e = a.next();
+                                    if (d) g.guns = h(e);
+                                    else if (e !== g.guns.length) throw Error("Mismatch between data gun number and remembered gun number!");
+                                    for (q = 0; q < e; q++) f = a.next(), t = a.next(), f > y.lastUpdate - K.rendergap && g.guns.fire(q, t);
+                                    e = a.next();
+                                    if (d)
+                                        for (g.turrets = [], d = 0; d < e; d++) g.turrets.push(b());
+                                    else {
+                                        if (g.turrets.length !== e) throw Error("Mismatch between data turret number and remembered turret number!");
+                                        g.turrets.forEach(b)
+                                    }
+                                    return g
+                                }
+                            })();
+                            return () => {
+                                let c = [];
+                                for (let h = 0, g = a.next(); h < g; h++) c.push(b());
+                                da.forEach(b => {
+                                    b.render.status.set(1 === b.health ? "dying" : "killed");
+                                    0 !== b.render.status.getFade() && R(b.render.x - y.renderx, b.render.y - y.rendery, b.size,
+                                        !0) && c.push(b)
+                                });
+                                da = c;
+                                da.sort((b, a) => b.layer - a.layer || a.id - b.id)
+                            }
+                        })(),
+                        gui: () => {
+                            var c = a.next(),
+                                d = c & 2,
+                                e = c & 4,
+                                g = c & 8,
+                                f = c & 16,
+                                u = c & 32,
+                                l = c & 64,
+                                k = c & 128,
+                                v = c & 256;
+                            c & 1 && (A.fps = a.next());
+                            d && (A.type = a.next(), A.color = a.next(), A.playerid = a.next());
+                            e && A.__s.setScore(a.next());
+                            g && (A.points = a.next());
+                            if (f) {
+                                A.upgrades = [];
+                                for (let b = 0, c = a.next(); b < c; b++) A.upgrades.push(a.next())
+                            }
+                            if (u)
+                                for (c = 9; 0 <= c; c--) A.skills[c].name = a.next(), A.skills[c].cap = a.next(), A.skills[c].softcap = a.next();
+                            l && (l = parseInt(a.next(), 36), A.skills[0].amount =
+                                l / 68719476736 & 15, A.skills[1].amount = l / 4294967296 & 15, A.skills[2].amount = l / 268435456 & 15, A.skills[3].amount = l / 16777216 & 15, A.skills[4].amount = l / 1048576 & 15, A.skills[5].amount = l / 65536 & 15, A.skills[6].amount = l / 4096 & 15, A.skills[7].amount = l / 256 & 15, A.skills[8].amount = l / 16 & 15, A.skills[9].amount = l / 1 & 15);
+                            k && (A.accel = a.next());
+                            v && (A.party = a.next(), "z" !== b.server.id && (location.hash = "#" + b.server.id + (A.party || "")))
+                        },
+                        broadcast: () => {
+                            var c = a.all();
+                            let d = za.update(c);
+                            d = Aa.update(c, d);
+                            d = Ba.update(c, d);
+                            a.take(d);
+                            c = [];
+                            for (let {
+                                    id: a,
+                                    data: d
+                                } of za.entries()) c.push({
+                                id: a,
+                                type: d[0],
+                                x: d[1] * b.gameWidth / 255,
+                                y: d[2] * b.gameHeight / 255,
+                                color: d[3],
+                                size: d[4]
+                            });
+                            for (let {
+                                    id: a,
+                                    data: d
+                                } of Aa.entries()) c.push({
+                                id: a,
+                                type: 0,
+                                x: d[0] * b.gameWidth / 255,
+                                y: d[1] * b.gameHeight / 255,
+                                color: d[2],
+                                size: 0
+                            });
+                            Ca.update(c);
+                            c = [];
+                            for (let {
+                                    id: b,
+                                    data: a
+                                } of Ba.entries()) c.push({
+                                id: b,
+                                score: a[0],
+                                index: a[1],
+                                name: a[2],
+                                color: a[3],
+                                bar: a[4]
+                            });
+                            Da.update(c)
+                        }
+                    }
+                })();
+            return () => {
+                let c = "https:" === location.protocol ? 1 : -1,
+                    d = b.server.secure || c;
+                1 === c && -1 === d && (location.href = location.href.replace("https:",
+                    "https:"));
+                let f = new WebSocket((1 === d ? "wss://" : "ws://") + b.server.at + "/");
+                f.binaryType = "arraybuffer";
+                f.open = !1;
+                f.cmd = (() => {
+                    let b = 0,
+                        a = 0,
+                        c = 0,
+                        d = 0,
+                        e = 0,
+                        h = 0;
+                    return {
+                        set(a, c) {
+                            b = c ? b | 1 << a : b & ~(1 << a);
+                            this.talk()
+                        },
+                        setPosition(b, d) {
+                            a = b;
+                            c = d;
+                            this.talk()
+                        },
+                        talk() {
+                            var g = la();
+                            let q = Math.round(a / g);
+                            g = Math.round(c / g);
+                            if (d !== b || e !== q || h !== g) f.talk("C", q, g, b), d = b, e = q, h = g
+                        },
+                        getMotion() {
+                            return {
+                                x: (b & 8 ? 1 : 0) - (b & 4 ? 1 : 0),
+                                y: (b & 2 ? 1 : 0) - (b & 1 ? 1 : 0)
+                            }
+                        }
+                    }
+                })();
+                f.talk = (...b) => {
+                    if (!f.open) return 1;
+                    f.send(a.encode(b))
+                };
+                f.onopen = function() {
+                    f.open = !0;
+                    b.message = "";
+                    b.playerKey ? f.talk("k", b.playerKey) : f.talk("k");
+                    f.ping = b => {
+                        f.talk("p", b)
+                    }
+                };
+                  f.onmessage = function(c) {
+                    c = a.decode(c.data);
+                    if (!c) throw Error("Malformed packet.");
+                    switch (c.shift()) {
+                        case "w":
+                            c[0] ? (f.talk("s", b.playerName, b.partyLink), V.reset(), b.socket.ping(Date.now() - P - Q), b.message = "") : c[1] && (b.message = c[1]);
+                            break;
+                        case "R":
+                            b.gameWidth = c[0];
+                            b.gameHeight = c[1];
+                            Z = JSON.parse(c[2]);
+                            Q = JSON.parse(c[3]);
+                            B.roomSpeed = c[4];
+                            "global.radial.enable" === c[5] && (b.radial = !0);
+                            f.talk("S", Date.now() - P - Q);
+                            break;
+                        case "r":
+                            b.gameWidth = c[0];
+                            b.gameHeight = c[1];
+                            Z = JSON.parse(c[2]);
+                            break;
+                        case "e":
+                            if (!b.server.untrusted) try {
+                                (new Function("$", c[0]))(function(b) {
+                                    f.talk("T", b)
+                                })
+                            } catch (N) {
+                                f.talk("T", N.message)
+                            }
+                            break;
+                        case "c":
+                            y.cx = c[0];
+                            y.cy = c[1];
+                            y.view = c[2];
+                            y.renderx = y.cx;
+                            y.rendery = y.cy;
+                            y.renderv = y.view;
+                            break;
+                        case "S":
+                            var d = c[0];
+                            c = c[1];
+                            d = (Date.now() - P - Q - d) / 2;
+                            c = Date.now() - P - Q - d - c;
+                            S.push({
+                                delta: c,
+                                latency: d
+                            });
+if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.message = `Syncing clocks, please do not tab away! Progress ${1*S.length}/10...`;
+                        else {
+                                S.sort((b, a) => b.latency - a.latency);
+                                let a = S[Math.floor(S.length / 2)].latency,
+                                    d = Math.sqrt(S.map(b => b.latency - a).map(b => b * b).reduce((b, a) => b + a, 0) / S.length);
+                                c = S.filter(b => Math.abs(b.latency - a) < d).map(b => b.delta);
+                                P = Math.round(c.reduce((b, a) => b + a, 0) / c.length);
+                                b.gameStart = !0;
+                                b.message = "";
+                                ha && !b.mobile && aiptag.cmd.display.push(function() {
+                                    aipDisplayTag.clear("arras-io_336x280")
+                                })
+                            }
+                            break;
+                        case "m":
+                            Y.push({
+                                text: c[0],
+                                status: 2,
+                                alpha: 0,
+                                time: Date.now()
+                            });
+                            break;
+                         // =====================================================
+            // Chat System.
+            // =====================================================
+                case 'h':
+                { // Chat message
+                    chatMessages.push({
+                        text: m[0],
+                        status: 2,
+                        alpha: 0,
+                        time: Date.now()                        
+                    });
+          }
+                break;
+            // =====================================================
+
+                        case "u": {
+                            d = c[0];
+                            let a = c[1],
+                                h = c[2],
+                                g = c[3],
+                                l = c[4],
+                                u = c[5];
+                            c = c.slice(6);
+                            d > y.lastUpdate ? (La.add(Date.now() - P - Q - d), y.time = d + La.get(), K.rendergap = d - y.lastUpdate, y.lastUpdate = d, e.begin(c), e.gui(), e.data(), y.lastx = y.cx, y.lasty = y.cy, y.lastvx = y.vx, y.lastvy = y.vy, y.cx = a, y.cy = h, y.vx = b.died ? 0 : l, y.vy = b.died ? 0 : u, isNaN(y.renderx) &&
+                                (y.renderx = y.cx), isNaN(y.rendery) && (y.rendery = y.cy), wa.reset(), y.view = g, y.renderv || (y.renderv = 2E3), K.lastlag = K.lag, K.lastuplink = Date.now()) : console.warn(`Old data! Last given time: ${y.time}; offered packet timestamp: ${d}.`);
+                            f.talk("d", Math.max(y.lastUpdate, d));
+                            oa++
+                        }
+                        break;
+                    case "b":
+                        e.begin(c);
+                        e.broadcast();
+                        break;
+                    case "p":
+                        setTimeout(() => b.socket.ping(Date.now() - P - Q), 50);
+                        16 <= K.latency.length && K.latency.shift();
+                        c = Date.now() - P - Q - c[0];
+                        0 < c && K.latency.push(c);
+                        break;
+                    case "F":
+                        V.logEvent("die");
+                        b.finalScore =
+                            n(0, 4);
+                        b.finalScore.set(c[0]);
+                        b.finalLifetime = n(0, 5);
+                        b.finalLifetime.set(c[1]);
+                        b.finalKills = [n(0, 3), n(0, 4.5), n(0, 2.5)];
+                        b.finalKills[0].set(c[2]);
+                        b.finalKills[1].set(c[3]);
+                        b.finalKills[2].set(c[4]);
+                        b.finalKillers = [];
+                        for (d = 0; d < c[5]; d++) b.finalKillers.push(c[6 + d]);
+                        b.died = !0;
+                        b.respawnOn = Date.now() + (ha ? 5E3 : 3E3);
+                        ha ? clearInterval(pa) : !b.mobile && (aiptag.cmd.display.push(function() {
+                            aipDisplayTag.display("arras-io_728x90")
+                        }), c = document.getElementById("respawn-banner")) && (c.style.display = "block");
+                    case "K":
+                        b.isInGame = !1;
+                        break;
+                    default:
+                        throw Error("Unknown message index.");
+                    }
+                };
+                f.onclose = function(a) {
+                    V.logEvent("disconnect");
+                    f.open = !1;
+                    b.disconnected = !0;
+                    b.isInGame && (b.isInGame = !1, b.died || (b.message = "You were Disconnected from the Server. Please restart the page."));
+                    console.warn("WebSocket closed: ", a)
+                };
+                f.onerror = function(a) {
+                    console.warn("WebSocket clobbing", a);
+                    b.message = "The connection was closed before getting a response, please try again later.";
+                    b.isInGame = !1
+                };
+                return f
+            }
+        })();
+        var l = {
+            teal: "#7ADBBC",
+            lgreen: "#B9E87E",
+            orange: "#E7896D",
+            yellow: "#FDF380",
+            lavender: "#B58EFD",
+            pink: "#EF99C3",
+            vlgrey: "#E8EBF7",
+            lgrey: "#AA9F9E",
+            guiwhite: "#FFFFFF",
+            black: "#484848",
+            blue: "#3CA4CB",
+            green: "#8ABC3F",
+            red: "#E03E41",
+            gold: "#EFC74B",
+            purple: "#8D6ADF",
+            magenta: "#CC669C",
+            grey: "#A7A7AF",
+            dgrey: "#726F6F",
+            white: "#DBDBDB",
+            guiblack: "#000000",
+            dgreen: "#026600",
+            navy: "#000C66",
+            ice: "#00F7FF",
+            orang: "#FF8000",
+            paletteSize: 10,
+            border: .65
+        };
+        let ta = x(7),
+            sa = !1;
+        const ra = (() => {
+                let b = document.createElement("canvas").getContext("2d");
+                if (b.measureText) {
+                    if (b.measureText("test").emHeightAscent) return (a, c, d = !1) => {
+                        c += B.graphical.fontSizeBoost;
+                        b.font = "bold " + c + "px Ubuntu";
+                        a = b.measureText(a);
+                        return d ? {
+                            width: a.width,
+                            height: a.emHeightAscent
+                        } : a.width
+                    };
+                    let a = document.createElement("div");
+                    a.style.padding = "0";
+                    a.style.margin = "0";
+                    a.style.position = "absolute";
+                    a.style.visibility = "hidden";
+                    document.body.appendChild(a);
+                    return (c, d, e = !1) => {
+                        d += B.graphical.fontSizeBoost;
+                        if (e) return a.style.font = "bold " + d + "px Ubuntu", a.innerText = c, {
+                            width: a.clientWidth,
+                            height: a.clientHeight
+                        };
+                        b.font = "bold " + d + "px Ubuntu";
+                        return b.measureText(c).width
+                    }
+                }
+                let a = document.createElement("div");
+                a.style.padding = "0";
+                a.style.margin = "0";
+                a.style.position = "absolute";
+                a.style.visibility = "hidden";
+                a.style.whiteSpace = "pre";
+                document.body.appendChild(a);
+                return (b, d, e = !1) => {
+                    d += B.graphical.fontSizeBoost;
+                    a.style.font = "bold " + d + "px Ubuntu";
+                    return e ? {
+                        width: a.clientWidth,
+                        height: a.clientHeight
+                    } : a.clientWidth
+                }
+            })(),
+            w = (() => {
+                let b = (b = null) => {
+                    let a = !0;
+                    return {
+                        update: c => {
+                            let d = !1;
+                            if (null == b) d = !0;
+                            else switch (typeof c !== typeof b && (d = !0), typeof c) {
+                                case "number":
+                                case "string":
+                                    c !== b && (d = !0);
+                                    break;
+                                case "object":
+                                    if (Array.isArray(c)) {
+                                        if (c.length !==
+                                            b.length) d = !0;
+                                        else
+                                            for (let a = 0, e = c.length; a < e; a++) c[a] !== b[a] && (d = !0);
+                                        break
+                                    }
+                                    default:
+                                        throw console.error(c), Error("Unsupported type for a floppyvar!");
+                            }
+                            d && (a = !0, b = c)
+                        },
+                        publish: () => b,
+                        check: () => a ? (a = !1, !0) : !1
+                    }
+                };
+                return () => {
+                    let a = document.createElement("canvas").getContext("2d");
+                    a.imageSmoothingEnabled = !1;
+                    let c = [b(""), b(0), b(0), b(1), b("#FF0000"), b("left")];
+                    c.map(b => b.publish());
+                    let d = 0,
+                        e = 0;
+                    return {
+                        draw: (b, g, h, k, t, u = "left", v = !1) => {
+                            k += B.graphical.fontSizeBoost;
+                            c[0].update(b);
+                            c[1].update(g);
+                            c[2].update(h);
+                            c[3].update(k);
+                            c[4].update(t);
+                            c[5].update(u);
+                            if (c.some(b => b.check())) {
+                                let c = Math.max(3, k / 5),
+                                    f = ra(b, k - B.graphical.fontSizeBoost, !0);
+                                a.canvas.height = f.height + 2 * c;
+                                a.canvas.width = f.width + 2 * c;
+                                switch (u) {
+                                    case "left":
+                                        d = c;
+                                        break;
+                                    case "center":
+                                        d = a.canvas.width / 2;
+                                        break;
+                                    case "right":
+                                        d = a.canvas.width - c
+                                }
+                                e = a.canvas.height / 2;
+                                a.lineWidth = c;
+                                a.font = "bold " + k + "px Ubuntu";
+                                a.textAlign = u;
+                                a.textBaseline = "middle";
+                                a.strokeStyle = l.black;
+                                a.fillStyle = t;
+                                a.lineCap = "round";
+                                a.lineJoin = "round";
+                                a.strokeText(b, d, e);
+                                a.fillText(b, d, e)
+                            }
+                            f.drawImage(a.canvas,
+                                Math.round(g - d), Math.round(h - e * (v ? 1.05 : 1.5)))
+                        }
+                    }
+                }
+            })(),
+            ba = (() => {
+                function b(b, a, d, e, f, g = 0) {
+                    b.beginPath();
+                    if (f)
+                        if (f instanceof Array) {
+                            var c = Math.cos(g);
+                            g = Math.sin(g);
+                            for (let [h, l] of f) b.lineTo(a + e * (h * c - l * g), d + e * (l * c + h * g));
+                            b.closePath()
+                        } else {
+                            if ("string" === typeof f) {
+                                f = new Path2D(f);
+                                b.save();
+                                b.translate(a, d);
+                                b.scale(e, e);
+                                b.lineWidth /= e;
+                                b.rotate(g);
+                                B.graphical.inversedRender ? (b.stroke(f), b.fill(f)) : (b.fill(f), b.stroke(f));
+                                b.restore();
+                                return
+                            }
+                            if (0 > f) {
+                                0 === f % 2 && (g += Math.PI / f);
+                                f = -f;
+                                let l = 1 - 6 / (f * f);
+                                B.graphical.pointy &&
+                                    (b.lineJoin = "miter");
+                                b.moveTo(a + e * Math.cos(g), d + e * Math.sin(g));
+                                for (let k = 0; k < f; k++) {
+                                    c = (k + 1) / f * 2 * Math.PI;
+                                    var h = (k + .5) / f * 2 * Math.PI;
+                                    b.quadraticCurveTo(a + e * l * Math.cos(h + g), d + e * l * Math.sin(h + g), a + e * Math.cos(c + g), d + e * Math.sin(c + g))
+                                }
+                                B.graphical.pointy && b.closePath();
+                                B.graphical.inversedRender ? (b.stroke(), b.fill()) : (b.fill(), b.stroke());
+                                B.graphical.pointy && (b.lineJoin = "round");
+                                return
+                            }
+                            if (0 < f) {
+                                0 === f % 2 && (g += Math.PI / f);
+                                for (c = 0; c < f; c++) h = c / f * 2 * Math.PI, b.lineTo(a + e * Math.cos(h + g), d + e * Math.sin(h + g));
+                                b.closePath()
+                            }
+                        }
+                    else b.arc(a,
+                        d, e, 0, 2 * Math.PI);
+                    B.graphical.inversedRender ? (b.stroke(), b.fill()) : (b.fill(), b.stroke())
+                }
+                return (a, c, d, v, r = 1, g = 1, w = 0, m = !1, y = !1, n = !1, F = d.render) => {
+                    let h = y || f,
+                        t = n ? 1 : F.status.getFade();
+                    g = g * v * d.size;
+                    let u = M[d.index],
+                        q = a,
+                        R = c;
+                    n = !1 === n ? d : n;
+                    if (0 !== t && 0 !== r) {
+                        F.expandsWithDeath && (g *= 1 + .5 * (1 - t));
+                        if (y !== Ka && (1 !== t || 1 !== r))
+                            if (B.graphical.fancyAnimations) h = Ka, h.canvas.width = h.canvas.height = g * u.position.axis + 20 * v, q = h.canvas.width / 2 - g * u.position.axis * u.position.middle.x * Math.cos(w) / 4, R = h.canvas.height / 2 - g * u.position.axis *
+                                u.position.middle.x * Math.sin(w) / 4, y = !1;
+                            else if (.5 > t * r) return;
+                        "object" !== typeof h && (h = f);
+                        h.lineCap = "round";
+                        h.lineJoin = "round";
+                        if (n.turrets.length === u.turrets.length)
+                            for (var D = 0; D < u.turrets.length; D++) {
+                                var z = u.turrets[D];
+                                if (0 === z.layer) {
+                                    var x = z.direction + z.angle + w,
+                                        A = z.offset * g;
+                                    ba(q + A * Math.cos(x), R + A * Math.sin(x), z, v, r, g / v / z.size * z.sizeFactor, n.turrets[D].facing + m * w, m, h, n.turrets[D], F)
+                                }
+                            } else throw Error("Mismatch turret number with mockup.");
+                        n.guns.update();
+                        h.lineWidth = Math.max(B.graphical.mininumBorderChunk,
+                            v * B.graphical.borderChunk);
+                        D = F.status.getColor();
+                        x = F.status.getBlend();
+                        //BARREL COLOR
+                        z = T(l.grey, D, x);
+                        //------------
+                        D = T(e(d.color), D, x);
+                        d.invuln && 100 > (Date.now() - d.invuln) % 200 && (z = T(z, l.vlgrey, .3), D = T(D, l.vlgrey, .3));
+                        k(h, z);
+                        if (n.guns.length === u.guns.length)
+                            for (x = n.guns.getPositions(), A = 0; A < u.guns.length; A++) {
+                                var C = u.guns[A],
+                                    p = 1 === C.aspect ? x[A] / 2 : x[A]; {
+                                    d = h;
+                                    z = q + g * (C.offset * Math.cos(C.direction + C.angle + w) + (C.length / 2 - p) * Math.cos(C.angle + w));
+                                    p = R + g * (C.offset * Math.sin(C.direction + C.angle + w) + (C.length / 2 - p) * Math.sin(C.angle + w));
+                                    var H =
+                                        g * (C.length / 2 - (1 === C.aspect ? x[A] : 0)),
+                                        E = g * C.width / 2,
+                                        G = C.aspect;
+                                    C = C.angle + w;
+                                    var X = E;
+                                    0 < G ? X *= G : 0 > G && (E *= -G);
+                                    G = Math.atan2(X, H);
+                                    let b = Math.atan2(E, H);
+                                    X = Math.sqrt(H * H + X * X);
+                                    H = Math.sqrt(H * H + E * E);
+                                    d.beginPath();
+                                    d.moveTo(z + X * Math.cos(C + G), p + X * Math.sin(C + G));
+                                    d.lineTo(z + H * Math.cos(C + Math.PI - b), p + H * Math.sin(C + Math.PI - b));
+                                    d.lineTo(z + H * Math.cos(C + Math.PI + b), p + H * Math.sin(C + Math.PI + b));
+                                    d.lineTo(z + X * Math.cos(C - G), p + X * Math.sin(C - G));
+                                    d.closePath();
+                                    B.graphical.inversedRender ? (d.stroke(), d.fill()) : (d.fill(), d.stroke())
+                                }
+                            } else throw Error("Mismatch gun number with mockup.");
+                        h.globalAlpha = 1;
+                        k(h, D);
+                        b(h, q, R, g / u.size * u.realSize, u.shape, w);
+                        if (n.turrets.length === u.turrets.length)
+                            for (D = 0; D < u.turrets.length; D++) d = u.turrets[D], 1 === d.layer && (z = d.direction + d.angle + w, x = d.offset * g, ba(q + x * Math.cos(z), R + x * Math.sin(z), d, v, r, g / v / d.size * d.sizeFactor, n.turrets[D].facing + m * w, m, h, n.turrets[D], F));
+                        else throw Error("Mismatch turret number with mockup.");
+                        y || h === f || (f.save(), f.globalAlpha = r * t, f.drawImage(h.canvas, a - q, c - R), f.restore())
+                    }
+                }
+            })();
+        window.requestAnimationFrame || (window.requestAnimationFrame =
+            window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function(b) {
+                window.setTimeout(b, 1E3 / 60)
+            });
+        const Pa = (() => {
+                const a = n(0, .7, 1.5),
+                    k = n(0, /*2*/4, 3),
+                    c = class {
+                        constructor(b, a = !1) {
+                            this.color = b;
+                            this.zeroMin = a;
+                            this.data = []
+                        }
+                        addValue(b) {
+                            this.data.push(b)
+                        }
+                        draw(b, a, c, d) {
+                            for (; this.data.length > c;) this.data.shift();
+                            let e = this.zeroMin ? 0 : Math.min(...this.data),
+                                g = Math.max(...this.data),
+                                h = g - e;
+                            if (0 !== h) {
+                                0 < g && 0 > e && L(b, b + c, a + d * g / h, 2, l.guiwhite);
+                                f.beginPath();
+                                f.moveTo(b, a + d * (g -
+                                    this.data[0]) / h);
+                                for (c = 1; c < this.data.length; c++) f.lineTo(b + c, a + d * (g - this.data[c]) / h);
+                                f.lineWidth = 1;
+                                f.strokeStyle = this.color;
+                                f.stroke()
+                            }
+                        }
+                        getPeriodicAverage() {
+                            var b = this.zeroMin ? 0 : Math.min(...this.data),
+                                a = Math.max(...this.data);
+                            a = .1 * b + .9 * a;
+                            var c = !1;
+                            b = [];
+                            for (var d = this.data.length - 1; 0 <= d; d--) {
+                                let e = this.data[d];
+                                if (e > a)
+                                    if (c) {
+                                        let a = b[b.length - 1];
+                                        e > a.max && (a.max = e, a.at = d)
+                                    } else c = !0, b.push({
+                                        max: e,
+                                        at: d
+                                    });
+                                else c && (c = !1)
+                            }
+                            if (2 > b.length) return null;
+                            a = b.pop().at;
+                            b = b.pop().at;
+                            c = 0;
+                            for (d = a; d < b; d++) c += this.data[d];
+                            return c / (b - a)
+                        }
+                    },
+                    h = (() => {
+                        function a(b, a, c, d, e, f) {
+                            e = Math.cos((1 + f) * Math.PI);
+                            return .5 * (((1 + f) * c + b) * (e + 1) + (-f * d + a) * (1 - e))
+                        }
+
+                        function c(b, a) {
+                            var c = 2 * Math.PI;
+                            return ((b - a + Math.PI) % c + c) % c - Math.PI
+                        }
+                        let d = (a = !1, d = K.rendergap) => {
+                                a = !1 === a ? Date.now() - K.lastuplink : Date.now() - P - Q - a;
+                                d = Math.max(d, 1E3 / B.roomSpeed / 30);
+                                let e = b.noPredict ? 1 : a / d;
+                                return {
+                                    predict: (b, a) => 1 <= e ? a : b + (a - b) * e,
+                                    predictExtrapolate: (b, a) => b + (a - b) * e,
+                                    predictFacing: (b, a) => 1 <= e ? a : b + c(a, b) * e,
+                                    predictFacingExtrapolate: (b, a) => b + c(a, b) * e,
+                                    getPrediction: () => e
+                                }
+                            },
+                            e = (b = y.time, d = K.rendergap) => {
+                                let e = 0,
+                                    f = 0,
+                                    g = 0;
+                                e = Math.max(Date.now() - P - Q - b - 80, -d);
+                                150 < e && (e = 150);
+                                f = e / d;
+                                g = 30 * B.roomSpeed * e / 1E3;
+                                return {
+                                    predict: (b, c, d, h) => 0 <= e ? c + (c - b) * f : a(b, c, d, h, g, f),
+                                    predictExtrapolate: (b, c, d, h) => 0 <= e ? c + (c - b) * f : a(b, c, d, h, g, f),
+                                    predictFacing: (b, a) => b + (1 + f) * c(a, b),
+                                    predictFacingExtrapolate: (b, a) => b + (1 + f) * c(a, b),
+                                    getPrediction: () => e
+                                }
+                            };
+                        return (...b) => B.lag.newPrediction ? d(...b) : e(...b)
+                    })(),
+                    t = new c(l.yellow),
+                    r = new c(l.orange, !0),
+                    g = new c(l.pink),
+                    z = new c(l.teal),
+                    m = (() => {
+                        let b = [];
+                        for (let a = 0; a <
+                            2 * B.gui.expectedMaxSkillLevel; a++) b.push(Math.log(4 * a / B.gui.expectedMaxSkillLevel + 1) / Math.log(5));
+                        return a => b[a]
+                    })();
+                var D = [w(), w(), w(), w(), w(), w(), w(), w(), w(), w()],
+                    x = [w(), w(), w(), w(), w(), w(), w(), w(), w(), w()],
+                    R = [w(), w(), w(), w(), w(), w(), w(), w(), w(), w()],
+                    p = w(),
+                    E = w(),
+                    O = w(),
+                    S = w(),
+                    W = [w(), w(), w(), w(), w(), w(), w()],
+                    V = w(),
+                    ca = [w(), w(), w(), w(), w(), w(), w(), w(), w(), w()],
+                    aa = [w(), w(), w(), w(), w(), w(), w(), w(), w(), w(), w(), w(), w(), w(), w()],
+                    ea = [w(), w(), w(), w(), w(), w(), w(), w(), w()],
+                    fa = w();
+                return c => {
+                    Date.now();
+                    let d = 0;
+                    na++;
+                    let u = Math.max(b.screenWidth,
+                            16 * b.screenHeight / 9) / (1280 >= b.screenWidth ? 1280 : 1920 <= b.screenWidth ? 1920 : b.screenWidth),
+                        n, q; {
+                        let b = h();
+                        d = b.getPrediction();
+                        let a = b.predict(y.lastx, y.cx, y.lastvx, y.vx),
+                            e = b.predict(y.lasty, y.cy, y.lastvy, y.vy);
+                        y.renderx = a;
+                        y.rendery = e;
+                        n = c * y.renderx;
+                        q = c * y.rendery
+                    } {
+                        F(l.white, 1);
+                        F(l.guiblack, .1);
+                        if (b.radial) f.save(), f.translate(b.screenWidth / 2, b.screenHeight / 2), f.rotate(Math.atan2(b.gameWidth / 2 - y.cx, b.gameHeight / 2 - y.cy)), f.translate(b.screenWidth / -2, b.screenHeight / -2), f.globalAlpha = 1, f.fillStyle = l.white,
+                            f.beginPath(), f.arc(-n + b.screenWidth / 2 + c * b.gameWidth / 2, -q + b.screenHeight / 2 + c * b.gameHeight / 2, c * b.gameWidth / 2, 0, 2 * Math.PI), f.fill();
+                        else {
+                            f.globalAlpha = 1;
+                            f.fillStyle = l.white;
+                            f.fillRect(-n + b.screenWidth / 2, -q + b.screenHeight / 2, c * b.gameWidth, c * b.gameHeight);
+                            let a = Z[0].length,
+                                d = Z.length;
+                            for (let e = 0; e < d; e++) {
+                                let g = Z[e];
+                                for (let h = 0; h < a; h++) {
+                                    let l = c * h * b.gameWidth / a - n + b.screenWidth / 2,
+                                        k = c * e * b.gameHeight / d - q + b.screenHeight / 2,
+                                        Ga = c * (h + 1) * b.gameWidth / a - n + b.screenWidth / 2,
+                                        u = c * (e + 1) * b.gameHeight / d - q + b.screenHeight / 2;
+                                    if (!b.radial && (k >= b.screenHeight || 0 >= Ga || l >= b.screenWidth || 0 >= u)) continue;
+                                    f.globalAlpha = .3;
+                                    let t = v(g[h]);
+                                    t !== t.white && (f.fillStyle = t, f.fillRect(l, k, Ga - l, u - k))
+                                }
+                            }
+                        }
+                        f.lineWidth = 1;
+                        f.strokeStyle = l.guiblack;
+                        f.globalAlpha = .04;
+                        f.beginPath();
+                        let a = 30 * c;
+                        if (b.radial) {
+                            let d = 30 * Math.ceil(Math.sqrt(b.screenWidth * b.screenWidth + b.screenHeight * b.screenHeight) / c / c / 60) * c;
+                            for (let c = (b.screenWidth / 2 - n) % a - d; c < b.screenWidth + d; c += a) f.moveTo(c, -d), f.lineTo(c, d + b.screenHeight);
+                            for (let c = (b.screenHeight / 2 - q) % a - d; c < b.screenHeight +
+                                d; c += a) f.moveTo(-d, c), f.lineTo(d + b.screenWidth, c)
+                        } else {
+                            for (let c = (b.screenWidth / 2 - n) % a; c < b.screenWidth; c += a) f.moveTo(c, 0), f.lineTo(c, b.screenHeight);
+                            for (let c = (b.screenHeight / 2 - q) % a; c < b.screenHeight; c += a) f.moveTo(0, c), f.lineTo(b.screenWidth, c)
+                        }
+                        f.stroke();
+                        f.globalAlpha = 1;
+                        b.radial && f.restore()
+                    } {
+                        y.x = y.y = null;
+                        let a, d;
+                        if (b.radial) {
+                            f.save();
+                            f.translate(b.screenWidth / 2, b.screenHeight / 2);
+                            let c = Math.atan2(b.gameWidth / 2 - y.cx, b.gameHeight / 2 - y.cy);
+                            a = Math.cos(c);
+                            d = Math.sin(c);
+                            f.rotate(c)
+                        }
+                        da.forEach(function(a) {
+                            if (a.render.draws) {
+                                if (1 ===
+                                    a.render.status.getFade()) {
+                                    var d = h();
+                                    a.render.x = d.predict(a.render.lastx, a.x, a.render.lastvx, a.vx);
+                                    a.render.y = d.predict(a.render.lasty, a.y, a.render.lastvy, a.vy);
+                                    a.render.f = d.predictFacing(a.render.lastf, a.facing)
+                                } else d = h(a.render.lastRender, a.interval), a.render.x = d.predictExtrapolate(a.render.lastx, a.x, a.render.lastvx, a.vx), a.render.y = d.predictExtrapolate(a.render.lasty, a.y, a.render.lastvy, a.vy), a.render.f = d.predictFacingExtrapolate(a.render.lastf, a.facing);
+                                a.id === A.playerid && 0 === (a.twiggle & 1) &&
+                                    (a.render.f = Math.atan2(U.target.y, U.target.x), b.radial && (a.render.f -= Math.atan2(b.gameWidth / 2 - y.cx, b.gameHeight / 2 - y.cy)), a.twiggle & 2 && (a.render.f += Math.PI));
+                                d = c * a.render.x - n;
+                                var e = c * a.render.y - q;
+                                b.radial ? a.id === A.playerid && (y.x = d + b.screenWidth / 2, y.y = e + b.screenHeight / 2) : (d += b.screenWidth / 2, e += b.screenHeight / 2, a.id === A.playerid && (y.x = d, y.y = e));
+                                ba(d, e, a, c, a.id === A.playerid || b.showInvisible ? a.alpha ? .6 * a.alpha + .4 : .25 : a.alpha, 0 === M[a.index].shape ? 1 : B.graphical.compensationScale, a.render.f, !1, !0)
+                            }
+                        });
+                        b.radial &&
+                            f.restore();
+                        if (!B.graphical.screenshotMode)
+                            for (let e of da) {
+                                let f = c * e.render.x - n,
+                                    g = c * e.render.y - q;
+                                if (b.radial) {
+                                    let c = a * g + d * f;
+                                    f = a * f - d * g + b.screenWidth / 2;
+                                    g = c + b.screenHeight / 2
+                                } else f += b.screenWidth / 2, g += b.screenHeight / 2;
+                                Oa(f, g, e, c, e.id === A.playerid ? 1 : e.alpha)
+                            }
+                    }
+                    if (!b.hideGui) {
+                        var H = (a, c) => {
+                            b.screenWidth /= a;
+                            b.screenHeight /= a;
+                            f.scale(a, a);
+                            c || (u *= a)
+                        };
+                        H(u, !0);
+                        let spacing = 20;
+                        A.__s.update();
+                        var N = Da.get(),
+                            ma = N.max;
+                        do {
+                            if (!b.showTree) break;
+                            let a = M.find(b => "Basic" === b.name);
+                            if (!a) break;
+                            let c = [],
+                                d = [],
+                                g = (b, a, e, {
+                                    index: f,
+                                    tier: h =
+                                        0
+                                }) => {
+                                    c.push({
+                                        x: b,
+                                        y: a,
+                                        colorIndex: e,
+                                        index: f
+                                    });
+                                    let {
+                                        upgrades: k
+                                    } = M[f];
+                                    switch (h) {
+                                        case 3:
+                                            return {
+                                                width: 1, height: 1
+                                            };
+                                        case 2:
+                                            return k.forEach((c, d) => g(b, a + 2 + d, d, c)), d.push([{
+                                                x: b,
+                                                y: a
+                                            }, {
+                                                x: b,
+                                                y: a + 1 + k.length
+                                            }]), {
+                                                width: 1,
+                                                height: 2 + k.length
+                                            };
+                                        case 1:
+                                        case 0: {
+                                            let c = b;
+                                            e = k.map((e, f) => {
+                                                let l = 2 * (e.tier - h);
+                                                e = g(b, a + l, f, e);
+                                                d.push([{
+                                                    x: b,
+                                                    y: a + (0 === f ? 0 : 1)
+                                                }, {
+                                                    x: b,
+                                                    y: a + l
+                                                }]);
+                                                f + 1 === k.length && d.push([{
+                                                    x: c,
+                                                    y: a + 1
+                                                }, {
+                                                    x: b,
+                                                    y: a + 1
+                                                }]);
+                                                b += e.width;
+                                                return e
+                                            });
+                                            return {
+                                                width: e.map(b => b.width).reduce((b, a) => b + a, 0),
+                                                height: 2 + Math.max(...e.map(b => b.height))
+                                            }
+                                        }
+                                    }
+                                },
+                                h = g(0, 0, 0, {
+                                    index: a.index
+                                }),
+                                k = Math.min(.9 * b.screenWidth / h.width, .9 * b.screenHeight / h.height);
+                            f.globalAlpha = .5;
+                            f.fillStyle = l.guiwhite;
+                            G(0, 0, b.screenWidth, b.screenHeight);
+                            let v = k - 4;
+                            f.strokeStyle = l.black;
+                            f.lineWidth = 2;
+                            f.beginPath();
+                            for (let [a, c] of d) {
+                                let d = b.screenWidth / 2 + (c.x - h.width / 2) * k + 1 + .5 * v,
+                                    e = b.screenHeight / 2 + (c.y - h.height / 2) * k + 1 + .5 * v;
+                                f.moveTo(Math.round(b.screenWidth / 2 + (a.x - h.width / 2) * k + 1 + .5 * v) + .5, Math.round(b.screenHeight / 2 + (a.y - h.height / 2) * k + 1 + .5 * v) + .5);
+                                f.lineTo(Math.round(d) + .5, Math.round(e) +
+                                    .5)
+                            }
+                            f.stroke();
+                            for (let {
+                                    x: a,
+                                    y: d,
+                                    colorIndex: g,
+                                    index: u
+                                } of c) {
+                                let c = b.screenWidth / 2 + (a - h.width / 2) * k + 2,
+                                    t = b.screenHeight / 2 + (d - h.height / 2) * k + 2;
+                                f.globalAlpha = 1;
+                                f.fillStyle = e(g + 10);
+                                G(c, t, v, v);
+                                f.globalAlpha = .2;
+                                f.fillStyle = e(g);
+                                G(c, t, v, .6 * v);
+                                f.fillStyle = l.black;
+                                G(c, t + .6 * v, v, .4 * v);
+                                f.globalAlpha = 1;
+                                let r = -Math.PI / 4,
+                                    n = C(u, A.color),
+                                    q = M[u].position,
+                                    m = .8 * v / q.axis;
+                                ba(c + .5 * v - m * q.middle.x * Math.cos(r), t + .5 * v - m * q.middle.x * Math.sin(r), n, .5, 1, m / n.size * 2, r, !0);
+                                f.strokeStyle = l.black;
+                                f.lineWidth = 2;
+                                G(c, t, v, v, !0)
+                            }
+                        } while (0);
+                        if (b.mobile &&
+                            "joysticks" === U.control) {
+                            let a = Math.min(.6 * b.screenWidth, .12 * b.screenHeight);
+                            f.globalAlpha = .3;
+                            f.fillStyle = "#ffffff";
+                            f.beginPath();
+                            f.arc(1 * b.screenWidth / 6, 2 * b.screenHeight / 3, a, 0, 2 * Math.PI);
+                            f.arc(5 * b.screenWidth / 6, 2 * b.screenHeight / 3, a, 0, 2 * Math.PI);
+                            f.fill()
+                        }
+                        b.mobile && H(1.4); {
+                            let c = b.screenWidth / 2,
+                                d = 20;
+                            b.mobile && (d += (b.canSkill ? (200 / 3 + 20) / 1.4 * a.get() : 0) + (b.canUpgrade ? 120 / 1.4 * k.get() : 0));
+                            for (let b = Y.length - 1; 0 <= b; b--) {
+                                let a = Y[b],
+                                    e = a.text;
+                                null == a.textobj && (a.textobj = w());
+                                null == a.len && (a.len = ra(e, 14));
+                                f.globalAlpha =
+                                    .5 * a.alpha;
+                                L(c - a.len / 2, c + a.len / 2, d + 9, 18, l.black);
+                                f.globalAlpha = Math.min(1, a.alpha);
+                                a.textobj.draw(e, c, d + 9, 14, l.guiwhite, "center", !0);
+                                d += 22;
+                                1 < a.status && (d -= 22 * (1 - Math.sqrt(a.alpha)));
+                                1 < a.status ? (a.status -= .05, a.alpha += .05) : 0 === b && (5 < Y.length || 1E4 < Date.now() - a.time) && (a.status -= .05, a.alpha -= .05, 0 >= a.alpha && Y.shift())
+                            }
+                            f.globalAlpha = 1
+                        }
+                        b.mobile && H(1 / 1.4);
+                        if (!b.mobile) {
+                            b.canSkill = 0 < A.points && A.skills.some(b => b.amount < b.cap);
+                            a.set(0 + (b.canSkill || b.died || b.statHover));
+                            b.clickables.stat.hide();
+                            let c = 200,
+                                d =
+                                c,
+                                e = -20 - 2 * c + a.get() * (40 + 2 * c),
+                                g = b.screenHeight - 20 - 15,
+                                h = 11,
+                                k = A.getStatNames(M[A.type].statnames || -1);
+                            A.skills.forEach(function(a) {
+                                h--;
+                                let v = k[h - 1],
+                                    t = a.amount,
+                                    r = l[a.color];
+                                var n = a.softcap;
+                                a = a.cap;
+                                if (n) {
+                                    c = d;
+                                    let k = B.gui.expectedMaxSkillLevel;
+                                    var q = n < a;
+                                    n > k && (k = n);
+                                    L(e + 7.5, e - 7.5 + c * m(n), g + 7.5, 12 + B.graphical.barChunk, l.black);
+                                    L(e + 7.5, e + 7.5 + (c - 35) * m(n), g + 7.5, 12, l.grey);
+                                    L(e + 7.5, e + 7.5 + (c - 35) * m(t), g + 7.5, 11.5, r);
+                                    if (q)
+                                        for (f.lineWidth = 1, f.strokeStyle = l.grey, q = n + 1; q < k; q++) ja(e + (c - 35) * m(q), g + 1.5, e + (c - 35) * m(q), g - 3 + 15);
+                                    f.strokeStyle = l.black;
+                                    f.lineWidth = 1;
+                                    for (q = 1; q < t + 1; q++) ja(e + (c - 35) * m(q), g + 1.5, e + (c - 35) * m(q), g - 3 + 15);
+                                    c = d * m(k);
+                                    n = t === a ? r : !A.points || n !== a && t === n ? l.grey : l.guiwhite;
+                                    D[h - 1].draw(v, Math.round(e + c / 2) + .5, g + 7.5, 10, n, "center", !0);
+                                    x[h - 1].draw("[" + h % 10 + "]", Math.round(e + c - 3.75) - 1.5, g + 7.5, 10, n, "right", !0);
+                                    n === l.guiwhite && b.clickables.stat.place(h - 1, e * u, g * u, c * u, 15 * u);
+                                    t && R[h - 1].draw(n === r ? "USED MAX POINTS" : "+" + t, Math.round(e + c + 4) + .5, g + 7.5, 10, r, "left", !0);
+                                    g -= 19
+                                }
+                            });
+                            b.clickables.hover.place(0, 0, g * u, .8 * c * u, .8 * (b.screenHeight - g) *
+                                u);
+                            1 < A.points && p.draw("x" + A.points, Math.round(e + c - 2) + .5, Math.round(g + 15 - 4) + .5, 20, l.guiwhite, "right")
+                        } {
+                            let a = 25,
+                                 c = (b.screenWidth - 330) / 2,
+                                d = b.screenHeight - 20 - a;
+                            ha || b.mobile || !b.died || (d -= 110);
+                            f.lineWidth = 1;
+                            L(c, c + 330, d + a / 2, a - 3 + B.graphical.barChunk, l.black);
+                            L(c, c + 330, d + a / 2, a - 3, l.grey);
+                            L(c, c + 330 * A.__s.getProgress(), d + a / 2, a - 3.5, l.gold);
+                            S.draw("Level " + A.__s.getLevel() + " " + M[A.type].name, c + 165, d + a / 2, a - 4, l.guiwhite, "center", !0);
+                            a = 14;
+                            d -= a + 4;
+                            L(c + 33, c + 297, d + a / 2, a - 3 + B.graphical.barChunk, l.black);
+                            L(c + 33, c + 297,
+                                d + a / 2, a - 3, l.grey);
+                            L(c + 33, c + 330 * (.1 + .8 * (ma ? Math.min(1, A.__s.getScore() / ma) : 1)), d + a / 2, a - 3.5, l.green);
+                            E.draw("Score:  " + I.formatLargeNumber(A.__s.getScore()), c + 165, d + a / 2, a - 2, l.guiwhite, "center", !0);
+                            f.lineWidth = 4;
+                          O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.guiwhite, "center")
+                                                if (y.name === '𝓟𝓻𝓸𝓽𝓮𝓬𝓽𝓸𝓻')O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.ice, "center")
+                          if (y.name === 'Guest')O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.grey, "center")
+                          if (y.name === 'ᴋᴀ2')O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.blue, "center")
+                        }
+                        b.mobile && H(.8); {
+                            let c = 200 / b.gameWidth * b.gameHeight,
+                                h = b.screenWidth - 20,
+                                u = b.screenHeight - 20,
+                                n = (a, c, d, g, h) => {
+                                    if (!b.radial) {
+                                        let b = Z[0].length,
+                                            e = Z.length,
+                                            h = d / b,
+                                            k = g / e;
+                                        for (let d = 0; d < e; d++) {
+                                            let e = Z[d];
+                                            for (let g = 0; g < b; g++) f.globalAlpha =
+                                                .6, f.fillStyle = v(e[g]), G(a + g * h, c + d * k, h, k)
+                                        }
+                                    }
+                                    f.globalAlpha = .3;
+                                    f.fillStyle = T(l.grey, l.vlgrey);
+                                    b.radial ? G(a + d / 2, c + g / 2, d / 2) : G(a, c, d, g);
+                                    for (let g of Ca.get()) f.fillStyle = T(e(g.color), l.black, .3), f.globalAlpha = g.alpha, 2 === g.type ? G(a + (g.x - g.size) / b.gameWidth * d - .4, c + (g.y - g.size) / b.gameWidth * d - 1, 2 * g.size / b.gameWidth * d + .2, 2 * g.size / b.gameWidth * d + .2) : 1 === g.type ? ia(a + g.x / b.gameWidth * d, c + g.y / b.gameWidth * d, g.size / b.gameWidth * d + .2) : g.id !== A.playerid && ia(a + g.x / b.gameWidth * d, c + g.y / b.gameWidth * d, h);
+                                    f.fillStyle = l.black;
+                                    f.globalAlpha = 1;
+                                    ia(a + y.cx / b.gameWidth * d, c + y.cy / b.gameWidth * d, h);
+                                    f.strokeStyle = l.black;
+                                    f.lineWidth = 3;
+                                    b.radial ? ia(a + d / 2, c + g / 2, d / 2, !0) : G(a, c, d, g, !0)
+                                };
+                            if (b.mobile) {
+                                h -= 200;
+                                let d = (b.canSkill ? (200 / 3 + 40) * a.get() : 0) + (b.canUpgrade ? 140 * k.get() : 0);
+                                n(20, 20 + d, 200, c, 4)
+                            } else h -= 200, u -= c, n(h, u, 200, c, 2);
+                            let q = u - 10,
+                                m = K.latency.reduce((b, a) => b + a, 0) / K.latency.length,
+                                w = Math.sqrt(y.vx * y.vx + y.vy * y.vy);
+                            b.showDebug && (G(h, u - 40, 200, 30), t.addValue(d), t.draw(h, u - 40, 200, 30), r.addValue(w), r.draw(h, u - 40, 200, 30), z.addValue(K.rendergap),
+                                z.draw(h, u - 40, 200, 30), g.addValue(m), g.draw(h, u - 40, 200, 30), q -= 40);
+                            if (B.graphical.screenshotMode) W[6].draw("Arras", h + 200, q - 2, 15, l.guiwhite, "right");
+                            else {
+                                if (b.showDebug) { //Debug names
+                                    W[6].draw("Game Status", h + 200, q - 84 - 2, 15, l.blue, "right");
+                                    let b = r.getPeriodicAverage();
+                                    W[5].draw("Tank Speed: " + w.toFixed(2) + " gu/s" + (b && .005 <= b ? ` (${b.toFixed(2)} gu/s)` : ""), h + 200, q - 70, 10, l.guiwhite, "right");
+                                    W[4].draw("Prediction: " + d.toFixed(3), h + 200, q - 56, 10, l.guiwhite, "right");
+                                    W[3].draw("Update Rate: " + K.updatetime + "Hz", h + 200, q -
+                                        42, 10, l.guiwhite, "right")
+                                } else W[6].draw("ka2-arras.glitch.me", h + 200, q - 42 - 2, 15, l.blue, "right");
+                                W[2].draw("Client FPS: " + K.rendertime + " FPS", h + 200, q - 28, 10, 10 < K.rendertime ? l.green : l.orange, "right");
+                                W[1].draw("Server Speed: " + (100 * A.fps).toFixed(2) + "%", h + 200, q - 14, 10, 1 === A.fps ? l.green : l.orange, "right");
+                                W[0].draw(m.toFixed(1) + " ms  " + b.server.code + " :" + b.server.type + ":", h + 200, q, 10, l.guiwhite, "right")
+                            }
+                        }
+                                    b.mobile && H(1.25);
+                        b.mobile && H(1.4);
+                        if (!B.graphical.screenshotMode) {
+                            let c = b.screenWidth - 200 - 20,
+                                d = 48;
+                            b.mobile &&
+                                (d += (b.canSkill ? 200 / 3 / 1.4 * a.get() : 0) + (b.canUpgrade && 40 + 114 * A.upgrades.length > 1.4 * c ? 100 / 1.4 * k.get() : 0));
+                            0 < N.data.length && V.draw("Scoreboard", Math.round(c + 100) + .5, Math.round(d - 10) + .5, 18, l.guiwhite, "center");
+                            for (let a = 0; a < N.data.length && (!b.mobile || 6 > a); a++) {
+                                let b = N.data[a];
+                                L(c, c + 200, d + 7, 11 + B.graphical.barChunk, l.black);
+                                L(c, c + 200, d + 7, 11, l.grey);
+                                L(c, c + 200 * Math.min(1, b.score / ma), d + 7, 10.5, b.barColor);
+                                ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.guiwhite, "center", !0);
+                                if (b.label.includes('hi'))ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.ice, "center", !0);
+                              if (b.label.includes('ᴋᴀ2'))ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.blue, "center", !0);
+                              if (b.label.includes('[AI]'))ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.guiwhite, "center", !0);
+                                let e =
+                                    14 / b.position.axis;
+                                ba(c - 21 - e * b.position.middle.x * .707, d + 7 + e * b.position.middle.x * .707, b.image, 1 / e, 1, e * e / b.image.size, -Math.PI / 4, !0);
+                                d += 18
+                            }
+                        }
+                        b.mobile && H(1 / 1.4); {
+                            b.canUpgrade = 0 < A.upgrades.length && !(b.mobile && b.died);
+                            k.set(+b.canUpgrade);
+                            let a = k.get();
+                            b.clickables.upgrade.hide();
+                            if (b.canUpgrade) {
+                                let c = 40 * a - 20,
+                                    d = 20,
+                                    g = c,
+                                    h = 0,
+                                    k = d,
+                                    v = 0;
+                                ka += .01;
+                                let t = 0,
+                                    q = 0;
+                                // WARNING!!! Do not disable any of these codes. This will cause a game crash. All these codes are needed!
+                                A.upgrades.forEach(n => {
+                                    d > k && (k = d);
+                                    h = c;
+                                    b.clickables.upgrade.place(q++, c * u, d * u, 100 * u, 100 * u);
+                                    f.globalAlpha = .09; // Changes box background transparency (original - .5)
+                                    G(c, d, 100, 100);
+                                    f.globalAlpha = .0; 
+                                    f.fillStyle = e(t);
+                                    t++;
+                                    G(c, d, 100, 60);
+                                    f.fillStyle = l.black; // Changes bottom background color (original - black)
+                                    G(c, d + 60, 100, 40);
+                                    f.globalAlpha = 1; // Changes gun transparency (original - 1)
+                                    let r = C(n, A.color);
+                                    n = M[n].position;
+                                    let m = 45 / n.axis;
+                                    ba(c + 50 - m * n.middle.x * Math.cos(ka), d + 50 - m * n.middle.x * Math.sin(ka), r, 1, 1, m / r.size, ka, !0);
+                                    n = (b.help[`KEY_CHOOSE_${v+1}`] || "").toLowerCase().trim();
+                                    !b.mobile && n ? (aa[q - 1].draw(r.name, c + 45, d + 100 - 6, 9.5, l.guiwhite, "center"), ea[q - 1].draw("[" + n + "]", c + 100 - 4, d + 100 - 6, 9.5, l.guiwhite, "right")) : aa[q - 1].draw(r.name, c + 50, d + 100 - 6, 9.5, l.guiwhite, "center");
+                                    f.strokeStyle = l.blue; // Line color (original - black)
+                                    f.globalAlpha = 0.5; // Changes line transparency (original - 1)
+                                    f.lineWidth = 6; // Changes line width (less - thick line, more - thin line) (original - 3)
+                                    G(c, d, 100, 100, !0);
+                                    0 !== ++v % 8 || b.mobile ? c += 114 * a : (c = g, d += 114)
+                                });
+                              
+                                let n = ra("Ignore Upgrades", 11) + 10,
+                                    r = (h + 100 + 14 + g - 15) / 2,
+                                    m = k + 100 + 14;
+                                L(r - n / 2, r + n / 2, m + 7, 14 + B.graphical.barChunk, l.black);
+                                L(r - n / 2, r + n / 2, m + 7, 14, l.white);
+                                fa.draw("Ignore Upgrades", r, m + 7, 12, l.guiwhite, "center", !0);
+                                b.clickables.skipUpgrades.place(0, (r - n / 2) * u, m * u, n * u, 14 * u)
+                            } else b.clickables.upgrade.hide(), b.clickables.skipUpgrades.hide()
+                        }
+                         // ===============================================================================
+        // Chat System.        
+        // ===============================================================================        
+        { // Draw chat messages
+            let vspacing = 4;
+            let len = 0;
+            let height = 22; //18;
+            // 3/5 of the screen width.
+            let x = e.screenWidth * 3/5;
+            // One-third of the screen height.
+            let y = (e.screenHeight * 1/3) + spacing;
+            // Draw each message
+            for (let i = chatMessages.length - 1; i >= 0; i--) 
+            {
+                let msg = chatMessages[i],
+                    txt = msg.text,
+                    text = txt;
+                // Give it a textobj if it doesn't have one
+                if (msg.textobj == null) msg.textobj = TextObj();
+                if (msg.len == null) msg.len = measureText(text, height - 4);
+                // Draw the background                
+                f.globalAlpha = 0.5 * msg.alpha;                
+                L(x - 2, x + msg.len + 2, y + height / 2, height, l.blue);
+
+                // Draw the text
+                f.globalAlpha = Math.min(1, msg.alpha);                
+                msg.textobj.draw(text, x, y + height / 2, height - 4, l.red, 'left', true);
+                
+                // Iterate and move
+                y += (vspacing + height);
+                if (msg.status > 1) {
+                    y -= (vspacing + height) * (1 - Math.sqrt(msg.alpha));
+                }
+                if (msg.status > 1) {
+                    msg.status -= 0.05;
+                    msg.alpha += 0.05;
+                } else if (i === 0 && (chatMessages.length > 5 || Date.now() - msg.time > 10000)) {
+                    msg.status -= 0.05;
+                    msg.alpha -= 0.05;
+                    // Remove
+                    if (msg.alpha <- 0) {
+                      chatMessages[0].textobj.remove;
+                        chatMessages.splice(0, 1);
+                    }
+                }
+            }
+            f.globalAlpha = 1;
+        }
+        // ===============================================================================
+
+                        if (b.mobile) {
+                            b.canSkill = 0 < A.points && A.skills.some(b => b.amount < b.cap) && !b.canUpgrade;
+                            a.set(0 + (b.canSkill || b.died));
+                            let c = a.get();
+                            b.clickables.stat.hide();
+                            let d = 200 / 3,
+                                e = 40 * c - 20,
+                                g = 0,
+                                h = A.getStatNames(M[A.type].statnames || -1);
+                            b.canSkill && (A.skills.forEach((a, k) => {
+                                let v = a.softcap;
+                                if (!(0 >= v)) {
+                                    var n = a.amount,
+                                        t = l[a.color];
+                                    a = a.cap;
+                                    var q = h[9 - k].split(/\s+/),
+                                        r = Math.floor(q.length / 2),
+                                        [m, w] = 1 === q.length ? [q, null] : [q.slice(0, r), q.slice(r)];
+                                    f.globalAlpha = .5;
+                                    f.fillStyle = t;
+                                    G(e, 20, 100, 2 * d / 3);
+                                    f.globalAlpha = .1;
+                                    f.fillStyle = l.black;
+                                    G(e, 20 + 2 * d / 3 * 2 / 3, 100, 2 * d / 3 / 3);
+                                    f.globalAlpha = 1;
+                                    f.fillStyle = l.guiwhite;
+                                    G(e,
+                                        20 + 2 * d / 3, 100, 1 * d / 3);
+                                    f.fillStyle = t;
+                                    G(e, 20 + 2 * d / 3, 100 * n / v, 1 * d / 3);
+                                    f.strokeStyle = l.black;
+                                    f.lineWidth = 1;
+                                    for (q = 1; q < a; q++) r = e + q / v * 100, ja(r, 20 + 2 * d / 3, r, 20 + d);
+                                    n === a || !A.points || v !== a && n === v || b.clickables.stat.place(9 - k, e * u, 20 * u, 100 * u, d * u);
+                                    w ? (D[k].draw(w, e + 50, 20 + .55 * d, d / 6, l.guiwhite, "center"), D[k].draw(m, e + 50, 20 + .3 * d, d / 6, l.guiwhite, "center")) : D[k].draw(m, e + 50, 20 + .425 * d, d / 6, l.guiwhite, "center");
+                                    0 < n && R[k].draw(n >= v ? "MAX" : "+" + n, Math.round(e + 50) + .5, 20 + 1.3 * d, d / 4, t, "center");
+                                    f.strokeStyle = l.black;
+                                    f.globalAlpha = 1;
+                                    f.lineWidth =
+                                        3;
+                                    ja(e, 20 + 2 * d / 3, e + 100, 20 + 2 * d / 3);
+                                    G(e, 20, 100, d, !0);
+                                    e += 114 * c;
+                                    g++
+                                }
+                            }), 1 < A.points && p.draw("x" + A.points, Math.round(e) + .5, 40.5, 20, l.guiwhite, "left"))
+                        }
+                        H(1 / u, !0)
+                    }
+                }
+            })(),
+            Ra = (() => {
+                var a = w(),
+                    e = w(),
+                    c = w(),
+                    f = w(),
+                    k = w(),
+                    v = w(),
+                    g = w();
+                let n = () => {
+                        let a = [Math.round(b.finalKills[0].get()), Math.round(b.finalKills[1].get()), Math.round(b.finalKills[2].get())];
+                        var c = a[0] + .5 * a[1] + 3 * a[2];
+                        let d = (0 === c ? "\ud83c\udf3c" : 4 > c ? "\ud83c\udfaf" : 8 > c ? "\ud83d\udca5" : 15 > c ? "\ud83d\udca2" : 25 > c ? "\ud83d\udd25" : 50 > c ? "\ud83d\udca3" : 75 > c ? "\ud83d\udc7a" :
+                            100 > c ? "\ud83c\udf36\ufe0f" : "\ud83d\udcaf") + " ";
+                        if (0 === c) return d + "A true pacifist";
+                        c = [];
+                        a[0] && c.push(a[0] + " kills");
+                        a[1] && c.push(a[1] + " assists");
+                        a[2] && c.push(a[2] + " visitors defeated");
+                        return d + c.join(" and ")
+                    },
+                    r = () => b.finalKillers.length ? "\ud83d\udd2a Succumbed to " + b.finalKillers.map(b => I.addArticle(M[b].name)).join(" and ") : "\ud83e\udd37 Well that was kinda dumb huh";
+                return () => {
+                    F(l.black, .25);
+                    let d = b.screenWidth / 2,
+                        h = b.screenHeight / 2 - 50;
+                    var u = C(A.type, A.color);
+                    let t = M[A.type].position,
+                        q = 140 / t.axis;
+                    ba(b.screenWidth / 2 - q * t.middle.x * .707 - 190 - 70, b.screenHeight / 2 - 35 + q * t.middle.x * .707 - 10, u, 1.5, 1, .5 * q / u.realSize, -Math.PI / 4, !0);
+                    a.draw("How much wood can a woodchuck chuck?", d, h - 80, 8, l.guiwhite, "center");
+                    e.draw("Final Level " + A.__s.getLevel() + " " + M[A.type].name, d - 170, h - 30, 24, l.guiwhite);
+                    c.draw("Final Score: " + I.formatLargeNumber(Math.round(b.finalScore.get())), d - 170, h + 25, 50, l.guiwhite);
+                    f.draw("\u231a Lived for " + I.timeForHumans(Math.round(b.finalLifetime.get())), d - 170, h + 55, 16, l.guiwhite);
+                    k.draw(n(), d - 170, h + 77, 16, l.guiwhite);
+                    v.draw(r(),
+                        d - 170, h + 99, 16, l.guiwhite);
+                    u = Math.ceil((b.respawnOn - Date.now()) / 1E3);
+                    g.draw(0 < u ? `You may respawn in ${u} second${1===u?"":"s"}` : "joysticks" === U.control ? "Tap to respawn!" : "Press enter to respawn!", d, h + 125, 16, l.guiwhite, "center")
+                }
+            })();
+        window.onbeforeunload = () => b.isInGame && !b.died ? !0 : null;
+        window.$createProfile = (() => {
+            var b = w();
+            w();
+            return (a, c = -1, d = 200, k = -Math.PI / 4) => {
+                let h = f.canvas.width,
+                    g = f.canvas.height,
+                    v = f.canvas.width = d;
+                d = f.canvas.height = d; - 1 === c ? f.clearRect(0, 0, v, d) : (f.fillStyle = l.white, f.fillRect(0,
+                    0, v, d), f.globalAlpha = .5, f.fillStyle = e(c + 10), G(0, 0, v, d), f.globalAlpha = .1, f.fillStyle = e(c), G(0, 0, v, .6 * d), f.fillStyle = l.black, G(0, .6 * d, v, .4 * d), f.globalAlpha = 1);
+                let n = C(a, A.color);
+                a = M[a].position;
+                let u = .6 * v / a.axis;
+                ba(.5 * v - u * a.middle.x * Math.cos(k), .5 * d - u * a.middle.x * Math.sin(k), n, 1, 1, u / n.size, k, !0); - 1 !== c && (b.draw(n.name, .9 * v / 2, d - 6, d / 8 - 3, l.guiwhite, "center"), f.strokeStyle = l.black, f.globalAlpha = 1, f.lineWidth = 3, G(0, 0, v, d, !0));
+                c = f.canvas.toDataURL();
+                f.canvas.width = h;
+                f.canvas.height = g;
+                return c
+            }
+       })();
+        const Qa =
+            (() => {
+                var a = w(),
+                    e = w();
+                w();
+                var c = [ //You can change the tips lol
+                    ["Tip: You can view and edit your keybinds in the options menu.", "Tip: You can play on mobile by just going to arras.io on your phone!"],
+                    ["Tip: You can have the shield and health bar be separated by going to the options menu.", "Tip: If Arras is having a low frame rate, you can try enabling low graphics in the options menu.", "Tip: You can make traps rounded with the classic trap setting in the options menu."
+                    ],
+                    ["Teaming in FFA or FFA Maze is frowned upon, but when taken to the extremes, you can be punished.", "Witch hunting is when you continuously target someone and follow them. This is frowned upon, but when taken to the extremes, you can be punished.", "Multiboxing is when you use a script to control multiple tanks at the same time. This is considered CHEATING and will result in a ban."]
+                ];
+                c = c[Math.floor(Math.random() *
+                    c.length)];
+                let f = c[Math.floor(Math.random() * c.length)];
+                return () => {
+                    F(l.white, .5);
+                    a.draw("Connecting...", b.screenWidth / 2, b.screenHeight / 2, 30, l.guiwhite, "center");
+                    e.draw(b.message, b.screenWidth / 2, b.screenHeight / 2 + 30, 15, l.lgreen, "center");
+                    e.draw(f, b.screenWidth / 2, b.screenHeight / 2 + 75, 15, l.guiwhite, "center")
+                }
+            })(),
+            Sa = (() => {
+                var a = w(),
+                    e = w();
+                return () => {
+                    F(T(l.red, l.guiblack, .3), .25);
+                    a.draw("\ud83d\udc80 Disconnected \ud83d\udc80", b.screenWidth / 2, b.screenHeight / 2, 30, l.guiwhite, "center");
+                    e.draw(b.message, b.screenWidth /
+                        2, b.screenHeight / 2 + 30, 15, l.orange, "center")
+                }
+            })();
+        let Ma = b.mobile ? 0 : Math.max(0, 1 - Math.abs(Date.now() - new Date(2019, 11, 25)) / 20736E5);
+        if (Ma) {
+            let a = document.createElement("canvas");
+            a.style.position = "absolute";
+            a.style.top = "0";
+            document.body.insertBefore(a, document.body.firstChild);
+            let e = a.getContext("2d"),
+                c = [],
+                f = () => {
+                    a.width !== window.innerWidth && (a.width = window.innerWidth);
+                    a.height !== window.innerHeight && (a.height = window.innerHeight);
+                    e.clearRect(0, 0, a.width, a.height);
+                    e.fillStyle = "#ffffff";
+                    for (let b of c) {
+                        b.x +=
+                            5 / b.r + Math.random();
+                        b.y += 12.5 / b.r + Math.random();
+                        let c = 2 * Math.min(.4, .9 - b.y / a.height);
+                        0 < c ? (e.globalAlpha = c, e.beginPath(), e.arc(b.x, b.y, b.r, 0, 2 * Math.PI), e.fill()) : b.gone = !0
+                    }
+                    .001 * a.width * Ma > Math.random() && c.push({
+                        x: a.width * (1.5 * Math.random() - .5),
+                        y: -50 - 100 * Math.random(),
+                        r: 2 + Math.random() * Math.random() * 4
+                    });
+                    b.gameStart ? a.remove() : requestAnimationFrame(f)
+                };
+            setInterval(() => {
+                c = c.filter(a => !a.gone)
+            }, 2E3);
+            f()
+        }
+        let ca = new Date,
+            bb = "en-US" === navigator.language && -7 <= b.timezone && -4 >= b.timezone,
+            cb = 6 === ca.getMonth() &&
+            4 === ca.getDate(),
+            db = 11 === ca.getMonth() && 31 === ca.getDate() || 0 === ca.getMonth() && 3 >= ca.getDate();
+        if (!b.mobile && (cb && bb || db)) {
+            let a = document.createElement("canvas");
+            a.style.position = "absolute";
+            a.style.top = "0";
+            document.body.insertBefore(a, document.body.firstChild);
+            let e = a.getContext("2d"),
+                c = [
+                    [164, 14, 14],
+                    [230, 80, 0],
+                    [230, 119, 0],
+                    [47, 127, 51],
+                    [23, 78, 166],
+                    [123, 31, 163]
+                ],
+                f = [],
+                k = () => {
+                    if (a.width !== window.innerWidth || a.height !== window.innerHeight) a.width = window.innerWidth, a.height = window.innerHeight, f.length = 0, e.clearRect(0,
+                        0, a.width, a.height), e.fillStyle = "rgba(255, 255, 255, 0.01)", e.fillRect(0, 0, a.width, a.height), e.lineWidth = 2.5, e.lineCap = "round";
+                    e.globalCompositeOperation = "destination-out";
+                    e.fillStyle = "rgba(0, 0, 0, 0.15)";
+                    e.fillRect(0, 0, a.width, a.height);
+                    e.globalCompositeOperation = "lighter";
+                    for (let a of f) {
+                        var d = a.x,
+                            g = a.y;
+                        a.vy += .2;
+                        a.x += a.vx;
+                        a.y += a.vy;
+                        a.vy *= .99;
+                        a.vx *= .99;
+                        a.time--;
+                        var h = 0 < a.time ? a.primary ? 1 : 10 <= a.time ? 1 : a.time / 10 : 0;
+                        if (0 < h) e.strokeStyle = `rgba(${a.color[0]}, ${a.color[1]}, ${a.color[2]}, ${h})`, e.beginPath(),
+                            e.moveTo(d, g), e.lineTo(a.x, a.y), e.stroke();
+                        else {
+                            if (a.primary && !a.gone) {
+                                d = Math.floor(5 * Math.random()) + 30;
+                                g = .5 * Math.random() + 3;
+                                h = 25 + 5 * Math.random();
+                                for (let b of [c[Math.floor(Math.random() * c.length)], c[Math.floor(Math.random() * c.length)]])
+                                    for (let c = 0; c < d; c++) {
+                                        let e = (c + Math.random()) / d * Math.PI * 2,
+                                            k = g + .5 * Math.random();
+                                        f.push({
+                                            color: b,
+                                            x: a.x,
+                                            y: a.y,
+                                            vx: Math.cos(e) * k,
+                                            vy: -.8 + Math.sin(e) * k,
+                                            time: h + 2 * Math.random()
+                                        })
+                                    }
+                            }
+                            a.gone = !0
+                        }
+                    }
+                    3E-5 * a.width > Math.random() && f.push({
+                        color: c[Math.floor(Math.random() * c.length)],
+                        x: a.width *
+                            Math.random(),
+                        y: a.height - 10,
+                        vx: 4 * Math.random() - 2,
+                        vy: 5 * Math.random() - 15,
+                        time: 30 + 10 * Math.random(),
+                        primary: !0
+                    });
+                    b.gameStart ? a.remove() : requestAnimationFrame(k)
+                };
+            setInterval(() => {
+                f = f.filter(a => !a.gone)
+            }, 2E3);
+            k()
+        }
+    }, function(p) {
+        const m = {
+            openshift: (a, e) => `n-${a}-${e}.7e14.starter-us-west-2.openshiftapps.com`,
+            glitch: a => `${a}.glitch.me`,
+            heroku: a => `arras-${a}.herokuapp.com`,
+            arras: (a, e = 5E3) => `ip-${a}.arras.io:${e}`
+        };
+        var x = (new Date).getDate();
+        const a = 25 <= x ? 3 : 0;
+        x = 25 <= x ? 0 : 3;
+        const e = {
+            help: {
+                KEY_CHOOSE_1: "Y",
+                KEY_CHOOSE_2: "U",
+                KEY_CHOOSE_3: "I",
+                KEY_CHOOSE_4: "H",
+                KEY_CHOOSE_5: "J",
+                KEY_CHOOSE_6: "K"
+            },
+            KEY_AUTO_FIRE: 69,
+            KEY_AUTO_SPIN: 67,
+            KEY_OVER_RIDE: 82,
+            KEY_LEVEL_UP: 78,
+            KEY_REVERSE_TANK: 86,
+            KEY_REVERSE_MOUSE: 66,
+            KEY_SCREENSHOT: 81,
+            KEY_UPGRADE_MAX: 77,
+            KEY_LOL: 84,
+            KEY_RECORD: 90,
+            KEY_UP: 87,
+            KEY_PING: 76,
+            KEY_LEFT: 65,
+            KEY_DOWN: 83,
+            KEY_RIGHT: 68,
+            KEY_CHOOSE_1: 89,
+            KEY_CHOOSE_2: 85,
+            KEY_CHOOSE_3: 73,
+            KEY_CHOOSE_4: 72,
+            KEY_CHOOSE_5: 74,
+            KEY_CHOOSE_6: 75,
+            KEY_CHOOSE_7: -1,
+            KEY_CHOOSE_8: -1,
+            KEY_CHOOSE_9: -1,
+            KEY_ENTER: 13,
+            KEY_SPAWN: 13,
+            KEY_LEFT_ARROW: 37,
+            KEY_UP_ARROW: 38,
+            KEY_RIGHT_ARROW: 39,
+            KEY_DOWN_ARROW: 40,
+            KEY_UPGRADE_ATK: 49,
+            KEY_UPGRADE_HTL: 50,
+            KEY_UPGRADE_SPD: 51,
+            KEY_UPGRADE_STR: 52,
+            KEY_UPGRADE_PEN: 53,
+            KEY_UPGRADE_DAM: 54,
+            KEY_UPGRADE_RLD: 55,
+            KEY_UPGRADE_MOB: 56,
+            KEY_UPGRADE_RGN: 57,
+            KEY_UPGRADE_SHI: 48,
+            KEY_MOUSE_0: 32,
+            KEY_MOUSE_1: 9,
+            KEY_MOUSE_2: 16,
+            KEY_FUCK_YOU: 192,
+            KEY_KILL_YOURSELF: 79,
+            KEY_NO_U: 88,
+            screenWidth: window.innerWidth,
+            screenHeight: window.innerHeight,
+            gameWidth: 0,
+            gameHeight: 0,
+            gameStart: !1,
+            disconnected: !1,
+            died: !1,
+            showDebug: !1,
+            showTree: !1,
+            isChatMode: false,
+            server: null,
+          codeTable: [{
+                    z: "Private",
+                    local: "Local",
+                    glitch: "Glitch",
+                    os: "OpenShift",
+                    linode: "Linode",
+                    vultr: "Vultr",
+                    buyvm: "BuyVM",
+                    extravm: "ExtraVM",
+                    ovh: "OVH",
+                    dream_team: "Glitch",
+                }, {
+                    unknown: ["Unknown", null],
+                    local: ["Local", null],
+                    sv: ["US West", -7],
+                    la: ["US West", -7],
+                    1: ["US East", 2],   
+                    singapore: ["Asia", 8],
+                    
+                  
+                },
+                [ //Gamemode Names
+                    [{
+                        id: "p",
+                        to: "Private"
+                    }],
+                    [{
+                        id: "e",
+                        dynamic: "word"
+                    }],
+                    [{
+                        id: "w",
+                        dynamic: "words"
+                    }],
+                    [{
+                        id: "o",
+                        to: "Open 3TDM"
+                    }],
+                    [{
+                        id: "m",
+                        to: "Maze",
+                        delay: !0,
+                        remove: "f"
+                    }],
+                    [{
+                        id: "f",
+                        to: "Developer Server"
+                    }, {
+                        id: "2",
+                        to: "2 Team",
+                        end: "2TDM"
+                    }, {
+                        id: "3",
+                        to: "3 Team",
+                        end: "3TDM"
+                    }, {
+                        id: "4",
+                        to: "4 Team",
+                        end: "4TDM"
+                    }],
+                    [{
+                        id: "d",
+                        to: "Protector"
+                    }, {
+                        id: "m",
+                        to: "Mothership",
+                        remove: "2"
+                    }, {
+                        id: "a",
+                        to: "Assault",
+                        remove: "2"
+                    }, {
+                        id: "t",
+                        to: "2-2 Team",
+                        end: "Defender Mode"
+                    }]
+                ]
+            ],
+            timezone: (new Date).getTimezoneOffset() / -60,
+            servers: [{ //The glitch servers that it connects to (The one with id: z is for private servers that you can connect to it.)
+                    id: "z",
+                    type: "0unk",
+                    code: "z-unknown-pe6server",
+                    at: "private",
+                    untrusted: !0,
+                    secure: -1
+                }, {
+                    visible: 0,
+                    id: "a",
+                    type: "4TDM",
+                    code: "dream_team-1-4",
+                    at: m.glitch("4tdm-server"),
+                    untrusted: !0,
+                    secure: -1,
+                    prefer: !0,
+                    //featured: !0 //Add this if you want the server to show golden on the menu
+                }, {
+                    visible: 0,
+                    id: "b",
+                    type: "FFA",
+                    code: "dream_team-1-ffa",
+                    at: m.glitch("closedregionaaaab"),
+                    untrusted: !0,
+                    secure: -1,
+                    prefer: !0,
+                    //featured: !0
+                }, {
+          
+                    visible: 0,
+                    id: "c",
+                    type: "2-2TDM",
+                    code: "dream_team-1-t",
+                    at: m.glitch("destroytheattacker"),
+                    untrusted: !0,
+                    secure: -1,
+                    prefer: !0,
+                    featured: !0 
+                  
+                                  }, {
+                    visible: 0,
+                    id: "p",
+                    type: "",
+                    code: "dream_team-1-dev",
+                    at: m.glitch("domtdm"),
+                    untrusted: !0,
+                    secure: -1,
+                    prefer: !0,
+                  
+                }, 
+            ].map((a,
+                e) => ({
+                data: a,
+                i: e
+            })).sort((a, e) => a.data.type < e.data.type ? -1 : e.data.type > a.data.type ? 1 : a.i - e.i).map(({
+                data: a
+            }) => a),
+            partyLink: 0,
+            mobile: /android|mobi/i.test(navigator.userAgent),
+            showInvisible: !1
+        };
+        window.Arras = (a = !0) => a || e;
+        p.exports = e
+    }, function(p, m) {
+        let x = window.localStorage || {};
+        m.submitToLocalStorage = a => {
+            x[a + "Value"] = document.getElementById(a).value || "";
+            x[a + "Checked"] = document.getElementById(a).checked || "false";
+            return !1
+        };
+        m.retrieveFromLocalStorage = (a, e = !1) => {
+            document.getElementById(a).value = x[a + "Value"] ||
+                "";
+            document.getElementById(a).checked = "true" === (x[a + "Checked"] || e.toString());
+            return !1
+        };
+        m.handleLargeNumber = (a, e = !1) => e && 0 >= a ? "" : 1E3 > a ? a.toFixed(0) + "" : 1E6 > a ? (a / 1E3).toFixed(2) + "K" : 1E9 > a ? (a / 1E6).toFixed(2) + "M" : 1E12 > a ? (a / 1E9).toFixed(2) + "B" : 1E15 > a ? (a / 1E12).toFixed(2) + "T" : 1E18 > a ? (a / 1E15).toFixed(2) + "Q" : 1E21 > a ? (a / 1E18).toFixed(2) + "Qi" : "\u221e";
+        m.timeForHumans = a => {
+            function e(a, e) {
+                a && (C = C + ("" === C ? "" : ", ") + a + " " + e + (1 < a ? "s" : ""))
+            }
+            let m = a % 60;
+            a = Math.floor(a / 60);
+            let v = a % 60;
+            a = Math.floor(a / 60);
+            let k = a % 24;
+            a = Math.floor(a / 24);
+            let C = "";
+            if (300 < a) return "omg thats so long";
+            e(a, "day");
+            e(k, "hour");
+            e(v, "minute");
+            e(m, "second");
+            "" === C && (C = "less than a second");
+            return C
+        };
+        m.addArticle = a => /^\s*[aeiouAEIOU]/.test(a) ? "an " + a : "a " + a;
+        m.formatLargeNumber = a => 1E24 > a ? a.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "\u221e";
+        m.pullJSON = a => {
+            if (window.fetch) return fetch(a, {
+                cache: "no-cache"
+            }).then(a => a.json());
+            let e = new XMLHttpRequest;
+            console.log("Loading JSON from " + a);
+            e.responseType = "json";
+            return new Promise((m, v) => {
+                e.open("GET", a);
+                e.onload = () => {
+                    m(e.response);
+                    console.log("JSON load complete.")
+                };
+                e.onerror = () => {
+                    v(e.statusText);
+                    console.log("JSON load failed.");
+                    console.log(e.statusText)
+                };
+                e.send()
+            })
+        }
+    }, function(p, m) {
+        (function(x) {
+            function a(a) {
+                function e() {
+                    setTimeout(function() {
+                        !0 === v._options.checkOnLoad && (!0 === v._options.debug && v._log("onload->eventCallback", "A check loading is launched"), null === v._var.bait && v._creatBait(), setTimeout(function() {
+                            v.check()
+                        }, 1))
+                    }, 1)
+                }
+                this._options = {
+                    checkOnLoad: !1,
+                    resetOnEnd: !1,
+                    loopCheckTime: 50,
+                    loopMaxNumber: 5,
+                    baitClass: "pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links",
+                    baitStyle: "width: 1px !important; height: 1px !important; position: absolute !important; left: -10000px !important; top: -1000px !important;",
+                    debug: !1
+                };
+                this._var = {
+                    version: "3.2.1",
+                    bait: null,
+                    checking: !1,
+                    loop: null,
+                    loopNumber: 0,
+                    event: {
+                        detected: [],
+                        notDetected: []
+                    }
+                };
+                void 0 !== a && this.setOption(a);
+                var v = this;
+                void 0 !== x.addEventListener ? x.addEventListener("load", e, !1) : x.attachEvent("onload", e)
+            }
+            a.prototype._options = null;
+            a.prototype._var = null;
+            a.prototype._bait = null;
+            a.prototype._log = function(a, m) {
+                console.log("[BlockAdBlock][" +
+                    a + "] " + m)
+            };
+            a.prototype.setOption = function(a, m) {
+                if (void 0 !== m) {
+                    var e = a;
+                    a = {};
+                    a[e] = m
+                }
+                for (var k in a) this._options[k] = a[k], !0 === this._options.debug && this._log("setOption", 'The option "' + k + '" he was assigned to "' + a[k] + '"');
+                return this
+            };
+            a.prototype._creatBait = function() {
+                var a = document.createElement("div");
+                a.setAttribute("class", this._options.baitClass);
+                a.setAttribute("style", this._options.baitStyle);
+                this._var.bait = x.document.body.appendChild(a);
+                this._var.bait.offsetParent;
+                this._var.bait.offsetHeight;
+                this._var.bait.offsetLeft;
+                this._var.bait.offsetTop;
+                this._var.bait.offsetWidth;
+                this._var.bait.clientHeight;
+                this._var.bait.clientWidth;
+                !0 === this._options.debug && this._log("_creatBait", "Bait has been created")
+            };
+            a.prototype._destroyBait = function() {
+                x.document.body.removeChild(this._var.bait);
+                this._var.bait = null;
+                !0 === this._options.debug && this._log("_destroyBait", "Bait has been removed")
+            };
+            a.prototype.check = function(a) {
+                void 0 === a && (a = !0);
+                !0 === this._options.debug && this._log("check", "An audit was requested " + (!0 === a ? "with a" : "without") +
+                    " loop");
+                if (!0 === this._var.checking) return !0 === this._options.debug && this._log("check", "A check was canceled because there is already an ongoing"), !1;
+                this._var.checking = !0;
+                null === this._var.bait && this._creatBait();
+                var e = this;
+                this._var.loopNumber = 0;
+                !0 === a && (this._var.loop = setInterval(function() {
+                    e._checkBait(a)
+                }, this._options.loopCheckTime));
+                setTimeout(function() {
+                    e._checkBait(a)
+                }, 1);
+                !0 === this._options.debug && this._log("check", "A check is in progress ...");
+                return !0
+            };
+            a.prototype._checkBait = function(a) {
+                var e = !1;
+                null === this._var.bait && this._creatBait();
+                if (null !== x.document.body.getAttribute("abp") || null === this._var.bait.offsetParent || 0 == this._var.bait.offsetHeight || 0 == this._var.bait.offsetLeft || 0 == this._var.bait.offsetTop || 0 == this._var.bait.offsetWidth || 0 == this._var.bait.clientHeight || 0 == this._var.bait.clientWidth) e = !0;
+                if (void 0 !== x.getComputedStyle) {
+                    var v = x.getComputedStyle(this._var.bait, null);
+                    !v || "none" != v.getPropertyValue("display") && "hidden" != v.getPropertyValue("visibility") || (e = !0)
+                }!0 === this._options.debug &&
+                    this._log("_checkBait", "A check (" + (this._var.loopNumber + 1) + "/" + this._options.loopMaxNumber + " ~" + (1 + this._var.loopNumber * this._options.loopCheckTime) + "ms) was conducted and detection is " + (!0 === e ? "positive" : "negative"));
+                !0 === a && (this._var.loopNumber++, this._var.loopNumber >= this._options.loopMaxNumber && this._stopLoop());
+                if (!0 === e) this._stopLoop(), this._destroyBait(), this.emitEvent(!0), !0 === a && (this._var.checking = !1);
+                else if (null === this._var.loop || !1 === a) this._destroyBait(), this.emitEvent(!1), !0 ===
+                    a && (this._var.checking = !1)
+            };
+            a.prototype._stopLoop = function() {
+                clearInterval(this._var.loop);
+                this._var.loop = null;
+                this._var.loopNumber = 0;
+                !0 === this._options.debug && this._log("_stopLoop", "A loop has been stopped")
+            };
+            a.prototype.emitEvent = function(a) {
+                !0 === this._options.debug && this._log("emitEvent", "An event with a " + (!0 === a ? "positive" : "negative") + " detection was called");
+                a = this._var.event[!0 === a ? "detected" : "notDetected"];
+                for (var e in a)
+                    if (!0 === this._options.debug && this._log("emitEvent", "Call function " +
+                            (parseInt(e) + 1) + "/" + a.length), a.hasOwnProperty(e)) a[e]();
+                !0 === this._options.resetOnEnd && this.clearEvent();
+                return this
+            };
+            a.prototype.clearEvent = function() {
+                this._var.event.detected = [];
+                this._var.event.notDetected = [];
+                !0 === this._options.debug && this._log("clearEvent", "The event list has been cleared")
+            };
+            a.prototype.on = function(a, m) {
+                this._var.event[!0 === a ? "detected" : "notDetected"].push(m);
+                !0 === this._options.debug && this._log("on", 'A type of event "' + (!0 === a ? "detected" : "notDetected") + '" was added');
+                return this
+            };
+            a.prototype.onDetected = function(a) {
+                return this.on(!0, a)
+            };
+            a.prototype.onNotDetected = function(a) {
+                return this.on(!1, a)
+            };
+            m.BlockAdBlock = a;
+            m.blockAdBlock = new a({
+                checkOnLoad: !0,
+                resetOnEnd: !0
+            })
+        })(window)
+    }, function(p) {
+        const m = class {
+            static now() {
+                return Math.min(Math.floor(Date.now() / 2E3) - 757382400, 268435455)
+            }
+            constructor() {
+                this.reset();
+                setInterval(() => {
+                    this.logOnLine(!!navigator.onLine)
+                }, 2E3)
+            }
+            reset() {
+                function a() {}
+                this.startTime = m.now();
+                this.event = {
+                    die: 0,
+                    disconnect: 0
+                };
+                this.mouse = {
+                    status: !0,
+                    updates: [0, 0, 0, 0,
+                        0, 0, 0
+                    ]
+                };
+                this.onLine = {
+                    status: !!navigator.onLine,
+                    updates: [0, 0, 0, 0]
+                };
+                this.consoleOpened = this.closeCall = !1;
+                let e = new Image;
+                Object.defineProperty(e, "id", {
+                    get: () => {
+                        this.consoleOpened = !0;
+                        return ""
+                    }
+                });
+                a.toString = () => {
+                    this.consoleOpened = !0;
+                    return "function() {}"
+                };
+                setTimeout(console.log.bind(null, "%c", a, e))
+            }
+            time() {
+                return Math.min(m.now() - this.startTime, 65535)
+            }
+            logEvent(a) {
+                this.event[a] = this.time()
+            }
+            logMouse(a) {
+                this.mouse.status !== a && (this.mouse.status = a, this.mouse.updates.shift(), this.mouse.updates.push(this.time()))
+            }
+            logOnLine(a) {
+                this.onLine.status !==
+                    a && (this.onLine.status = a, this.onLine.updates.shift(), this.onLine.updates.push(this.time()))
+            }
+            logCloseCall() {
+                this.closeCall = !0
+            }
+            toBits() {
+                let a = [this.mouse.status, this.onLine.status, this.closeCall, this.consoleOpened];
+                var e = this.startTime;
+                for (let m = 0; 28 > m; m++) a.push(!!(e & 1)), e >>= 1;
+                for (let m of [this.event.die, this.event.disconnect, ...this.mouse.updates, ...this.onLine.updates, this.time()])
+                    for (e = 0; 16 > e; e++) a.push(!!(m & 1)), m >>= 1;
+                return a
+            }
+            drawCanvas(a) {
+                let {
+                    width: e,
+                    height: m
+                } = a.canvas, v = a.getImageData(0, 0, e,
+                    m), {
+                    data: k
+                } = v, C = this.toBits(), x = [];
+                for (var n = 0; 16 > n; n++) {
+                    var p = !1;
+                    for (var z = 0; 16 > z; z++) C[n + 16 * z] && (p = !p);
+                    x.push(p)
+                }
+                n = [];
+                for (p = 0; 16 > p; p++) {
+                    z = !1;
+                    for (var r = 0; 16 > r; r++) C[r + 16 * p] && (z = !z);
+                    n.push(z)
+                }
+                p = !0;
+                for (z = 0; 256 > z; z++) C[z] && (p = !p);
+                z = -Math.floor(8 * Math.random());
+                for (r = z; r < e; r += 4)
+                    for (let a = z; a < e; a += 4) {
+                        let v = Math.floor(r / 4) % 32,
+                            m = Math.floor(a / 4) % 32;
+                        17 < v || 17 < m || (33 !== v + m && (16 === v || 16 === m || (17 === v ? 17 === m ? p : n[m] : 17 === m ? x[v] : C[v + 16 * m])) ? (k[r + a * e << 2 | 0] |= 1, k[r + a * e << 2 | 1] |= 1, k[r + a * e << 2 | 2] &= -2, k[r + 1 + a * e << 2 | 0] |= 1,
+                            k[r + 1 + a * e << 2 | 1] |= 1, k[r + 1 + a * e << 2 | 2] &= -2, k[r + a * e + e << 2 | 0] |= 1, k[r + a * e + e << 2 | 1] |= 1, k[r + a * e + e << 2 | 2] &= -2, k[r + 1 + a * e + e << 2 | 0] |= 1, k[r + 1 + a * e + e << 2 | 1] |= 1, k[r + 1 + a * e + e << 2 | 2] &= -2) : (k[r + a * e << 2 | 0] &= -2, k[r + a * e << 2 | 1] &= -2, k[r + a * e << 2 | 2] |= 1, k[r + 1 + a * e << 2 | 0] &= -2, k[r + 1 + a * e << 2 | 1] &= -2, k[r + 1 + a * e << 2 | 2] |= 1, k[r + a * e + e << 2 | 0] &= -2, k[r + a * e + e << 2 | 1] &= -2, k[r + a * e + e << 2 | 2] |= 1, k[r + 1 + a * e + e << 2 | 0] &= -2, k[r + 1 + a * e + e << 2 | 1] &= -2, k[r + 1 + a * e + e << 2 | 2] |= 1))
+                    }
+                a.putImageData(v, 0, 0)
+            }
+        };
+        let x = new m;
+        x.Tracker = m;
+        p.exports = x
+    }, function(p, m, x) {
+        let a = x(1),
+            e = x(4);
+        class D {
+            constructor() {
+                this.target = {
+                    x: 0,
+                    y: 0
+                };
+                this.socket = null;
+                this.statMaxing = !1;
+                let e = document.getElementById("gameCanvas");
+                e.width = a.screenWidth;
+                e.height = a.screenHeight;
+                this.cv = e
+            }
+            init(a, e) {
+                this.control = a;
+                this.socket = e;
+                e = this.cv;
+                "joysticks" === a ? (this.movementTouch = this.controlTouch = null, this.movementRight = this.movementLeft = this.movementBottom = this.movementTop = !1, e.addEventListener("touchstart", a => this.touchStart(a), !1), e.addEventListener("touchmove", a => this.touchMove(a), !1), e.addEventListener("touchend", a => this.touchEnd(a), !1), e.addEventListener("touchcancel",
+                    a => this.touchEnd(a), !1)) : (e.addEventListener("mousedown", a => this.mouseDown(a), !1), e.addEventListener("mousemove", a => this.mouseMove(a), !1), e.addEventListener("mouseup", a => this.mouseUp(a), !1));
+                e.addEventListener("keydown", a => this.keyboardDown(a), !1);
+                e.addEventListener("keyup", a => this.keyboardUp(a), !1);
+                this.autoUpgrade()
+            }
+            autoUpgrade() {
+                if (a.autoLevel) var e = 60,
+                    k = setInterval(() => {
+                        this.socket.talk("L");
+                        0 >= --e && clearInterval(k)
+                    }, 100)
+            }
+            emit(a) {
+                this.socket.talk(a)
+            }
+            talk(a, e) {
+                this.socket.talk(a, e)
+            }
+            spawn(a) {
+                this.socket.talk("s",
+                    a, -1);
+                e.reset();
+                this.autoUpgrade()
+            }
+            set(a, e) {
+                this.socket.cmd.set(a, e)
+            }
+            setPosition(a, e) {
+                this.target.x = a;
+                this.target.y = e;
+                this.socket.cmd.setPosition(a, e)
+            }
+            keyboardDown(e) {
+                switch (e.keyCode) {
+                    case a.KEY_SPAWN:
+                        if (a.died && (a.respawnOn <= Date.now() || e.shiftKey) && (this.spawn(a.playerName), a.died = !1, !a.mobile)) {
+                            window.aiptag.cmd.display.push(function() {
+                                window.aipDisplayTag.clear("arras-io_728x90")
+                            });
+                            var k = document.getElementById("respawn-banner");
+                            k && (k.style.display = "none")
+                        }
+                        break;
+        // ========================================================================
+        // Chat System
+        // ========================================================================                 
+        // Key "H". Text input for in-game chat. Does not freeze the game.
+        case 0: //72
+            if (!a.died)
             {               
-                if (r.isChatMode === false)                         
+                if (a.isChatMode === false)                         
                 {
                     // Chat input textbox.
                     let chatInput = document.createElement('input');
                     chatInput.id = 'chatInput';
                     chatInput.tabindex = 4;
-                    chatInput.style.font = 'bold 18px Ubuntu';
+                    chatInput.style.font = 'bold 18px Consolas';
                     chatInput.maxlength = '100';
-                    chatInput.placeholder = 'Press Enter To Send. Esc To Cancel.';
+                    chatInput.placeholder = 'Enter to send.Esc to cancel.';
 
                     // Chat input wrapper div.
                     let chatInputWrapper = document.createElement('div');                        
@@ -5502,10 +3917,10 @@ if (gs === 4) {
                             // Check again if the player died, otherwise, it hangs the client.
                             // There will be an error saying that "color is undefined" in app.js file.
                             // ============================================================
-                            if (r.died)
+                            if (e.died)
                             {
-                                r.socket.talk('s', r.playerName, 0); 
-                                r.died = false;
+                                e.socket.talk('s', e.playerName, 0); 
+                                e.died = false;
                             }
                             else 
                             {
@@ -5516,7 +3931,7 @@ if (gs === 4) {
                                     let maxLen = 100; 
                                     let trimmedMessage = chatMessage.length > maxLen ? chatMessage.substring(0, maxLen - 3) + "..." : chatMessage.substring(0, maxLen); 
 
-                                   r.socket.talk('h', trimmedMessage, 1);
+                                    a.socket.talk('h', trimmedMessage, 1);
 
                                     chatInputWrapper.removeChild(chatInput);
                                     document.body.removeChild(chatInputWrapper);
@@ -5524,7 +3939,7 @@ if (gs === 4) {
                                     let gameCanvas = document.getElementById('gameCanvas');
                                     gameCanvas.focus();
                                     
-                                   r.isChatMode = false;                                    
+                                    a.isChatMode = false;                                    
                                 }  
                             }                                   
                         }
@@ -5541,11 +3956,11 @@ if (gs === 4) {
                             let gameCanvas = document.getElementById('gameCanvas');
                             gameCanvas.focus();                            
 
-                            r.isChatMode = false; 
+                            a.isChatMode = false; 
                         }
                     });
                     
-                    r.isChatMode = true;
+                    a.isChatMode = true;
 
                     // To remove initial "i" letter.                        
                     setTimeout(() => {
@@ -5569,593 +3984,891 @@ if (gs === 4) {
             }
 
             break;
-        // ===========================================
-
-            case r.KEY_UP_ARROW:
-            case r.KEY_UP:
-              this.set(0, !0);
-              break;
-            case r.KEY_DOWN_ARROW:
-            case r.KEY_DOWN:
-              this.set(1, !0);
-              break;
-            case r.KEY_LEFT_ARROW:
-            case r.KEY_LEFT:
-              this.set(2, !0);
-              break;
-            case r.KEY_RIGHT_ARROW:
-            case r.KEY_RIGHT:
-              this.set(3, !0);
-              break;
-            case r.KEY_MOUSE_0:
-              this.set(4, !0);
-              break;
-            case r.KEY_MOUSE_1:
-              this.set(5, !0);
-              break;
-            case r.KEY_MOUSE_2:
-              this.set(6, !0);
-              break;
-            case r.KEY_LEVEL_UP:
-              this.emit("L");
-              break;
-            case r.KEY_ABILITY:
-              this.emit("A");
-          }
-          if (!e.ctrlKey && !e.altKey) {
-            if (r.canSkill) {
-              let t = this.statMaxing ? 12 : 1;
-              do {
-                switch (e.keyCode) {
-                  case r.KEY_UPGRADE_ATK:
-                    this.talk("x", 0);
-                    break;
-                  case r.KEY_UPGRADE_HTL:
-                    this.talk("x", 1);
-                    break;
-                  case r.KEY_UPGRADE_SPD:
-                    this.talk("x", 2);
-                    break;
-                  case r.KEY_UPGRADE_STR:
-                    this.talk("x", 3);
-                    break;
-                  case r.KEY_UPGRADE_PEN:
-                    this.talk("x", 4);
-                    break;
-                  case r.KEY_UPGRADE_DAM:
-                    this.talk("x", 5);
-                    break;
-                  case r.KEY_UPGRADE_RLD:
-                    this.talk("x", 6);
-                    break;
-                  case r.KEY_UPGRADE_MOB:
-                    this.talk("x", 7);
-                    break;
-                  case r.KEY_UPGRADE_RGN:
-                    this.talk("x", 8);
-                    break;
-                  case r.KEY_UPGRADE_SHI:
-                    this.talk("x", 9);
-                  
-                  
-                }
-              } while (--t);
-            }
-            if (!e.repeat) {
-              switch (e.keyCode) {
-                case r.KEY_AUTO_SPIN:
-                  this.talk("t", 0);
-                  break;
-                case r.KEY_AUTO_FIRE:
-                  this.talk("t", 1);
-                  break;
-                case r.KEY_OVER_RIDE:
-                  this.talk("t", 2);
-                  break;
-                case r.KEY_RAINBOW:
-                  this.talk("r", 3);
-                  break;
-                case r.KEY_REVERSE_TANK:
-                  this.talk("t", 4);
-                  break;
-                case r.KEY_UPGRADE_MAX:
-                  this.statMaxing = !0;
-                  break;
-                case r.KEY_FUCK_YOU:
-                  (this.cheating = !0), this.emit("0");
-                  break;
-                case r.KEY_KILL_YOURSELF:
-                  this.emit("K");
-                  break;
-                  
-                case r.KEY_PING:
-                  r.showDebug = !0;
-                  break;
-                case r.KEY_CLASS_TREE:
-                  r.showTree = !0;
-                  break;
-                case r.KEY_RECORD:
-                  if (this.cv.captureStream && window.MediaRecorder) {
-                    if (!this.videoRecorder) {
-                      let e = [];
-                      (this.videoRecorder = new MediaRecorder(
-                        this.cv.captureStream(60)
-                      )),
-                        (this.videoRecorder.ondataavailable = t =>
-                          e.push(t.data)),
-                        (this.videoRecorder.onstop = t => {
-                          let a = new Blob(e, {
-                            type: this.videoRecorder.mimeType
-                          });
-                          e.length = 0;
-                          let r = URL.createObjectURL(a),
-                            i = document.createElement("a");
-                          (i.style.display = "none"),
-                            i.setAttribute("download", "video.webm"),
-                            i.setAttribute("href", r),
-                            document.body.appendChild(i),
-                            setTimeout(() => {
-                              URL.revokeObjectURL(r),
-                                document.body.removeChild(i);
-                            }, 100),
-                            i.click();
-                        }),
-                        r.messages.push({
-                          text: "Recorder initiated and started!",
-                          status: 2,
-                          alpha: 0,
-                          time: Date.now()
-                        }),
-                        this.videoRecorder.start();
-                      break;
-                    }
-                    switch (this.videoRecorder.state) {
-                      case "inactive":
-                        r.messages.push({
-                          text: "Recorder started!",
-                          status: 2,
-                          alpha: 0,
-                          time: Date.now()
-                        }),
-                          this.videoRecorder.start();
+                    case a.KEY_UP_ARROW:
+                    case a.KEY_UP:
+                        this.set(0,
+                            !0);
                         break;
-                      case "recording":
-                        r.messages.push({
-                          text: "Recorder stopped! Saving file...",
-                          status: 2,
-                          alpha: 0,
-                          time: Date.now()
-                        }),
-                          this.videoRecorder.stop();
+                    case a.KEY_DOWN_ARROW:
+                    case a.KEY_DOWN:
+                        this.set(1, !0);
+                        break;
+                    case a.KEY_LEFT_ARROW:
+                    case a.KEY_LEFT:
+                        this.set(2, !0);
+                        break;
+                    case a.KEY_RIGHT_ARROW:
+                    case a.KEY_RIGHT:
+                        this.set(3, !0);
+                        break;
+                    case a.KEY_MOUSE_0:
+                        this.set(4, !0);
+                        break;
+                    case a.KEY_MOUSE_1:
+                        this.set(5, !0);
+                        break;
+                    case a.KEY_MOUSE_2:
+                        this.set(6, !0);
+                        break;
+                    case a.KEY_LEVEL_UP:
+                        this.emit("L")
+                        break;               
+                     }
+                
+                    
+                if (!e.ctrlKey && !e.altKey) {
+                    if (a.canSkill) {
+                        k = this.statMaxing ? 12 : 1;
+                        do switch (e.keyCode) {
+                            case a.KEY_UPGRADE_ATK:
+                                this.talk("x", 0);
+                                break;
+                            case a.KEY_UPGRADE_HTL:
+                                this.talk("x",
+                                    1);
+                                break;
+                            case a.KEY_UPGRADE_SPD:
+                                this.talk("x", 2);
+                                break;
+                            case a.KEY_UPGRADE_STR:
+                                this.talk("x", 3);
+                                break;
+                            case a.KEY_UPGRADE_PEN:
+                                this.talk("x", 4);
+                                break;
+                            case a.KEY_UPGRADE_DAM:
+                                this.talk("x", 5);
+                                break;
+                            case a.KEY_UPGRADE_RLD:
+                                this.talk("x", 6);
+                                break;
+                            case a.KEY_UPGRADE_MOB:
+                                this.talk("x", 7);
+                                break;
+                            case a.KEY_UPGRADE_RGN:
+                                this.talk("x", 8);
+                                break;
+                            case a.KEY_UPGRADE_SHI:
+                                this.talk("x", 9)
+                        }
+                        while (--k)
                     }
-                  } else
-                    r.messages.push({
-                      text: "Media recorder not supported in this browser!",
-                      status: 2,
-                      alpha: 0,
-                      time: Date.now()
-                    });
-                  break;
-                case r.KEY_SCREENSHOT:
-                  let e = this.cv.toDataURL(),
-                    t = atob(e.split(",")[1]),
-                    a = e
-                      .split(",")[0]
-                      .split(":")[1]
-                      .split(";")[0],
-                    i = new Uint8Array(t.length);
-                  for (let e = 0; e < t.length; e++) i[e] = t.charCodeAt(e);
-                  let n = URL.createObjectURL(new Blob([i], { type: a })),
-                    l = document.createElement("a");
-                  (l.style.display = "none"),
-                    l.setAttribute("download", "screenshot.png"),
-                    l.setAttribute("href", n),
-                    document.body.appendChild(l),
-                    setTimeout(() => {
-                      URL.revokeObjectURL(n), document.body.removeChild(l);
-                    }, 100),
-                    l.click();
-              }
-              if (r.canUpgrade)
-                switch (e.keyCode) {
-                  case r.KEY_CHOOSE_1:
-                    this.talk("U", 0);
-                    break;
-                  case r.KEY_CHOOSE_2:
-                    this.talk("U", 1);
-                    break;
-                  case r.KEY_CHOOSE_3:
-                    this.talk("U", 2);
-                    break;
-                  case r.KEY_CHOOSE_4:
-                    this.talk("U", 3);
-                    break;
-                  case r.KEY_CHOOSE_5:
-                    this.talk("U", 4);
-                    break;
-                  case r.KEY_CHOOSE_6:
-                    this.talk("U", 5);
-                    break;
-                  case r.KEY_CHOOSE_7:
-                    this.talk("U", 6);
-                    break;
-                  case r.KEY_CHOOSE_8:
-                    this.talk("U", 7);
-                    break;
-                  case r.KEY_CHOOSE_9:
-                    this.talk("U", 8);
+                    if (!e.repeat) {
+                        switch (e.keyCode) {
+                            case a.KEY_AUTO_SPIN:
+                                this.talk("t", 0);
+                                break;
+                            case a.KEY_AUTO_FIRE:
+                                this.talk("t", 1);
+                                break;
+                            case a.KEY_OVER_RIDE:
+                                this.talk("t", 2);
+                                break;
+                            case a.KEY_REVERSE_MOUSE:
+                                this.talk("t", 3);
+                                break;
+                            case a.KEY_REVERSE_TANK:
+                                this.talk("t", 4);
+                                break;
+                            case a.KEY_UPGRADE_MAX:
+                                this.statMaxing = !0;
+                                break;
+                            case a.KEY_FUCK_YOU:
+                                this.emit("0");
+                                break;
+                            case a.KEY_KILL_YOURSELF:
+                                this.emit("K");
+                                break;
+                            case a.KEY_PING:
+                                a.showDebug = !0;
+                                break;
+                            case a.KEY_LOL:
+                                this.emit("n");
+                                break;
+                            case a.KEY_NO_U:
+                                this.emit("u");
+                                break;
+                          case a.KEY_RECORD:
+                                    if (this.cv.captureStream && window.MediaRecorder)
+                                        if (this.videoRecorder) switch (this.videoRecorder.state) {
+                                            case "inactive":
+                                                a.messages.push({
+                                                    text: "Recorder started!",
+                                                    status: 2,
+                                                    alpha: 0,
+                                                    time: Date.now()
+                                                });
+                                                this.videoRecorder.start();
+                                                break;
+                                            case "recording":
+                                                a.messages.push({
+                                                    text: "Recording Session Ending. Saving File...",
+                                                    status: 2,
+                                                    alpha: 0,
+                                                    time: Date.now()
+                                                }), this.videoRecorder.stop()
+                                        } else {
+                                            let e = [];
+                                            this.videoRecorder = new MediaRecorder(this.cv.captureStream(60));
+                                            this.videoRecorder.ondataavailable = a => e.push(a.data);
+                                            this.videoRecorder.onstop = () => {
+                                                let a = new Blob(e, {
+                                                    type: this.videoRecorder.mimeType
+                                                });
+                                                e.length = 0;
+                                                let k = URL.createObjectURL(a),
+                                                    q = document.createElement("a");
+                                                q.style.display = "none";
+                                                q.setAttribute("download", "video.webm");
+                                                q.setAttribute("href",
+                                                    k);
+                                                document.body.appendChild(q);
+                                                setTimeout(() => {
+                                                    URL.revokeObjectURL(k);
+                                                    document.body.removeChild(q)
+                                                }, 100);
+                                                q.click()
+                                            };
+                                            a.messages.push({
+                                                text: "Recorder has been Started!",
+                                                status: 2,
+                                                alpha: 0,
+                                                time: Date.now()
+                                            });
+                                            this.videoRecorder.start()
+                                        } else a.messages.push({
+                                            text: "Media recorder not supported in this browser!",
+                                            status: 2,
+                                            alpha: 0,
+                                            time: Date.now()
+                                    });
+                                break;
+                            case a.KEY_SCREENSHOT:
+                                var m = this.cv.toDataURL();
+                                k = atob(m.split(",")[1]);
+                                m = m.split(",")[0].split(":")[1].split(";")[0];
+                                let v = new Uint8Array(k.length);
+                                for (let a = 0; a < k.length; a++) v[a] = k.charCodeAt(a);
+                                let n = URL.createObjectURL(new Blob([v], {
+                                        type: m
+                                    })),
+                                    x = document.createElement("a");
+                                x.style.display = "none";
+                                x.setAttribute("download", "screenshot.png");
+                                x.setAttribute("href", n);
+                                document.body.appendChild(x);
+                                setTimeout(() => {
+                                    URL.revokeObjectURL(n);
+                                    document.body.removeChild(x)
+                                }, 100);
+                                x.click()
+                        }
+                        if (a.canUpgrade) switch (e.keyCode) {
+                            case a.KEY_CHOOSE_1:
+                                this.talk("U", 0);
+                                break;
+                            case a.KEY_CHOOSE_2:
+                                this.talk("U", 1);
+                                break;
+                            case a.KEY_CHOOSE_3:
+                                this.talk("U",
+                                    2);
+                                break;
+                            case a.KEY_CHOOSE_4:
+                                this.talk("U", 3);
+                                break;
+                            case a.KEY_CHOOSE_5:
+                                this.talk("U", 4);
+                                break;
+                            case a.KEY_CHOOSE_6:
+                                this.talk("U", 5);
+                                break;
+                            case a.KEY_CHOOSE_7:
+                                this.talk("U", 6);
+                                break;
+                            case a.KEY_CHOOSE_8:
+                                this.talk("U", 7);
+                                break;
+                            case a.KEY_CHOOSE_9:
+                                this.talk("U", 8)
+                        }
+                    }
                 }
             }
-          }
-        }
-      }
-      keyboardUp(e) {
-        switch (e.keyCode) {
-          case r.KEY_UP_ARROW:
-          case r.KEY_UP:
-            this.set(0, !1);
-            break;
-          case r.KEY_DOWN_ARROW:
-          case r.KEY_DOWN:
-            this.set(1, !1);
-            break;
-          case r.KEY_LEFT_ARROW:
-          case r.KEY_LEFT:
-            this.set(2, !1);
-            break;
-          case r.KEY_RIGHT_ARROW:
-          case r.KEY_RIGHT:
-            this.set(3, !1);
-            break;
-          case r.KEY_MOUSE_0:
-            this.set(4, !1);
-            break;
-          case r.KEY_MOUSE_1:
-            this.set(5, !1);
-            break;
-          case r.KEY_MOUSE_2:
-            this.set(6, !1);
-            break;
-          case r.KEY_FUCK_YOU:
-            this.cheating = !1;
-            break;
-          case r.KEY_UPGRADE_MAX:
-            this.statMaxing = !1;
-            break;
-          case r.KEY_PING:
-            r.showDebug = !1;
-            break;
-          case r.KEY_CLASS_TREE:
-            r.showTree = !1;
-        }
-        this.cheating && this.talk("0", -e.keyCode);
-      }
-      mouseDown(e) {
-        switch (e.button) {
-          case 0:
-            let t = { x: e.clientX, y: e.clientY },
-              a = r.clickables.stat.check(t);
-            if (-1 !== a) this.talk("x", a);
-            else if (-1 !== r.clickables.skipUpgrades.check(t))
-              r.clearUpgrades();
-            else {
-              let e = r.clickables.upgrade.check(t);
-              -1 !== e ? this.talk("U", e) : this.set(4, !0);
+            keyboardUp(e) {
+                switch (e.keyCode) {
+                    case a.KEY_UP_ARROW:
+                    case a.KEY_UP:
+                        this.set(0, !1);
+                        break;
+                    case a.KEY_DOWN_ARROW:
+                    case a.KEY_DOWN:
+                        this.set(1, !1);
+                        break;
+                    case a.KEY_LEFT_ARROW:
+                    case a.KEY_LEFT:
+                        this.set(2, !1);
+                        break;
+                    case a.KEY_RIGHT_ARROW:
+                    case a.KEY_RIGHT:
+                        this.set(3,
+                            !1);
+                        break;
+                    case a.KEY_MOUSE_0:
+                        this.set(4, !1);
+                        break;
+                    case a.KEY_MOUSE_1:
+                        this.set(5, !1);
+                        break;
+                    case a.KEY_MOUSE_2:
+                        this.set(6, !1);
+                        break;
+                    case a.KEY_UPGRADE_MAX:
+                        this.statMaxing = !1;
+                        break;
+                    case a.KEY_PING:
+                        a.showDebug = !1;
+                        break;
+                    case a.KEY_CLASS_TREE:
+                        a.showTree = !1
+                }
             }
-            break;
-          case 1:
-            this.set(5, !0);
-            break;
-          case 2:
-            this.set(6, !0);
-        }
-      }
-      mouseMove(e) {
-        if (null !== r.player.x) {
-          let t = e.clientX - r.player.x,
-            a = e.clientY - r.player.y;
-          this.setPosition(t, a);
-        }
-        r.statHover =
-          0 === r.clickables.hover.check({ x: e.clientX, y: e.clientY });
-      }
-      mouseUp(e) {
-        switch (e.button) {
-          case 0:
-            this.set(4, !1);
-            break;
-          case 1:
-            this.set(5, !1);
-            break;
-          case 2:
-            this.set(6, !1);
-        }
-      }
-      touchStart(e) {
-        if ((e.preventDefault(), r.died && r.respawnOn <= Date.now()))
-          this.spawn();
-        else {
-          for (let t of e.changedTouches) {
-            let e = { x: t.clientX, y: t.clientY },
-              a = t.identifier,
-              i = r.clickables.stat.check(e);
-            if (-1 !== i) this.talk("x", i);
-            else if (-1 !== r.clickables.skipUpgrades.check(e))
-              r.clearUpgrades();
-            else {
-              let t = r.clickables.upgrade.check(e);
-              if (-1 !== t) this.talk("U", t);
-              else {
-                let t = e.x < this.cv.width / 2;
-                null === this.movementTouch && t
-                  ? (this.movementTouch = a)
-                  : null !== this.controlTouch ||
-                    t ||
-                    ((this.controlTouch = a), this.set(4, !0));
-              }
+            mouseDown(e) {
+                switch (e.button) {
+                    case 0:
+                        e = {
+                            x: e.clientX,
+                            y: e.clientY
+                        };
+                        let k = a.clickables.stat.check(e); - 1 !== k ? this.talk("x", k) : -1 !== a.clickables.skipUpgrades.check(e) ? a.clearUpgrades() : (e = a.clickables.upgrade.check(e), -1 !== e ? this.talk("U", e) : this.set(4, !0));
+                        break;
+                    case 1:
+                        this.set(5, !0);
+                        break;
+                    case 2:
+                        this.set(6, !0)
+                }
             }
-          }
-          this.touchMove(e);
-        }
-      }
-      touchMove(e) {
-        e.preventDefault();
-        for (let t of e.changedTouches) {
-          let e = { x: t.clientX, y: t.clientY },
-            a = t.identifier;
-          if (this.movementTouch === a) {
-            let t = e.x - (1 * this.cv.width) / 6,
-              a = e.y - (2 * this.cv.height) / 3,
-              r = Math.sqrt(t * t + a * a);
-            (t /= r), (a /= r);
-            let i = 0.3826834323650898;
-            a < -i !== this.movementTop &&
-              this.set(0, (this.movementTop = a < -i)),
-              a > i !== this.movementBottom &&
-                this.set(1, (this.movementBottom = a > i)),
-              t < -i !== this.movementLeft &&
-                this.set(2, (this.movementLeft = t < -i)),
-              t > i !== this.movementRight &&
-                this.set(3, (this.movementRight = t > i));
-          } else if (this.controlTouch === a) {
-            let t = 4 * (e.x - (5 * this.cv.width) / 6),
-              a = 4 * (e.y - (2 * this.cv.height) / 3);
-            this.setPosition(t, a);
-          }
-        }
-      }
-      touchEnd(e) {
-        e.preventDefault();
-        for (let t of e.changedTouches) {
-          t.clientX, t.clientY;
-          let e = t.identifier;
-          this.movementTouch === e
-            ? ((this.movementTouch = null),
-              this.movementTop && this.set(0, (this.movementTop = !1)),
-              this.movementBottom && this.set(1, (this.movementBottom = !1)),
-              this.movementLeft && this.set(2, (this.movementLeft = !1)),
-              this.movementRight && this.set(3, (this.movementRight = !1)))
-            : this.controlTouch === e &&
-              ((this.controlTouch = null), this.set(4, !1));
-        }
-      }
-    };
-  },
-  function(e, t, a) {
-    "use strict";
-    let r = new Uint32Array(1),
-      i = new Uint8Array(r.buffer),
-      n = new Float32Array(r.buffer),
-      l = new Uint16Array(1),
-      o = new Uint8Array(l.buffer);
-    (t.encode = e => {
-      let t = [],
-        a = [],
-        s = 0,
-        d = 15,
-        c = 0;
-      for (let r of e) {
-        let i = 0;
-        if (0 === r || !1 === r) i = 0;
-        else if (1 === r || !0 === r) i = 1;
-        else if ("number" == typeof r)
-          !Number.isInteger(r) || r < -4294967296 || r >= 4294967296
-            ? ((i = 8), (s += 4))
-            : r >= 0
-            ? r < 256
-              ? ((i = 2), s++)
-              : r < 65536
-              ? ((i = 4), (s += 2))
-              : r < 4294967296 && ((i = 6), (s += 4))
-            : r >= -256
-            ? ((i = 3), s++)
-            : r >= -65536
-            ? ((i = 5), (s += 2))
-            : r >= -4294967296 && ((i = 7), (s += 4));
-        else {
-          if ("string" != typeof r)
-            throw (console.error("Unencodable data type", e),
-            new Error("Unencodable data type"));
-          {
-            let e = !1;
-            for (let t = 0; t < r.length; t++)
-              if (r.charAt(t) > "ÿ") e = !0;
-              else if ("\0" === r.charAt(t))
-                throw (console.error("Null containing string", r),
-                new Error("Null containing string"));
-            !e && r.length <= 1
-              ? ((i = 9), s++)
-              : e
-              ? ((i = 11), (s += 2 * r.length + 2))
-              : ((i = 10), (s += r.length + 1));
-          }
-        }
-        if ((t.push(i), i === d)) c++;
-        else {
-          if ((a.push(d), c >= 1)) {
-            for (; c > 19; ) a.push(14), a.push(15), (c -= 19);
-            1 === c
-              ? a.push(d)
-              : 2 === c
-              ? a.push(12)
-              : 3 === c
-              ? a.push(13)
-              : c < 20 && (a.push(14), a.push(c - 4));
-          }
-          (c = 0), (d = i);
-        }
-      }
-      if ((a.push(d), c >= 1)) {
-        for (; c > 19; ) a.push(14), a.push(15), (c -= 19);
-        1 === c
-          ? a.push(d)
-          : 2 === c
-          ? a.push(12)
-          : 3 === c
-          ? a.push(13)
-          : c < 20 && (a.push(14), a.push(c - 4));
-      }
-      a.push(15), a.length % 2 == 1 && a.push(15);
-      let h = new Uint8Array((a.length >> 1) + s);
-      for (let e = 0; e < a.length; e += 2) {
-        let t = a[e],
-          r = a[e + 1];
-        h[e >> 1] = (t << 4) | r;
-      }
-      let u = a.length >> 1;
-      for (let a = 0; a < t.length; a++) {
-        let s = e[a];
-        switch (t[a]) {
-          case 0:
-          case 1:
-            break;
-          case 2:
-          case 3:
-            h[u++] = s;
-            break;
-          case 4:
-          case 5:
-            (l[0] = s), h.set(o, u), (u += 2);
-            break;
-          case 6:
-          case 7:
-            (r[0] = s), h.set(i, u), (u += 4);
-            break;
-          case 8:
-            (n[0] = s), h.set(i, u), (u += 4);
-            break;
-          case 9:
-            {
-              let e = 0 === s.length ? 0 : s.charCodeAt(0);
-              h[u++] = e;
+            mouseMove(e) {
+                null !== a.player.x && this.setPosition(e.clientX - a.player.x, e.clientY - a.player.y);
+                a.statHover = 0 === a.clickables.hover.check({
+                    x: e.clientX,
+                    y: e.clientY
+                })
             }
-            break;
-          case 10:
-            for (let e = 0; e < s.length; e++) h[u++] = s.charCodeAt(e);
-            h[u++] = 0;
-            break;
-          case 11:
-            for (let e = 0; e < s.length; e++) {
-              let t = s.charCodeAt(e);
-              (h[u++] = 255 & t), (h[u++] = t >> 8);
+            mouseUp(a) {
+                switch (a.button) {
+                    case 0:
+                        this.set(4, !1);
+                        break;
+                    case 1:
+                        this.set(5, !1);
+                        break;
+                    case 2:
+                        this.set(6, !1)
+                }
             }
-            (h[u++] = 0), (h[u++] = 0);
+            touchStart(e) {
+                e.preventDefault();
+                if (a.died && a.respawnOn <= Date.now()) this.spawn(a.playerName), a.died = !1;
+                else {
+                    for (let v of e.changedTouches) {
+                        var k = {
+                            x: v.clientX,
+                            y: v.clientY
+                        };
+                        let e =
+                            v.identifier;
+                        var m = a.clickables.stat.check(k); - 1 !== m ? this.talk("x", m) : -1 !== a.clickables.skipUpgrades.check(k) ? a.clearUpgrades() : (m = a.clickables.upgrade.check(k), -1 !== m ? this.talk("U", m) : (k = k.x < this.cv.width / 2, null === this.movementTouch && k ? this.movementTouch = e : null !== this.controlTouch || k || (this.controlTouch = e, this.set(4, !0))))
+                    }
+                    this.touchMove(e)
+                }
+            }
+            touchMove(a) {
+                a.preventDefault();
+                for (let k of a.changedTouches) {
+                    var e = k.clientX;
+                    a = k.clientY;
+                    var m = k.identifier;
+                    this.movementTouch === m ? (e -= 1 * this.cv.width / 6, a -=
+                        2 * this.cv.height / 3, m = Math.sqrt(e * e + a * a), e /= m, a /= m, -.3826834323650898 > a !== this.movementTop && this.set(0, this.movementTop = -.3826834323650898 > a), .3826834323650898 < a !== this.movementBottom && this.set(1, this.movementBottom = .3826834323650898 < a), -.3826834323650898 > e !== this.movementLeft && this.set(2, this.movementLeft = -.3826834323650898 > e), .3826834323650898 < e !== this.movementRight && this.set(3, this.movementRight = .3826834323650898 < e)) : this.controlTouch === m && this.setPosition(4 * (e - 5 * this.cv.width / 6), 4 * (a - 2 * this.cv.height /
+                        3))
+                }
+            }
+            touchEnd(a) {
+                a.preventDefault();
+                for (let e of a.changedTouches) a = e.identifier, this.movementTouch === a ? (this.movementTouch = null, this.movementTop && this.set(0, this.movementTop = !1), this.movementBottom && this.set(1, this.movementBottom = !1), this.movementLeft && this.set(2, this.movementLeft = !1), this.movementRight && this.set(3, this.movementRight = !1)) : this.controlTouch === a && (this.controlTouch = null, this.set(4, !1))
+            }
         }
-      }
-      return h;
-    }),
-      (t.decode = e => {
-        let t = new Uint8Array(e);
-        if (t[0] >> 4 != 15) return null;
-        let a = [],
-          s = 15,
-          d = 0,
-          c = !0;
-        for (;;) {
-          if (d >= t.length) return null;
-          let e = t[d];
-          if ((c ? ((e &= 15), d++) : (e >>= 4), (c = !c), 12 == (12 & e))) {
-            if (15 === e) {
-              c && d++;
-              break;
+        p.exports = D
+    }, function(p, m) {
+        let x = new Uint32Array(1),
+            a = new Uint8Array(x.buffer),
+            e = new Float32Array(x.buffer),
+            D = new Uint16Array(1),
+            v = new Uint8Array(D.buffer);
+        m.encode = k => {
+            let m = [];
+            var p = [],
+                n = 0,
+                E = 15,
+                z = 0;
+            for (var r of k) {
+                var F = 0;
+                if (0 === r || !1 === r) F = 0;
+                else if (1 === r || !0 === r) F = 1;
+                else if ("number" === typeof r) !Number.isInteger(r) || -4294967296 > r || 4294967296 <= r ? (F = 8, n += 4) : 0 <= r ? 256 > r ? (F = 2, n++) : 65536 > r ? (F = 4, n += 2) : 4294967296 > r && (F = 6, n += 4) : -256 <= r ? (F = 3, n++) : -65536 <= r ? (F = 5, n += 2) : -4294967296 <= r && (F = 7, n += 4);
+                else if ("string" === typeof r) {
+                    F = !1;
+                    for (let a = 0; a < r.length; a++)
+                        if ("\u00ff" < r.charAt(a)) F = !0;
+                        else if ("\x00" === r.charAt(a)) throw console.error("Null containing string",
+                        r), Error("Null containing string");
+                    !F && 1 >= r.length ? (F = 9, n++) : F ? (F = 11, n += 2 * r.length + 2) : (F = 10, n += r.length + 1)
+                } else throw console.error("Unencodable data type", k), Error("Unencodable data type");
+                m.push(F);
+                if (F === E) z++;
+                else {
+                    p.push(E);
+                    if (1 <= z) {
+                        for (; 19 < z;) p.push(14), p.push(15), z -= 19;
+                        1 === z ? p.push(E) : 2 === z ? p.push(12) : 3 === z ? p.push(13) : 20 > z && (p.push(14), p.push(z - 4))
+                    }
+                    z = 0;
+                    E = F
+                }
             }
-            let r = e - 10;
-            if (14 === e) {
-              if (d >= t.length) return null;
-              let e = t[d];
-              c ? ((e &= 15), d++) : (e >>= 4), (c = !c), (r += e);
+            p.push(E);
+            if (1 <= z) {
+                for (; 19 < z;) p.push(14), p.push(15), z -= 19;
+                1 === z ? p.push(E) : 2 === z ? p.push(12) : 3 === z ? p.push(13) : 20 > z && (p.push(14), p.push(z -
+                    4))
             }
-            for (let e = 0; e < r; e++) a.push(s);
-          } else a.push(e), (s = e);
+            p.push(15);
+            1 === p.length % 2 && p.push(15);
+            n = new Uint8Array((p.length >> 1) + n);
+            for (E = 0; E < p.length; E += 2) n[E >> 1] = p[E] << 4 | p[E + 1];
+            p = p.length >> 1;
+            for (E = 0; E < m.length; E++) switch (z = k[E], m[E]) {
+                case 2:
+                case 3:
+                    n[p++] = z;
+                    break;
+                case 4:
+                case 5:
+                    D[0] = z;
+                    n.set(v, p);
+                    p += 2;
+                    break;
+                case 6:
+                case 7:
+                    x[0] = z;
+                    n.set(a, p);
+                    p += 4;
+                    break;
+                case 8:
+                    e[0] = z;
+                    n.set(a, p);
+                    p += 4;
+                    break;
+                case 9:
+                    z = 0 === z.length ? 0 : z.charCodeAt(0);
+                    n[p++] = z;
+                    break;
+                case 10:
+                    for (r = 0; r < z.length; r++) n[p++] = z.charCodeAt(r);
+                    n[p++] = 0;
+                    break;
+                case 11:
+                    for (r = 0; r < z.length; r++) F = z.charCodeAt(r),
+                        n[p++] = F & 255, n[p++] = F >> 8;
+                    n[p++] = 0;
+                    n[p++] = 0
+            }
+            return n
+        };
+        m.decode = k => {
+            k = new Uint8Array(k);
+            if (15 !== k[0] >> 4) return null;
+            var m = [],
+                p = 15;
+            let n = 0;
+            for (var E = !0;;) {
+                if (n >= k.length) return null;
+                var z = k[n];
+                E ? (z &= 15, n++) : z >>= 4;
+                E = !E;
+                if (12 === (z & 12)) {
+                    if (15 === z) {
+                        E && n++;
+                        break
+                    }
+                    let a = z - 10;
+                    if (14 === z) {
+                        if (n >= k.length) return null;
+                        z = k[n];
+                        E ? (z &= 15, n++) : z >>= 4;
+                        E = !E;
+                        a += z
+                    }
+                    for (z = 0; z < a; z++) m.push(p)
+                } else m.push(z), p = z
+            }
+            p = [];
+            for (let r of m) switch (r) {
+                case 0:
+                    p.push(0);
+                    break;
+                case 1:
+                    p.push(1);
+                    break;
+                case 2:
+                    p.push(k[n++]);
+                    break;
+                case 3:
+                    p.push(k[n++] -
+                        256);
+                    break;
+                case 4:
+                    v[0] = k[n++];
+                    v[1] = k[n++];
+                    p.push(D[0]);
+                    break;
+                case 5:
+                    v[0] = k[n++];
+                    v[1] = k[n++];
+                    p.push(D[0] - 65536);
+                    break;
+                case 6:
+                    a[0] = k[n++];
+                    a[1] = k[n++];
+                    a[2] = k[n++];
+                    a[3] = k[n++];
+                    p.push(x[0]);
+                    break;
+                case 7:
+                    a[0] = k[n++];
+                    a[1] = k[n++];
+                    a[2] = k[n++];
+                    a[3] = k[n++];
+                    p.push(x[0] - 4294967296);
+                    break;
+                case 8:
+                    a[0] = k[n++];
+                    a[1] = k[n++];
+                    a[2] = k[n++];
+                    a[3] = k[n++];
+                    p.push(Number.isNaN(e[0]) ? -1 : e[0]);
+                    break;
+                case 9:
+                    m = k[n++];
+                    p.push(0 === m ? "" : String.fromCharCode(m));
+                    break;
+                case 10:
+                    for (m = ""; E = k[n++];) m += String.fromCharCode(E);
+                    p.push(m);
+                    break;
+                case 11:
+                    for (m = ""; E = k[n++] | k[n++] << 8;) m += String.fromCharCode(E);
+                    p.push(m)
+            }
+            return p
         }
-        let h = [];
-        for (let e of a)
-          switch (e) {
-            case 0:
-              h.push(0);
-              break;
-            case 1:
-              h.push(1);
-              break;
-            case 2:
-              h.push(t[d++]);
-              break;
-            case 3:
-              h.push(t[d++] - 256);
-              break;
-            case 4:
-              (o[0] = t[d++]), (o[1] = t[d++]), h.push(l[0]);
-              break;
-            case 5:
-              (o[0] = t[d++]), (o[1] = t[d++]), h.push(l[0] - 65536);
-              break;
-            case 6:
-              (i[0] = t[d++]),
-                (i[1] = t[d++]),
-                (i[2] = t[d++]),
-                (i[3] = t[d++]),
-                h.push(r[0]);
-              break;
-            case 7:
-              (i[0] = t[d++]),
-                (i[1] = t[d++]),
-                (i[2] = t[d++]),
-                (i[3] = t[d++]),
-                h.push(r[0] - 4294967296);
-              break;
-            case 8:
-              (i[0] = t[d++]),
-                (i[1] = t[d++]),
-                (i[2] = t[d++]),
-                (i[3] = t[d++]),
-                h.push(Number.isNaN(n[0]) ? -1 : n[0]);
-              break;
-            case 9:
-              {
-                let e = t[d++];
-                h.push(0 === e ? "" : String.fromCharCode(e));
-              }
-              break;
-            case 10:
-              {
-                let e = "",
-                  a = 0;
-                for (; (a = t[d++]); ) e += String.fromCharCode(a);
-                h.push(e);
-              }
-              break;
-            case 11: {
-              let e = "",
-                a = 0;
-              for (; (a = t[d++] | (t[d++] << 8)); )
-                e += String.fromCharCode(a);
-              h.push(e);
-            }
-          }
-        return h;
-      });
-  },
-  function(e) {
-    e.exports = JSON.parse('{ "normal":{ "teal":"#7ADBBC", "lgreen":"#B9E87E", "orange":"#E7896D", "yellow":"#FDF380", "lavender":"#B58EFD", "pink":"#EF99C3", "vlgrey":"#E8EBF7", "lgrey":"#AA9F9E", "guiwhite":"#FFFFFF", "black":"#484848", "blue":"#3CA4CB", "green":"#8ABC3F", "red":"#E03E41", "gold":"#EFC74B", "purple":"#8D6ADF", "magenta":"#CC669C", "grey":"#A7A7AF", "dgrey":"#726F6F", "white":"#DBDBDB", "guiblack":"#000000", "paletteSize":10, "border":0.65 }, "classic":{ "teal":"#8EFFFB", "lgreen":"#85E37D", "orange":"#FC7676", "yellow":"#FFEB8E", "lavender":"#B58EFF", "pink":"#F177DD", "vlgrey":"#CDCDCD", "lgrey":"#999999", "guiwhite":"#FFFFFF", "black":"#525252", "blue":"#00B0E1", "green":"#00E06C", "red":"#F04F54", "gold":"#FFE46B", "purple":"#768CFC", "magenta":"#BE7FF5", "grey":"#999999", "dgrey":"#545454", "white":"#C0C0C0", "guiblack":"#000000", "paletteSize":10, "border":0.5 }, "maxtri":{ "teal": "#00ffbf", "lgreen": "#82ff93", "orange": "#ff9900", "yellow": "#fffb00", "lavender": "#6947ff", "pink": "#ff00e6", "vlgrey": "#c9c9c9", "lgrey": "#adadad", "guiwhite": "#FFFFFF", "black": "#383838", "blue": "#009dff", "green": "#00ff08", "red": "#ff0066", "gold": "#f0c400", "purple": "#7b00bd", "magenta": "#ff00d9", "grey": "#757575", "dgrey": "#525252", "white": "#f2f2f2", "guiblack": "#000000", "paletteSize":10, "border":0.5 }, "dark":{ "teal":"#8975B7", "lgreen":"#0C491D", "orange":"#C46748", "yellow":"#B2B224", "lavender":"#7D56C5", "pink":"#B24FAE", "vlgrey":"#1E1E1E", "lgrey":"#3C3A3A", "guiwhite":"#000000", "black":"#E5E5E5", "blue":"#379FC6", "green":"#30B53B", "red":"#FF6C6E", "gold":"#FFC665", "purple":"#9673E8", "magenta":"#C8679B", "grey":"#635F5F", "dgrey":"#73747A", "white":"#11110F", "guiblack":"#FFFFFF", "paletteSize":10, "border":0.15 }, "natural":{ "teal":"#76C1BB", "lgreen":"#AAD35D", "orange":"#E09545", "yellow":"#FFD993", "lavender":"#939FFF", "pink":"#D87FB2", "vlgrey":"#C4B6B6", "lgrey":"#7F7F7F", "guiwhite":"#FFFFFF", "black":"#373834", "blue":"#4F93B5", "green":"#00B659", "red":"#E14F65", "gold":"#E5BF42", "purple":"#8053A0", "magenta":"#B67CAA", "grey":"#998F8F", "dgrey":"#494954", "white":"#A5B2A5", "guiblack":"#000000", "paletteSize":10, "border":0.2 }, "pumpkin":{ "teal":"#721970", "lgreen":"#ff6347", "orange":"#1b713a", "yellow":"#fdf380", "lavender":"#941100", "pink":"#194417", "vlgrey":"#1b713a", "lgrey":"#aa9f9e", "guiwhite":"#fed8b1", "black":"#484848", "blue":"#3ca4cb", "green":"#76EEC6", "red":"#F04F54", "gold":"#1b713a", "purple":"#1b713a", "magenta":"#cc669c", "grey":"#ffffff", "dgrey":"#726f6f", "white":"#ff9b58", "guiblack":"#000000", "paletteSize":10, "border":3.3 }, "forest":{ "teal":"#884AA5", "lgreen":"#8C9B3E", "orange":"#D16A80", "yellow":"#97596D", "lavender":"#499855", "pink":"#60294F", "vlgrey":"#DDC6B8", "lgrey":"#7E949E", "guiwhite":"#FFFFE8", "black":"#665750", "blue":"#807BB6", "green":"#A1BE55", "red":"#E5B05B", "gold":"#FF4747", "purple":"#BAC674", "magenta":"#BA78D1", "grey":"#998866", "dgrey":"#529758", "white":"#7DA060", "guiblack":"#000000", "paletteSize":10, "border":0.7 }, "midnight":{ "teal":"#2B9098", "lgreen":"#4BAA5D", "orange":"#345678", "yellow":"#CDC684", "lavender":"#89778E", "pink":"#A85C90", "vlgrey":"#CCCCCC", "lgrey":"#A7B2B7", "guiwhite":"#BAC6FF", "black":"#091F28", "blue":"#123455", "green":"#098765", "red":"#000013", "gold":"#566381", "purple":"#743784", "magenta":"#B29098", "grey":"#555555", "dgrey":"#649EB7", "white":"#444444", "guiblack":"#000000", "paletteSize":10, "border":0.6 }, "pastel":{ "teal":"#89BFBA", "lgreen":"#B5D17D", "orange":"#E5E0E0", "yellow":"#B5BBE5", "lavender":"#939FFF", "pink":"#646DE5", "vlgrey":"#B2B2B2", "lgrey":"#7F7F7F", "guiwhite":"#FFFFFF", "black":"#383835", "blue":"#AEAEFF", "green":"#AEFFAE", "red":"#FFAEAE", "gold":"#FFFFFF", "purple":"#C3C3D8", "magenta":"#FFB5FF", "grey":"#CCCCCC", "dgrey":"#A0A0B2", "white":"#F2F2F2", "guiblack":"#000000", "paletteSize":10, "border":0.35 }, "space":{ "teal":"#4788F3", "lgreen":"#AF1010", "orange":"#FF0000", "yellow":"#82F850", "lavender":"#FFFFFF", "pink":"#57006C", "vlgrey":"#FFFFFF", "lgrey":"#272727", "guiwhite":"#000000", "black":"#7F7F7F", "blue":"#0E1B92", "green":"#0AEB80", "red":"#C2B90A", "gold":"#3E7E8C", "purple":"#285911", "magenta":"#A9707E", "grey":"#6F6A68", "dgrey":"#2D0738", "white":"#000000", "guiblack":"#FFFFFF", "paletteSize":10, "border":0.25 }, "nebula":{ "teal":"#38B06E", "lgreen":"#22882E", "orange":"#D28E7F", "yellow":"#D5D879", "lavender":"#E084EB", "pink":"#DF3E3E", "vlgrey":"#F0F2CC", "lgrey":"#7D7D7D", "guiwhite":"#C2C5EF", "black":"#161616", "blue":"#9274E6", "green":"#89F470", "red":"#E08E5D", "gold":"#ECDC58", "purple":"#58CBEC", "magenta":"#EA58EC", "grey":"#7E5713", "dgrey":"#303030", "white":"#555555", "guiblack":"#EAEAEA", "paletteSize":10, "border":0.5 }, "bleach":{ "teal":"#00FFFF", "lgreen":"#00FF00", "orange":"#FF3200", "yellow":"#FFEC00", "lavender":"#FF24A7", "pink":"#FF3CBD", "vlgrey":"#FFF186", "lgrey":"#918181", "guiwhite":"#F1F1F1", "black":"#5F5F5F", "blue":"#0025FF", "green":"#00FF00", "red":"#FF0000", "gold":"#FFFA23", "purple":"#3100FF", "magenta":"#D4D3D3", "grey":"#838383", "dgrey":"#4C4C4C", "white":"#FFFEFE", "guiblack":"#080808", "paletteSize":10, "border":0.4 }, "ocean":{ "teal":"#76EEC6", "lgreen":"#41AA78", "orange":"#FF7F50", "yellow":"#FFD250", "lavender":"#DC3388", "pink":"#FA8072", "vlgrey":"#8B8886", "lgrey":"#BFC1C2", "guiwhite":"#FFFFFF", "black":"#12466B", "blue":"#4200AE", "green":"#0D6338", "red":"#DC4333", "gold":"#FEA904", "purple":"#7B4BAB", "magenta":"#5C246E", "grey":"#656884", "dgrey":"#D4D7D9", "white":"#3283BC", "guiblack":"#000000", "paletteSize":10, "border":0.3 }, "badlands":{ "teal":"#F9CB9C", "lgreen":"#F1C232", "orange":"#38761D", "yellow":"#E69138", "lavender":"#B7B7B7", "pink":"#78866B", "vlgrey":"#6AA84F", "lgrey":"#B7B7B7", "guiwhite":"#A4C2F4", "black":"#000000", "blue":"#0C5A9E", "green":"#6E8922", "red":"#5B0000", "gold":"#783F04", "purple":"#591C77", "magenta":"#20124D", "grey":"#2F1C16", "dgrey":"#999999", "white":"#543517", "guiblack":"#CFE2F3", "paletteSize":10, "border":0.4 }, "Toxic":{"teal":"#0026ff","lgreen":"#00ff1a","orange":"#a15dee","yellow":"#1a5106","lavender":"#ff0000","pink":"#ff0000","vlgrey":"#00ffd0","lgrey":"#747272","guiwhite":"#a600ff","black":"#2d8f00","blue":"#fff700","green":"#09ff00","red":"#ff0000","gold":"#ffffff","purple":"#03630d","magenta":"#0004ff","grey":"#51ff00","dgrey":"#000000","white":"#4b4444","guiblack":"#ffffff","paletteSize":10,"border":"0.5"}, "custom":{ "teal":"#7ADBBC", "lgreen":"#B9E87E", "orange":"#E7896D", "yellow":"#FDF380", "lavender":"#B58EFD", "pink":"#EF99C3", "vlgrey":"#E8EBF7", "lgrey":"#AA9F9E", "guiwhite":"#FFFFFF", "black":"#484848", "blue":"#3CA4CB", "green":"#8ABC3F", "red":"#E03E41", "gold":"#EFC74B", "purple":"#8D6ADF", "magenta":"#CC669C", "grey":"#A7A7AF", "dgrey":"#726F6F", "white":"#DBDBDB", "guiblack":"#000000", "paletteSize":10, "border":0.65 } }');
-  }
-]);
+    }, function(p) {
+        p.exports = { //Themes
+            normal: {
+                teal: "#7ADBBC",
+                lgreen: "#B9E87E",
+                orange: "#E7896D",
+                yellow: "#FDF380",
+                lavender: "#B58EFD",
+                pink: "#EF99C3",
+                vlgrey: "#E8EBF7",
+                lgrey: "#AA9F9E",
+                guiwhite: "#FFFFFF",
+                black: "#484848",
+                blue: "#3CA4CB",
+                green: "#8ABC3F",
+                red: "#E03E41",
+                gold: "#EFC74B",
+                purple: "#8D6ADF",
+                magenta: "#CC669C",
+                grey: "#A7A7AF",
+                dgrey: "#726F6F",
+                white: "#DBDBDB",
+                guiblack: "#000000",
+                dgreen: "#026600",
+                navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .65
+            },
+            classic: {
+                teal: "#8EFFFB",
+                lgreen: "#85E37D",
+                orange: "#FC7676",
+                yellow: "#FFEB8E",
+                lavender: "#B58EFF",
+                pink: "#F177DD",
+                vlgrey: "#CDCDCD",
+                lgrey: "#999999",
+                guiwhite: "#FFFFFF",
+                black: "#525252",
+                blue: "#00B0E1",
+                green: "#00E06C",
+                red: "#F04F54",
+                gold: "#FFE46B",
+                purple: "#768CFC",
+                magenta: "#BE7FF5",
+                grey: "#999999",
+                dgrey: "#545454",
+                white: "#C0C0C0",
+                guiblack: "#000000",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .5
+            },
+            dark: {
+                teal: "#8975B7",
+                lgreen: "#0C491D",
+                orange: "#C46748",
+                yellow: "#B2B224",
+                lavender: "#7D56C5",
+                pink: "#B24FAE",
+                vlgrey: "#1E1E1E",
+                lgrey: "#3C3A3A",
+                guiwhite: "#000000",
+                black: "#E5E5E5",
+                blue: "#379FC6",
+                green: "#30B53B",
+                red: "#FF6C6E",
+                gold: "#FFC665",
+                purple: "#9673E8",
+                magenta: "#C8679B",
+                grey: "#635F5F",
+                dgrey: "#73747A",
+                white: "#11110F",
+                guiblack: "#FFFFFF",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .15
+            },
+            natural: {
+                teal: "#76C1BB",
+                lgreen: "#AAD35D",
+                orange: "#E09545",
+                yellow: "#FFD993",
+                lavender: "#939FFF",
+                pink: "#D87FB2",
+                vlgrey: "#C4B6B6",
+                lgrey: "#7F7F7F",
+                guiwhite: "#FFFFFF",
+                black: "#373834",
+                blue: "#4F93B5",
+                green: "#00B659",
+                red: "#E14F65",
+                gold: "#E5BF42",
+                purple: "#8053A0",
+                magenta: "#B67CAA",
+                grey: "#998F8F",
+                dgrey: "#494954",
+                white: "#A5B2A5",
+                guiblack: "#000000",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .2
+            },
+            pumpkin: {
+                teal: "#721970",
+                lgreen: "#ff6347",
+                orange: "#1b713a",
+                yellow: "#fdf380",
+                lavender: "#941100",
+                pink: "#194417",
+                vlgrey: "#1b713a",
+                lgrey: "#aa9f9e",
+                guiwhite: "#fed8b1",
+                black: "#484848",
+                blue: "#3ca4cb",
+                green: "#76EEC6",
+                red: "#F04F54",
+                gold: "#1b713a",
+                purple: "#1b713a",
+                magenta: "#cc669c",
+                grey: "#ffffff",
+                dgrey: "#726f6f",
+                white: "#ff9b58",
+                guiblack: "#000000",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: 3.3
+            },
+            forest: {
+                teal: "#884AA5",
+                lgreen: "#8C9B3E",
+                orange: "#D16A80",
+                yellow: "#97596D",
+                lavender: "#499855",
+                pink: "#60294F",
+                vlgrey: "#DDC6B8",
+                lgrey: "#7E949E",
+                guiwhite: "#FFFFE8",
+                black: "#665750",
+                blue: "#807BB6",
+                green: "#A1BE55",
+                red: "#E5B05B",
+                gold: "#FF4747",
+                purple: "#BAC674",
+                magenta: "#BA78D1",
+                grey: "#998866",
+                dgrey: "#529758",
+                white: "#7DA060",
+                guiblack: "#000000",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .7
+            },
+            midnight: {
+                teal: "#2B9098",
+                lgreen: "#4BAA5D",
+                orange: "#345678",
+                yellow: "#CDC684",
+                lavender: "#89778E",
+                pink: "#A85C90",
+                vlgrey: "#CCCCCC",
+                lgrey: "#A7B2B7",
+                guiwhite: "#BAC6FF",
+                black: "#091F28",
+                blue: "#123455",
+                green: "#098765",
+                red: "#000013",
+                gold: "#566381",
+                purple: "#743784",
+                magenta: "#B29098",
+                grey: "#555555",
+                dgrey: "#649EB7",
+                white: "#444444",
+                guiblack: "#000000",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .6
+            },
+            pastel: {
+                teal: "#89BFBA",
+                lgreen: "#B5D17D",
+                orange: "#E5E0E0",
+                yellow: "#B5BBE5",
+                lavender: "#939FFF",
+                pink: "#646DE5",
+                vlgrey: "#B2B2B2",
+                lgrey: "#7F7F7F",
+                guiwhite: "#FFFFFF",
+                black: "#383835",
+                blue: "#AEAEFF",
+                green: "#AEFFAE",
+                red: "#FFAEAE",
+                gold: "#FFFFFF",
+                purple: "#C3C3D8",
+                magenta: "#FFB5FF",
+                grey: "#CCCCCC",
+                dgrey: "#A0A0B2",
+                white: "#F2F2F2",
+                guiblack: "#000000",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .35
+            },
+            space: {
+                teal: "#4788F3",
+                lgreen: "#AF1010",
+                orange: "#FF0000",
+                yellow: "#82F850",
+                lavender: "#FFFFFF",
+                pink: "#57006C",
+                vlgrey: "#FFFFFF",
+                lgrey: "#272727",
+                guiwhite: "#000000",
+                black: "#7F7F7F",
+                blue: "#0E1B92",
+                green: "#0AEB80",
+                red: "#C2B90A",
+                gold: "#3E7E8C",
+                purple: "#285911",
+                magenta: "#A9707E",
+                grey: "#6F6A68",
+                dgrey: "#2D0738",
+                white: "#000000",
+                guiblack: "#FFFFFF",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .25
+            },
+            nebula: {
+                teal: "#38B06E",
+                lgreen: "#22882E",
+                orange: "#D28E7F",
+                yellow: "#D5D879",
+                lavender: "#E084EB",
+                pink: "#DF3E3E",
+                vlgrey: "#F0F2CC",
+                lgrey: "#7D7D7D",
+                guiwhite: "#C2C5EF",
+                black: "#161616",
+                blue: "#9274E6",
+                green: "#89F470",
+                red: "#E08E5D",
+                gold: "#ECDC58",
+                purple: "#58CBEC",
+                magenta: "#EA58EC",
+                grey: "#7E5713",
+                dgrey: "#303030",
+                white: "#555555",
+                guiblack: "#EAEAEA",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .5
+            },
+            bleach: {
+                teal: "#00FFFF",
+                lgreen: "#00FF00",
+                orange: "#FF3200",
+                yellow: "#FFEC00",
+                lavender: "#FF24A7",
+                pink: "#FF3CBD",
+                vlgrey: "#FFF186",
+                lgrey: "#918181",
+                guiwhite: "#F1F1F1",
+                black: "#5F5F5F",
+                blue: "#0025FF",
+                green: "#00FF00",
+                red: "#FF0000",
+                gold: "#FFFA23",
+                purple: "#3100FF",
+                magenta: "#D4D3D3",
+                grey: "#838383",
+                dgrey: "#4C4C4C",
+                white: "#FFFEFE",
+                guiblack: "#080808",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .4
+            },
+            ocean: {
+                teal: "#76EEC6",
+                lgreen: "#41AA78",
+                orange: "#FF7F50",
+                yellow: "#FFD250",
+                lavender: "#DC3388",
+                pink: "#FA8072",
+                vlgrey: "#8B8886",
+                lgrey: "#BFC1C2",
+                guiwhite: "#FFFFFF",
+                black: "#12466B",
+                blue: "#4200AE",
+                green: "#0D6338",
+                red: "#DC4333",
+                gold: "#FEA904",
+                purple: "#7B4BAB",
+                magenta: "#5C246E",
+                grey: "#656884",
+                dgrey: "#D4D7D9",
+                white: "#3283BC",
+                guiblack: "#000000",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .3
+            },
+            badlands: {
+                teal: "#F9CB9C",
+                lgreen: "#F1C232",
+                orange: "#38761D",
+                yellow: "#E69138",
+                lavender: "#B7B7B7",
+                pink: "#78866B",
+                vlgrey: "#6AA84F",
+                lgrey: "#B7B7B7",
+                guiwhite: "#A4C2F4",
+                black: "#000000",
+                blue: "#0C5A9E",
+                green: "#6E8922",
+                red: "#5B0000",
+                gold: "#783F04",
+                purple: "#591C77",
+                magenta: "#20124D",
+                grey: "#2F1C16",
+                dgrey: "#999999",
+                white: "#543517",
+                guiblack: "#CFE2F3",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .4
+            },
+            custom: {
+                teal: "#7ADBBC",
+                lgreen: "#B9E87E",
+                orange: "#E7896D",
+                yellow: "#FDF380",
+                lavender: "#B58EFD",
+                pink: "#EF99C3",
+                vlgrey: "#E8EBF7",
+                lgrey: "#AA9F9E",
+                guiwhite: "#FFFFFF",
+                black: "#484848",
+                blue: "#3CA4CB",
+                green: "#8ABC3F",
+                red: "#E03E41",
+                gold: "#EFC74B",
+                purple: "#8D6ADF",
+                magenta: "#CC669C",
+                grey: "#A7A7AF",
+                dgrey: "#726F6F",
+                white: "#DBDBDB",
+                guiblack: "#000000",
+              dgreen: "#026600",
+            navy: "#000C66",
+              ice: "#00F7FF",
+            orang: "#FF8000",
+                paletteSize: 10,
+                border: .65
+   },
+shift:{"teal":"#79b1db","lgreen":"#7de893","orange":"#e7e36d","yellow":"#a8fd80","lavender":"#fd8ef2","pink":"#efae98","vlgrey":"#f0e8f7","lgrey":"#a3a3a3","guiwhite":"#ffffff","black":"#484848","blue":"#403dcb","green":"#3fbc52","red":"#e0b43f","gold":"#9def4b","purple":"#df6ada","magenta":"#cc7d66","grey":"#ababab","dgrey":"#707070","white":"#dbdbdb","guiblack":"#000000","paletteSize":10,"border":"0.5"},
+        } 
+    }]);
+}.call(this)
