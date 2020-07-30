@@ -27,8 +27,7 @@ html, body {
 body {
   font-family: Ubuntu;
   font-size: 14px;
-  background-color: #484848;
-   background: linear-gradient(100deg, darkblue,green);
+  background-image: url("https://cdn.glitch.com/11c5c5db-c9db-47f4-8ee4-84768a2a98de%2FScreenshot%202020-07-11%20at%204.51.51%20PM%20(2).png?v=1594573399408");
   
 }
 
@@ -46,9 +45,11 @@ html, body, canvas {
 
 h1 {
   padding: 0;
-  margin: 0;
-  text-align: center;
-  font: bold 40px/1.1 Ubuntu;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
 }
 div.centered {
   text-align: center;
@@ -81,25 +82,26 @@ h3 {
 }
 
 .serverSelector {
-  height: 40px;
+  height: 45px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
   line-height: 13px;
+  padding-left: 10px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.15);
 }
 .serverSelector tr {
-  color: black;
+  color: #828282;
   cursor: pointer;
 }
 .serverSelector tr.featured {
-  color: yellow;
-  text-shadow: /*#ffe500 0 0 4px,*/ yellow 0 0 6px;
+  color: #e8ae00;
+  text-shadow: /*#ffe500 0 0 4px,*/ #fff27e 0 0 6px;
 }
 .serverSelector tr.selected {
-  color:blue;
+  color: #1797e6;
   cursor: default;
 }
 
