@@ -545,28 +545,31 @@ body.mobile .icon {
   width: 100%;
   height: 40px;
   box-sizing: border-box;
-  color: black;
+  color: white;
   text-align: center;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.2);
-  background: #bfeaff;
+  background: #00c1ffff;
   border: 0;
+  border-bottom: 2px solid #2484bf;
   cursor: pointer;
-  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -2px #2484bf;
   border-radius: 5px;
   font: 16px Ubuntu;
 }
 #startButton:hover {
   margin-top: 1px;
   height: 39px;
-  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #1797e6;
 }
 
 #startButton:active {
-  margin-top: 1px;
-  height: 39px;
-  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.15);
+  margin-top: 2px;
+  height: 38px;
+  background: #1797e6;
+  border-bottom: 0px
+  outline: none;
+  box-shadow: none;
 }
-
 #bottomHolder > a {
   display: inline-block;
   position: relative;
