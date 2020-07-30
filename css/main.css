@@ -169,15 +169,14 @@ input.error {
   margin: 0 auto;
   max-height: 390px;
   padding: 10px;
-  opacity: 0.9;
   border-radius: 5px;
   background-color: #DDE6EB;
   box-sizing: border-box;
   overflow: hidden;
 }
 .menuTabs {
-  height: 28px;
-  margin: 0 12px;
+  height: 26px;
+  margin: 0 8px;
 }
 #mobile {
   display: none;
