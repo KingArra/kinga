@@ -148,23 +148,25 @@
                     <label class="container"><input id="optAutoLevel" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Auto-Level Up</label>
                   </div></td>
                   <td><div>
-                    <label class="container"><input id="optPrediction" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Use New Interpolation</label>
-                  </div></td>
-                </tr><tr>
+                                    <label class="container"><input id="optPrediction" tabindex="-1" class="checkbox" type="checkbox"><span class="checkmark"></span>Use New Interpolation</label>
                   </div></td>
                 </tr>
               </table>
               <div class="optionsHeader">More Links</div>
-              <div class="centered moreLinks">
-                <span data-ccpa-link="1"></span>
-            
+              <center>
                 <a tabindex="-1" href="https://codepen.io/road-to-100k/full/MPyOeQ/">Road's Custom Theme Maker</a>
-                <a tabindex="-1" href="custom-shape.html">Custom Shape Builder</a>
-              </div>
+                <br>
+                <a tabindex="-1" href="https://www.youtube.com/channel/UCupwaeap3T00d4IP_-RtBlw?sub_confirmation=1">Subscribe on Youtube</a>
+                &nbsp;&nbsp;&nbsp;
+                <a tabindex="-1" href="/custom-shape.html">Custom Shape Builder</a>
+                <br>
+                <a tabindex="-1" href="https://arras.netlify.app/">Arras Proxy Server</a>
+                <a tabindex="-1" href="https://discord.com/invite/udjKYt?utm_source=Discord%20Widget&utm_medium=Connect">Join Discord</a>
+              </center>
             </div>
           </div>
           <div style="position: relative; bottom: -10px;">
-            <button id="startButton" tabindex="2" onclick="startgameee();">Play</button>
+            <button id="startButton" tabindex="2">Join this Server</button>
           </div>
         </div>
         <div class="startMenuHolder shrinkable">
@@ -192,7 +194,6 @@
   window.onerror = (message, source, lineno, colno, error) => {
     window.onerror = null
     if (error) error = error.toString()
-    console.warn('The game crashed, refreshing page to recover from error')
     if (error == null && lineno == 0 && colno == 0) return
     let e = JSON.stringify({
       message: message,
@@ -201,7 +202,6 @@
       colno: colno,
       error: error
     })
-    prompt('The game may have crashed, refresh the page to recover from error. If this is a private server, make sure to check the changelog for any server updates. Error information:', e)
   }
   </script>
   <script src="js/app.js"></script>
@@ -209,7 +209,6 @@
 </body>
 </html>
    <script>
-  var audio = new Audio('https://vgmdownloads.com/soundtracks/super-mario-64-ds/smbfpsga/Bob-omb%20Battlefield%20%28Extended%29.mp3');
   audio.oncanplay = function() {
     if (document.getElementById("optMusic").checked) this.play()
   }
