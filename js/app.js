@@ -2151,7 +2151,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                 };
                 f.onerror = function(a) {
                     console.warn("WebSocket clobbing", a);
-                    b.message = "The connection was closed before getting a response, please try again later.";
+                    b.message = "The following server is not Public or Restarting, please wait...";
                     b.isInGame = !1
                 };
                 return f
