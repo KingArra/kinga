@@ -1,3 +1,10 @@
+# PATCH 07/31/2020
+
+- Added the Compressor. This Tank looks like a fighter replacing the front Cannon with a Railgun Unlimate Cannon.
+
+- Added the Arena Closer. This Tank will only be available to Beta-Testers and Developers.
+
+
 # PATCH 07/30/2020
 
 - Fixed an Animation Error with the Options Menu.
