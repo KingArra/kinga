@@ -3477,7 +3477,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     id: "b",
                     type: "FFA",
                     code: "dream_team-1-ffa",
-                    at: m.glitch("prong-nine-geology"),
+                    at: m.glitch("closedserverbeta"),
                     untrusted: !0,
                     secure: -1,
                     prefer: !0,
