@@ -1,6 +1,12 @@
 # PATCH 08/02/2020
 
--Nerfed Up the Main Bases in Defender Mode.
+- Nerfed down the Main Bases by a little. 
+
+- Nerfed down the Rail Defender.
+
+- Fixed a Feature with the Overseer Guards. The Overseer Guards will Now act like Drones instead of Minions.
+
+- Nerfed Up the Main Bases in Defender Mode.
 
 # PATCH 07/31/2020
 
