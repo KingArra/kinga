@@ -1,3 +1,7 @@
+# PATCH 08/02/2020
+
+-Nerfed Up the Main Bases in Defender Mode.
+
 # PATCH 07/31/2020
 
 - Added the Compressor. This Tank looks like a fighter replacing the front Cannon with a Railgun Unlimate Cannon.
@@ -368,7 +372,7 @@
 
 - Working on a New Gamemode called Protect the Base. The server will not be released for now.
 
-# PATCH 06/3/2020 (1): Starting Quick Guide
+# PATCH 06/3/2020 (1): How to PLay
 
 - Good Luck playing the Game!
 
