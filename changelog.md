@@ -4,7 +4,7 @@
 
 - Nerfed down the Rail Defender.
 
-- Fixed a Feature with the Overseer Guards. The Overseer Guards will Now act like Drones instead of Minions.
+- Fixed a Feature with the Overseer Guards. The Overseer Guards will Now go directly to the Target.
 
 - Nerfed Up the Main Bases in Defender Mode.
 
