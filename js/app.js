@@ -2938,7 +2938,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                                 L(c, c + 200, d + 7, 11, l.grey);
                                 L(c, c + 200 * Math.min(1, b.score / ma), d + 7, 10.5, b.barColor);
                                 ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.guiwhite, "center", !0);
-                                if (b.label.includes('hi'))ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.ice, "center", !0);
+                                if (b.label.includes('𝓟𝓻𝓸𝓽𝓮𝓬𝓽𝓸𝓻'))ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.lgreen, "center", !0);
                               if (b.label.includes('ᴋᴀ2'))ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.blue, "center", !0);
                               if (b.label.includes('[AI]'))ca[a].draw(b.label + ": " + I.handleLargeNumber(Math.round(b.score)), c + 100, d + 7, 9, l.guiwhite, "center", !0);
                                 let e =
