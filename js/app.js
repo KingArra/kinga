@@ -2909,7 +2909,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                                 w = Math.sqrt(y.vx * y.vx + y.vy * y.vy);
                             b.showDebug && (G(h, u - 40, 200, 30), t.addValue(d), t.draw(h, u - 40, 200, 30), r.addValue(w), r.draw(h, u - 40, 200, 30), z.addValue(K.rendergap),
                                 z.draw(h, u - 40, 200, 30), g.addValue(m), g.draw(h, u - 40, 200, 30), q -= 40);
-                            if (B.graphical.screenshotMode) W[6].draw("Arras", h + 200, q - 2, 15, l.guiwhite, "right");
+                            if (B.graphical.screenshotMode) W[6].draw("KA2 Arras", h + 200, q - 2, 15, l.blue, "right");
                             else {
                                 if (b.showDebug) { //Debug names
                                     W[6].draw("Game Status", h + 200, q - 84 - 2, 15, l.blue, "right");
