@@ -762,7 +762,7 @@ window.location.replace("https://arras-7.glitch.me/noHacks/noHacks.html");
                 }
                                 c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.guiwhite, d.startsWith("[AI]") && (d = d.slice(0), d.length && (g = T(l.lavender, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
                     8, g, "center"), f.globalAlpha = 1) 
-                   if (c.name === 'Server Inspecter')                c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.red, d.startsWith("\u200b\u200b") && (d = d.slice(2), d.length && (g = T(l.yellow, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
+                   if (c.name === '')                c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.red, d.startsWith("\u200b\u200b") && (d = d.slice(2), d.length && (g = T(l.yellow, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
                     8, g, "center"), f.globalAlpha = 1)
               
                             if (c.name === '𝓟𝓻𝓸𝓽𝓮𝓬𝓽𝓸𝓻')                c.nameplate && c.id !== A.playerid && (null == c.render.textobjs && (c.render.textobjs = [w(), w()]), d = c.name, g = l.lgreen, d.startsWith("\u200b\u200b") && (d = d.slice(2), d.length && (g = T(l.yellow, g, .125))), f.globalAlpha = t, c.render.textobjs[0].draw(d, b, a - h - 30, 16, g, "center"), c.render.textobjs[1].draw(I.handleLargeNumber(c.score, !0), b, a - h - 16,
@@ -2868,7 +2868,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                             E.draw("Score:  " + I.formatLargeNumber(A.__s.getScore()), c + 165, d + a / 2, a - 2, l.guiwhite, "center", !0);
                             f.lineWidth = 4;
                           O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.guiwhite, "center")
-                                                if (y.name === '𝓟𝓻𝓸𝓽𝓮𝓬𝓽𝓸𝓻')O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.ice, "center")
+                                                if (y.name === '𝓟𝓻𝓸𝓽𝓮𝓬𝓽𝓸𝓻')O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.lgreen, "center")
                           if (y.name === 'Guest')O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.grey, "center")
                           if (y.name === 'ᴋᴀ2')O.draw(y.name, Math.round(c + 165) + .5, Math.round(d - 10 - 4) + .5, 32, l.blue, "center")
                         }
