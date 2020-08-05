@@ -3484,7 +3484,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
           
                     visible: 0,
                     id: "c",
-                    type: "2-2TDM",
+                    type: "1TDM",
                     code: "dream_team-1-t",
                     at: m.glitch("destroytheattacker"),
                     untrusted: !0,
