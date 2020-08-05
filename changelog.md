@@ -1,3 +1,9 @@
+# PATCH 08/05/2020
+
+
+- Added a Tank called the Surgent. Like a Surfer just the Front is a Railgun Unlimate Cannon.
+- This Tank upgrades from the Railer. (Basic > Railgun Unlimate > Railer > Surgent)
+
 # PATCH 08/02/2020
 
 

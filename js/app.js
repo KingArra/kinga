@@ -1,5 +1,3 @@
-// My anti-hack system (like in arraz-io.glitch.me)
-  // No Hacks, lol
   document.addEventListener('keydown', function() {
   if (event.keyCode == 123) {
 window.location.replace("https://arras.io");
