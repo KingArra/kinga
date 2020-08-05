@@ -1,10 +1,13 @@
+
 # PATCH 08/05/2020
 
+- Developer Usuage is now Closed! The Developer can only access this Feature. 
 
-- Added a Tank called the Surgent. Like a Surfer just the Front is a Railgun Unlimate Cannon.
-- This Tank upgrades from the Railer. (Basic > Railgun Unlimate > Railer > Surgent)
+- Added a New URL, you can just go to ka2yt.glitch.me to get the game.
 
 # PATCH 08/02/2020
+
+- Added Developer Usuage for Testing Only! You can use the TESTBED Tanks until 08/02/2020!
 
 
 - Nerfed down the Main Bases by a little. 
@@ -22,6 +25,8 @@
 
 # PATCH 07/31/2020
 
+- Added a New URL, you can just go to ka2yt.glitch.me to get the game.
+
 - Added the Compressor. This Tank looks like a fighter replacing the front Cannon with a Railgun Unlimate Cannon.
 
 - Added the Arena Closer. This Tank will only be available to Beta-Testers and Developers.
@@ -32,6 +37,12 @@
 - Fixed an Animation Error with the Options Menu.
 
 - Changed the Messgae on the Token Slot.
+
+- Did some Transfering!
+
+- 4TDM has been fixed!
+
+
 
 
 # PATCH 07/29/2020

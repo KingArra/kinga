@@ -2916,7 +2916,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                                     W[4].draw("Prediction: " + d.toFixed(3), h + 200, q - 56, 10, l.guiwhite, "right");
                                     W[3].draw("Update Rate: " + K.updatetime + "Hz", h + 200, q -
                                         42, 10, l.guiwhite, "right")
-                                } else W[6].draw("ka2-arras.glitch.me", h + 200, q - 42 - 2, 15, l.blue, "right");
+                                } else W[6].draw("KA2 Arras Client", h + 200, q - 42 - 2, 15, l.blue, "right");
                                 W[2].draw("Client FPS: " + K.rendertime + " FPS", h + 200, q - 28, 10, 10 < K.rendertime ? l.green : l.orange, "right");
                                 W[1].draw("Server Speed: " + (100 * A.fps).toFixed(2) + "%", h + 200, q - 14, 10, 1 === A.fps ? l.green : l.orange, "right");
                                 W[0].draw(m.toFixed(1) + " ms  " + b.server.code + " :" + b.server.type + ":", h + 200, q, 10, l.guiwhite, "right")
