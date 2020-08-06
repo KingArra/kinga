@@ -3134,7 +3134,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     v.draw(r(),
                         d - 170, h + 99, 16, l.guiwhite);
                     u = Math.ceil((b.respawnOn - Date.now()) / 1E3);
-                    g.draw(0 < u ? `You may respawn in ${u} second${1===u?"":"s"}` : "joysticks" === U.control ? "Tap to respawn!" : "Press enter to respawn!", d, h + 125, 16, l.guiwhite, "center")
+                    g.draw(0 < u ? `You may respawn in ${u} second${1===u?"":"s"}` : "joysticks" === U.control ? "Tap anywhere to respawn!" : "Press enter to respawn!", d, h + 125, 16, l.guiwhite, "center")
                 }
             })();
         window.onbeforeunload = () => b.isInGame && !b.died ? !0 : null;
