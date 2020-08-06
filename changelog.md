@@ -1,3 +1,6 @@
+# PATCH 08/06/2020
+
+- Just to Notify, If you would like to be notified for new Server Updates, join my Discord using the tab above!
 
 # PATCH 08/05/2020
 
@@ -25,7 +28,7 @@
 
 # PATCH 07/31/2020
 
-- Added a New URL, you can just go to ka2yt.glitch.me to get the game.
+- Added a New URL, you can just go to kingarras2.glitch.me to get the game.
 
 - Added the Compressor. This Tank looks like a fighter replacing the front Cannon with a Railgun Unlimate Cannon.
 
