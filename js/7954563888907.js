@@ -2917,9 +2917,9 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                                     W[3].draw("Update Rate: " + K.updatetime + "Hz", h + 200, q -
                                         42, 10, l.guiwhite, "right")
                                 } else W[6].draw("KA2 Arras", h + 200, q - 42 - 2, 15, l.blue, "right");
-                                W[2].draw("Client FPS: " + K.rendertime + " FPS", h + 200, q - 28, 10, 10 < K.rendertime ? l.pink : l.orange, "right");
+                                W[2].draw("Client FPS: " + K.rendertime + " FPS", h + 200, q - 28, 10, 10 < K.rendertime ? l.ice : l.orange, "right");
                                 W[1].draw("Server Speed: " + (100 * A.fps).toFixed(2) + "%", h + 200, q - 14, 10, 1 === A.fps ? l.green : l.orange, "right");
-                                W[0].draw(m.toFixed(1) + " ms  " + b.server.code + " :" + b.server.type + ":", h + 200, q, 10, l.ice, "right")
+                                W[0].draw(m.toFixed(1) + " ms  " + b.server.code + " :" + b.server.type + ":", h + 200, q, 10, l.pink, "right")
                             }
                         }
                                     b.mobile && H(1.25);
@@ -3484,8 +3484,8 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
           
                     visible: 0,
                     id: "c",
-                    type: "1TDM",
-                    code: "dream_team-1-t",
+                    type: "Defender Mode",
+                    code: "usa_md-1-t",
                     at: m.glitch("destroytheattacker"),
                     untrusted: !0,
                     secure: -1,
@@ -3495,7 +3495,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     visible: 0,
                     id: "p",
                     type: "",
-                    code: "dream_team-1-dev",
+                    code: "usa_md-1-dev",
                     at: m.glitch("domtdm"),
                     untrusted: !0,
                     secure: -1,
@@ -4501,7 +4501,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                 paletteSize: 10,
                 border: .65
             },
-            classic: {
+            diep: {
                 teal: "#8EFFFB",
                 lgreen: "#85E37D",
                 orange: "#FC7676",
