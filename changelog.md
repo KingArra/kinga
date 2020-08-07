@@ -1,3 +1,7 @@
+# PATCH 08/07/2020
+
+- Made the Background Change Colors!
+
 # PATCH 08/06/2020
 
 - Just to Notify, If you would like to be notified for new Server Updates, join my Discord using the tab above!
