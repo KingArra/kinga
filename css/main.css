@@ -165,12 +165,15 @@ input.error {
 }
 
 #startMenu {
-  position: relative;
+    position: relative;
   margin: 0 auto;
-  max-height: 390px;
+    width: 1150px;
   padding: 10px;
   border-radius: 5px;
   background-color: #DDE6EB;
+      border-style: solid;
+    border-color: #c1cfd8;
+
   box-sizing: border-box;
   overflow: hidden;
 }

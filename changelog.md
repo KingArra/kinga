@@ -1,3 +1,8 @@
+# PATCH 08/08/2020
+
+- Added a Border Line on the Start Menu of the Game.
+
+
 # PATCH 08/07/2020
 
 - Made the Background Change Colors!
