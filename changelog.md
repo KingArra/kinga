@@ -1,5 +1,7 @@
 # <u>PATCH 08/08/2020</u>
 
+- Underlined Each PATCH title.
+
 - Changed the Client Speed Color and the Server Code.
 
 - Added a Border Line on the Start Menu of the Game.
@@ -369,7 +371,7 @@
 
 - Edited the Home Screen, changed different Buttons and Colors.
 
-# PATCH 06/10/2020 (2)</u>
+# <u>PATCH 06/10/2020 (2)</u>
 
 - Tweaked Rija and the Launcher-88 and fixed major lag issues.
 
@@ -378,14 +380,14 @@
 - Changed the Shape of the Main Bases and the Rail Defender on the Protect the Base Server.
 - Tweaked the Domination Server Base Design
 
-# PATCH 06/9-10/2020 (1)
+# <u>PATCH 06/9-10/2020 (1)</u>
 
 - Just to Notify, Tanks will vary on the Gamemode. For Now TESTBED will be Unlocked on Most Servers.
 
 - 4 Team Domination and 4DTM were added to the Game.
 - Made Protect the Base Public and added a 2TDM Server.
 
-# PATCH 06/8/2020 (1)
+# <u>PATCH 06/8/2020 (1)</u>
 
 - Just to Notify, Tanks will vary on the Gamemode. For Now TESTBED will be Unlocked on Most Servers.
 
@@ -395,7 +397,7 @@
 
 - Added another Base. This entity shoots out Railgun Bullets that go constantly.
 
-# PATCH 06/7/2020 (1): Protect the Base Gamemode Update
+# <u>PATCH 06/7/2020 (1): Protect the Base Gamemode Update</u>
 
 - Added a notification to show what wave your on.
 
@@ -405,7 +407,7 @@
 
 - Lined the BLUE Bases on the Bottom of the Map.
 
-# PATCH 06/3/2020 (1): Gamemode Update
+# <u>PATCH 06/3/2020 (1): Gamemode Update</u>
 
 - There will be no ending to the game.
 
@@ -415,7 +417,7 @@
 
 - Working on a New Gamemode called Protect the Base. The server will not be released for now.
 
-# PATCH 06/3/2020 (1): How to PLay
+# <u>PATCH 06/3/2020 (2): How to Play</u>
 
 - Good Luck playing the Game!
 
@@ -429,7 +431,7 @@
 
 - Use WASD to Move or Up, Down, Right, or Up. "E" for auto-fire and "C" for autospin.
 
-# PATCH 06/3/2020 (1): Starting!
+# <u>PATCH 06/3/2020 (1)</u>
 
 - Changed the buttons and colors to Red. Left the Background the same normal color.
 
