@@ -1,23 +1,25 @@
-# PATCH 08/08/2020
+# <u>PATCH 08/08/2020</u>
+
+- Changed the Client Speed Color and the Server Code.
 
 - Added a Border Line on the Start Menu of the Game.
 
 
-# PATCH 08/07/2020
+# <u>PATCH 08/07/2020</u>
 
 - Made the Background Change Colors!
 
-# PATCH 08/06/2020
+# <u>PATCH 08/06/2020</u>
 
 - Just to Notify, If you would like to be notified for new Server Updates, join my Discord using the tab above!
 
-# PATCH 08/05/2020
+# <u>PATCH 08/05/2020</u>
 
 - Developer Usuage is now Closed! The Developer can only access this Feature. 
 
 - Added a New URL, you can just go to ka2yt.glitch.me to get the game.
 
-# PATCH 08/02/2020
+# <u>PATCH 08/02/2020</u>
 
 - Added Developer Usuage for Testing Only! You can use the TESTBED Tanks until 08/02/2020!
 
@@ -35,7 +37,7 @@
 
 
 
-# PATCH 07/31/2020
+# <u>PATCH 07/31/2020</u>
 
 - Added a New URL, you can just go to kingarras2.glitch.me to get the game.
 
@@ -44,7 +46,7 @@
 - Added the Arena Closer. This Tank will only be available to Beta-Testers and Developers.
 
 
-# PATCH 07/30/2020
+# <u>PATCH 07/30/2020</u>
 
 - Fixed an Animation Error with the Options Menu.
 
@@ -57,32 +59,32 @@
 
 
 
-# PATCH 07/29/2020
+# <u>PATCH 07/29/2020</u>
 
 - 4TDM is Currently Down, the Server is right now being fixed.
 
 
-# PATCH 07/25/2020
+# <u>PATCH 07/25/2020</u>
 
 - Defender Mode Map has been Restarted!
 
 - Added a new Developer Server.
 
 
-# PATCH 07/25/2020
+# <u>PATCH 07/25/2020</u>
 
 - Added Protector, like 4TDM But there is a Dominator is the Center of the map.
 
 - Got rid of Useless Servers.
 
 
-# PATCH 07/18/2020: Arena Closers
+# <u>PATCH 07/18/2020: Arena Closers</u>
 
 - Replaced Twin Closers to Streamliner Closers with more power so the Game can close quicker.
 
 
 
-# PATCH 07/18/2020
+# <u>PATCH 07/18/2020</u>
 
 - Fixed a Error where the Loading Screen won't show.
 
@@ -93,7 +95,7 @@
 - Removed Gray Color of Attackers.
 
 
-# PATCH 07/16/2020 (2)
+# <u>PATCH 07/16/2020 (2)</u>
 
 
 - <b style="color: #ff3636"> You may face difficulties while playing in the new Experimental Server. Wait 5 Hours before re-entering the game!</b>
@@ -104,7 +106,7 @@
 
 - The Quintuplet is now not a Beta Tank Anymore.
 
-# PATCH 07/16/2020 (1)
+# <u>PATCH 07/16/2020 (1)</u>
 
 - <b style="color: #ff3636"> This update may have Lag, please be considerate that this Update will not appear after a couple of restarts.</b>
 
@@ -112,25 +114,25 @@
 
 - Made the Attackers Large.
 
-# PATCH 07/15/2020 (1)
+# <u>PATCH 07/15/2020 (1)</u>
 
 - US West has Defender Mode and
 
 - Closed Bots on Defender mode for a temporary period of time.
 
-# PATCH 07/14/2020 (1): Server Client Update
+# <u>PATCH 07/14/2020 (1): Server Client Update</u>
 
 - Players can Join the Game with this Special Gamemode and join the Video! You must join Discord for Livestream Events and Videos that involve other people.
 
 - Planning to add a Recording Session Server.
 
-# PATCH 07/14/2020 (4): YOUTUBE GOAL REACHED
+# <u>PATCH 07/14/2020 (4): YOUTUBE GOAL REACHED</u>
 
 - Made a Custom URL for Youtube Channel! <a target="_blank" href="https://www.youtube.com/kingarras2">Youtu.be/kingarras2</a>. Thanks for your help!
 
 * Channel has reached 100 Subscribers, thanks for everyones help. Let's road to 150 Subscribers! XD
 
-# PATCH 07/14/2020 (3): Defender Mode Rework
+# <u>PATCH 07/14/2020 (3): Defender Mode Rework</u>
 
 - <b style="color: #ff3636"> Please be aware that the following server may Restart Several Times. This might take time depending on the update.</b>
 
@@ -138,7 +140,7 @@
 
 * Reworked some of the Bases, including the Main Bases.
 
-# PATCH 07/14/2020 (2): Bases
+# <u>PATCH 07/14/2020 (2): Bases</u>
 
 - 4TDM has reopened Opened!
 
@@ -150,19 +152,19 @@
 
 - Reworked 4TDM.
 
-# PATCH 07/14/2020 (1): Defender Mode Gamemode Update
+# <u>PATCH 07/14/2020 (1): Defender Mode Gamemode Update</u>
 
 - Reworked the Map Design.
 
-- Fixed the Pushed Bases Error. Made the Attacker Bosses Sme
+- Fixed the Pushed Bases Error. Made the Attacker Bosses Smaller.
 
-# PATCH 07/13/2020 (2): Pushed Main Bases
+# <u>PATCH 07/13/2020 (2): Pushed Main Bases</u>
 
 - Planning to make the Attackers smaller to avoid heavy weight pushing on the main Bases
 
 - Planning to fix an error where the attackers push the Main Bases out of their position.
 
-# PATCH 07/13/2020 (1): Too many Tanks!
+# <u>PATCH 07/13/2020 (1): Too many Tanks!</u>
 
 - Going to unlock the Bent Boomer to the Public.
 
@@ -190,7 +192,7 @@
 
 - You can now Upgrade to the Bent Hybrid by upgrading from the Twinbrid.
 
-# PATCH 07/13/2020 (1): Gamemode Update
+# <u>PATCH 07/13/2020 (1): Gamemode Update</u>
 
 - Made the Map Really Large.
 
@@ -202,7 +204,7 @@
 
 - Working on Slow Server and Lag issues.
 
-# PATCH 07/12/2020 (3)
+# <u>PATCH 07/12/2020 (3)</u>
 
 - Added a feature where if you are a special User, your name will be printed in a different color!
 
@@ -214,7 +216,7 @@
 
 - Customized the Start Menu Background. Added a Gradient Background.
 
-# PATCH 07/12/2020 (2)
+# <u>PATCH 07/12/2020 (2)</u>
 
 - Made the Rail Defender a little Smaller.
 
@@ -240,7 +242,7 @@
 
 * Re-organized the map in Defender Mode, there wil be only 2 Main Bases to reduce Glitching.
 
-# PATCH 07/11/2020 (2)
+# <u>PATCH 07/11/2020 (2)</u>
 
 - Switched Discord Server widget.
 
@@ -252,53 +254,53 @@
 
 - Removed 6 of the Main Bases and Added them to the Top of the Map.
 
-# PATCH 07/11/2020 (1)
+# <u>PATCH 07/11/2020 (1)</u>
 
 - Changed some Settings for the Main Base Protector Overseers.
 
 - Made the Main Bases a little Smaller in Defender Mode.
 
-# PATCH 07/9/2020 (1)
+# <u>PATCH 07/9/2020</u>
 
 - If you would like to <a href="">contribute in to the project</a>, would be appreciated! You will also get free access to new upcoming updates and servers.
 
 - Added an Experimental Server called D-Day 2.0, this Server is for test purposes only for upcomming servers.
 
-# PATCH 07/7/2020 (1)
+# <u>PATCH 07/07/2020 (2)</u>
 
 - Added a Developer Token Slot, this input is only for Devs who want to access the Developer Server.
 
 * Added back the Developer Server.
 
-# PATCH 07/6/2020 (1)
+# <u>PATCH 07/06/2020 (1)</u>
 
 - Removed the Developer Server for fixes. Planning on adding another Server.
 
-# PATCH 07/5/2020 (1)
+# <u>PATCH 07/05/2020 (2)</u>
 
 - If you see someone that says KA2 in Blue or Protector in green, just remember that these people are Developers!
 
 - Added a feature where if you make your name Guest your name will turn grey to others as a symbol that your new!
 - The 4th of July TESTBED Event has Ended.
 
-# PATCH 07/4/2020 (1)
+# <u>PATCH 07/04/2020 (1)</u>
 
 - Hope Everyone Enjoys this New Update! This will Close tomorrow at 12:00 AM.
 - Happy 4th of July! Added a 1 day TESTBED event!
 
-# PATCH 07/1/2020 (1)
+# <u>PATCH 07/05/2020 (2)</u>
 
 - Added an Experimental mode for the New Server that will probably replace 2TDM.
 
-# PATCH 06/29/2020 (1)
+# <u>PATCH 06/29/2020 (1)</u>
 
 - Removed FFA (Free for All) and added a Developer Server. (Not Available to the Public, no BT Token.)
 
-# PATCH 06/28/2020 (1)
+# <u>PATCH 06/28/2020 (1)</u>
 
 - Got a new domain name and renamed the game title.
 
-# PATCH 06/27/2020 (1)
+# <u>PATCH 06/27/2020 (1)</u>
 
 - Added the Packager upgraded from the Brick Railer. This has a Railgun with the same shooting rate as the Rail Defender and has a Boomerang Trap Launcher that will shoot where the Front Railgun is shooting.
 
@@ -313,13 +315,13 @@
 - Protect the Base): Renamed Protect the Base to "Defender Mode."
   -Renamed the Original Railgun to the Railgun Unlimate, because it constantly shoots!
 
-# PATCH 06/26/2020 (1)
+# <u>PATCH 06/26/2020 (1)</u>
 
 - Renamed the Rail Defender Label from "Base" to "Rail Defender"
 - (UPDATE 2 | Protect the Base): Renamed Protect the Base to "Defender
   -(UPDATE 1 | Protect the Base): Renamed the Original Railgun to the Railgun Unlimate, because it constantly shoots!
 
-# PATCH 06/25/2020 (1)
+# <u>PATCH 06/25/2020 (1)</u>
 
 - Planning to temporarily Close down Protect the Base for major Updates. This will occur during 6/26/2020 to 6/29/2020.
 
@@ -328,7 +330,7 @@
 - Added a Arena Closing Message for Protect the Base when the Game Session has Ended.
 - Changed the Loading Screen Message.
 
-# PATCH 06/24/2020 (1)
+# <u>PATCH 06/24/2020 (1)</u>
 
 - Recolored the Client Speed and the Server Speed checker. When color Green means that the following mechanic is running smoothly and normally.
 
@@ -336,7 +338,7 @@
 
 * There will be 4 Main Bases now on the Protect the Base Server. The Rail Defender will now sit in the middle of the map.
 
-# PATCH 06/15/2020 (1)
+# <u></u>PATCH 06/15/2020 (1)</u>
 
 - Added the Tracker upgraded from the Railer. This has a Railgun with the same shooting rate as the Rail Defender and has a Booster on the back that will make the tank go 2x the normal speed of the Railer.
 
@@ -345,7 +347,7 @@
 - Locked TESTBED Usuage.
   -Fixing up Protect the Base Server Bugs and Glitches.
 
-# PATCH 06/13/2020 (1)
+# <u>PATCH 06/13/2020 (1)</u>
 
 - Replaced the Original Arena Closers with Twin Closers to be extra.
 - Fixed Arena Closer Name Function.
@@ -353,21 +355,21 @@
 
 - Reseted all Games and Closed FFA for fixes.
 
-# PATCH 06/11/2020 (2)
+# <u>PATCH 06/11/2020 (2)</u>
 
 - Changed the Main Menu Buttons and Colors to Blue, changed the background image, and uploaded a new Favicon + Front Icon.
 
-# PATCH 06/11/2020 (1)
+# <u>PATCH 06/11/2020 (1)</u>
 
 -Starting the Star Wars Event, check the Changelog everyday or so for more Details about this new Event Comming Up!
 
 -Added FFA (Free For All).
 
-# PATCH 06/10/2020 (3)
+# <u>PATCH 06/10/2020 (3)</u>
 
 - Edited the Home Screen, changed different Buttons and Colors.
 
-# PATCH 06/10/2020 (2)
+# PATCH 06/10/2020 (2)</u>
 
 - Tweaked Rija and the Launcher-88 and fixed major lag issues.
 
