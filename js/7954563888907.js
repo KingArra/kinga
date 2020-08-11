@@ -3475,7 +3475,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     id: "b",
                     type: "FFA",
                     code: "usa_md-1-ffa",
-                    at: m.glitch("fascinated-magenta-giraffe"),
+                    at: m.glitch("closedregionai"),
                     untrusted: !0,
                     secure: -1,
                     prefer: !0,
