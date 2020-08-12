@@ -3500,6 +3500,16 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     untrusted: !0,
                     secure: -1,
                     prefer: !0,
+                                           }, {
+                    visible: 0,
+                    id: "m",
+                    type: "Maze",
+                    code: "usa_md-1-ffa",
+                    at: m.glitch("puzzling-marshy-drive"),
+                    untrusted: !0,
+                    secure: -1,
+                    prefer: !0,
+                    //featured: !0
                   
                 }, 
             ].map((a,
