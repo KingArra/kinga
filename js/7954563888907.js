@@ -3414,7 +3414,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     }],
                     [{
                         id: "m",
-                        to: "Maze",
+                        to: "FFA Maze",
                         delay: !0,
                         remove: "f"
                     }],
