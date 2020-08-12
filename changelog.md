@@ -1,6 +1,11 @@
 # <u>PATCH 08/08/2020</u>
 
-- Underlined Each PATCH title.
+- Made the Map Really Big.
+
+- Replaced Protector with 4TDM Maze.
+
+
+# <u>PATCH 08/08/2020</u>
 
 - Changed the Client Speed Color and the Server Code.
 

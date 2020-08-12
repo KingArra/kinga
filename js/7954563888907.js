@@ -3436,7 +3436,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     }],
                     [{
                         id: "d",
-                        to: "Protector"
+                        to: "4TDM Maze"
                     }, {
                         id: "m",
                         to: "Mothership",
@@ -3496,7 +3496,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     id: "p",
                     type: "",
                     code: "usa_md-1-dev",
-                    at: m.glitch("domtdm"),
+                    at: m.glitch("short-diamond-pumpkin"),
                     untrusted: !0,
                     secure: -1,
                     prefer: !0,
