@@ -3476,7 +3476,7 @@ if (10 > S.length) setTimeout(() => f.talk("S", Date.now() - P - Q), 75), b.mess
                     id: "a",
                     type: "4TDM",
                     code: "usa_md-1-4",
-                    at: m.glitch("4tdm-server"),
+                    at: m.glitch("hammerhead-likeable-wishbone"),
                     untrusted: !0,
                     secure: -1,
                     prefer: !0,
