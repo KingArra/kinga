@@ -1,3 +1,10 @@
+# <u>PATCH 08/15/2020</u>
+
+- Working on Lag issues on Defender Mode.
+
+- Remade 4TDM with more Tanks and less lag.
+
+
 # <u>PATCH 08/08/2020</u>
 
 - Made the Map Really Big.
